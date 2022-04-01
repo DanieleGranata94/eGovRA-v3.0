@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+    #back{
+        position: absolute;
+        left: 80%;
+        top: 10%;
+    }
+    #back2{
+    position: absolute;
+    left: 69%;
+    top: 10%;
+}
+
+    </style>
+
+    <div class="starter-template" style="margin-top: -6%;"> </div>
+        <h1>Threat Model</h1>
+        <p style="font-family: 'Times New Roman';font-size: medium">
+            Below is a detailed report on the possible threats that can occur for each asset.
+        </p>
+        <p style="font-family: 'Times New Roman';font-size: medium">
+            You should select each asset in order to evaluate the risk associated to.
+        </p>
+        <p style="font-family: 'Times New Roman';font-size: medium;">
+            <b style="font-family: 'Times New Roman';font-size: large;">
+                N.B.:
+            </b>
+            You can click on the threat to evaluate the countermeasures associated with it.
+        </p>
+<br>
+    <div style="width:800px; margin:0 auto;">
+        <form method="POST" action="{% url 'export_threat_modeling' systemId=systemId processId=processId %}">
+            {% csrf_token %}
+            <button id="back" type="submit" class="btn btn-primary">Export as a CSV file</button>
+        </form>
+
+        {% if result_available == True %}
+        <form method="POST" action="{% url 'risk_analysis_result' systemId=systemId processId=processId %}">
+            {% csrf_token %}
+            <button id="back2" type="submit" class="btn btn-primary">Show Risk Analysis Overall Result</button>
+        </form>
+        {% endif %}
+
+    </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Asset name</th>
+                <th style="text-align: center">Asset type</th>
+                <th style="text-align: center">Asset attributes</th>
+                <th style="text-align: center">Threats</th>
+                <th style="text-align: center">Policy per asset</th>
+                <th style="text-align: center">Risk Rating</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for info in threat_model_info %}
+                <tr>
+                    <td style="font-family: 'Times New Roman';font-size: larger"> {{ info.0.name }}</td>
+                    <td style="font-family: 'Times New Roman';font-size: larger;text-align: center"> {{ info.0.asset_type.name }}</td>
+                    <td style="font-family: 'Times New Roman';font-size: larger;text-align: center">
+                        <ul>
+                            {% for attribute in info.1 %}
+                                <li>{{ attribute.attribute.attribute_value }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td style="font-family: 'Times New Roman';font-size: larger">
+                        <ol>
+                            {% for threat in info.2 %}
+                                <li>
+                                    <a href="" style="color: black" data-toggle="modal"
+                                       data-target="#ThreatInfo{{ threat.pk }}">
+                                        {{ threat.threat }}
+                                    </a>
+                                    <div class="modal" tabindex="-1" id="ThreatInfo{{ threat.pk }}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title">{{ threat.threat.name }}</h1>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>{{ threat.threat.description }}</p>
+                                                    <h2>Controls:</h2>
+                                                    {% for controls in info.3 %}
+                                                        <ol>
+                                                            {% for control in controls %}
+                                                                {% if control.threat == threat.threat %}
+                                                                <li>{{ control.control }}</li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ol>
+                                                    {% endfor %}
+                                                    <h2>Description of controls:</h2>
+                                                    {% for controls in info.3 %}
+                                                        <ol>
+                                                            {% for control in controls %}
+                                                                {% if control.threat == threat.threat %}
+                                                                <li>{{ control.control.description }}</li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ol>
+                                                    {% endfor %}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </td>
+                    <td style="font-family: 'Times New Roman';font-size: larger">
+                        <ul>
+                            {% for control in info.4 %}
+                                <li>CIS.{{ control.pk }} - {{ control }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+
+                <td style="text-align:center; vertical-align: middle;">
+
+                    <form method="POST" action="{% url 'threat_agent_wizard' systemId=systemId processId=processId assetId=info.0.id  %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Select the Asset</button>
+                    </form>
+                </td>
+
+
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+
+
+
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}

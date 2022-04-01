@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+    #back{
+        position: absolute;
+        left: 80%;
+        top: 9%;
+    }
+    </style>
+
+    <h1>Process viewer: {{ process.name }}</h1>
+
+    <form method="POST" action="{% url 'bpmn_process_management' process.system.pk %}">
+        {% csrf_token %}
+        <button id="back" type="submit" class="btn btn-primary btn-sm">Back in process management</button>
+    </form>
+
+    <script src="https://unpkg.com/bpmn-js@7.4.0/dist/bpmn-viewer.development.js"></script>
+
+    <!-- viewer distro (with pan and zoom) -->
+    <script src="https://unpkg.com/bpmn-js@7.4.0/dist/bpmn-navigated-viewer.development.js"></script>
+
+    <!-- needed for this example only -->
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+
+    <!-- Abbiamo messo 490px perchè ci sembra una misura giusta, ma non si può fare resize automatico perchè il problema sta nelle API -->
+    <div id="canvas" style =" height: 490px " ></div>
+
+    <script>
+
+    function readTextFile(file)
+    {
+        var allText;
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", file, false);
+        rawFile.onreadystatechange = function ()
+        {
+            if(rawFile.readyState === 4)
+            {
+                if(rawFile.status === 200 || rawFile.status == 0)
+                {
+                    allText = rawFile.responseText;
+                    //alert(allText);
+                }
+            }
+        }
+        rawFile.send(null);
+        return allText;
+    }
+
+      //var diagramUrl = 'https://cdn.statically.io/gh/SalPet96/eGov_RA/91c77fb1/GC_BPMN.bpmn';
+
+      // viewer instance
+      var bpmnViewer = new BpmnJS({
+        container: '#canvas'
+      });
+
+
+      /**
+       * Open diagram in our viewer instance.
+       *
+       * @param {String} bpmnXML diagram to display
+       */
+      async function openDiagram(bpmnXML) {
+
+        // import diagram
+        try {
+
+          await bpmnViewer.importXML(bpmnXML);
+
+          // access viewer components
+          var canvas = bpmnViewer.get('canvas');
+          var overlays = bpmnViewer.get('overlays');
+
+
+          // zoom to fit full viewport
+          canvas.zoom('fit-viewport');
+
+          // attach an overlay to a node
+          overlays.add('SCAN_OK', 'note', {
+            position: {
+              bottom: 0,
+              right: 0
+            },
+            html: '<div class="diagram-note">Mixed up the labels?</div>'
+          });
+
+          // add marker
+          canvas.addMarker('SCAN_OK', 'needs-discussion');
+        } catch (err) {
+
+          console.error('could not import BPMN 2.0 diagram', err);
+        }
+      }
+
+        var path = "../"+"{{ process.xml }}";
+        console.log(path);
+        openDiagram(readTextFile(path));
+      // load external diagram file via AJAX and open it
+      //$.get(diagramUrl, openDiagram, 'text');
+    </script>
+
+{% endblock %}

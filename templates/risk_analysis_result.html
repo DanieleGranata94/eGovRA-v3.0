@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<style>
+table, th, td {
+	border: 0px solid grey;
+	border-collapse: collapse;
+	padding: 7px;
+}
+
+textarea {
+	width: 100%;
+}
+
+input[type=number] {
+	width: 40px;
+}
+
+img {
+	width: 100%;
+}
+
+input[type=checkbox] {
+	/* All browsers except webkit*/
+	transform: scale(2);
+	/* Webkit browsers*/
+	-webkit-transform: scale(2);
+}
+
+a.tip {
+	text-decoration: none
+}
+
+a.tip:hover {
+	cursor: help;
+	position: relative
+}
+
+a.tip span {
+	display: none
+}
+
+a.tip:hover span {
+	border: #c0c0c0 1px dotted;
+	padding: 5px 20px 5px 5px;
+	display: block;
+	z-index: 100;
+	background: #f0f0f0 no-repeat 100% 5%;
+	left: 0px;
+	margin: 10px;
+	width: 250px;
+	position: absolute;
+	top: 10px;
+	text-decoration: none
+}
+
+a.tip2 {
+	color: #000000;
+	text-decoration: none
+}
+
+a.tip2:hover {
+	cursor: help;
+	position: relative
+}
+
+a.tip2 span {
+	display: none
+}
+
+a.tip2:hover span {
+	border: #c0c0c0 1px dotted;
+	padding: 5px 20px 5px 5px;
+	display: block;
+	z-index: 100;
+	background: #f0f0f0 no-repeat 100% 5%;
+	left: 0px;
+	margin: 10px;
+	width: 250px;
+	position: absolute;
+	top: 10px;
+	text-decoration: none
+}
+
+.CSSTableGenerator {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	box-shadow: 10px 10px 5px #888888;
+	border: 1px solid #000000;
+	-moz-border-radius-bottomleft: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	-moz-border-radius-bottomright: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	-moz-border-radius-topright: 0px;
+	-webkit-border-top-right-radius: 0px;
+	border-top-right-radius: 0px;
+	-moz-border-radius-topleft: 0px;
+	-webkit-border-top-left-radius: 0px;
+	border-top-left-radius: 0px;
+}
+
+.CSSTableGenerator table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.CSSTableGenerator tr:last-child td:last-child {
+	-moz-border-radius-bottomright: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.CSSTableGenerator table tr:first-child td:first-child {
+	-moz-border-radius-topleft: 0px;
+	-webkit-border-top-left-radius: 0px;
+	border-top-left-radius: 0px;
+}
+
+.CSSTableGenerator table tr:first-child td:last-child {
+	-moz-border-radius-topright: 0px;
+	-webkit-border-top-right-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+.CSSTableGenerator tr:last-child td:first-child {
+	-moz-border-radius-bottomleft: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.CSSTableGenerator tr:hover td {
+	background-color: #f2f2f2;
+}
+
+.CSSTableGenerator td {
+	vertical-align: middle;
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	border-width: 0px 1px 1px 0px;
+	text-align: center;
+	padding: 7px;
+	font-size: 14px;
+	font-family: Arial;
+	font-weight: normal;
+	color: #000000;
+}
+
+.CSSTableGenerator tr:last-child td {
+	border-width: 0px 1px 0px 0px;
+}
+
+.CSSTableGenerator tr td:last-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.CSSTableGenerator tr:last-child td:last-child {
+	border-width: 0px 0px 0px 0px;
+}
+
+.CSSTableGenerator tr:first-child td {
+	background: -o-linear-gradient(bottom, #ffffff 5%, #ffffff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff
+		), color-stop(1, #ffffff));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",
+		endColorstr="#ffffff");
+	background: -o-linear-gradient(top, #ffffff, #ffffff);
+	background-color: #ffffff;
+	border: 0px solid #000000;
+	text-align: center;
+	border-width: 0px 0px 1px 1px;
+	font-size: 14px;
+	font-family: Arial;
+	font-weight: bold;
+	color: #000000;
+}
+
+.CSSTableGenerator tr:first-child:hover td {
+	background: -o-linear-gradient(bottom, #ffffff 5%, #ffffff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff
+		), color-stop(1, #ffffff));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",
+		endColorstr="#ffffff");
+	background-color: #ffffff;
+}
+
+.CSSTableGenerator tr:first-child td:first-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.CSSTableGenerator tr:first-child td:last-child {
+	border-width: 0px 0px 1px 1px;
+}
+</style>
+
+<div class=container>
+
+	</div>
+
+	<!-- RISKS EVALUATION -->
+	<div class="panel panel-default">
+		<div class="panel-heading text-center">
+			<span class="lead">
+				<h2>Risks Evaluation for
+					({{processName}}) </h2>
+			</span>
+		</div>
+
+		<div class="panel-body">
+            <form method="POST" action="{% url 'threat_modeling_view' systemId=systemId processId=processId %}">
+                    {% csrf_token %}
+                        <div style="text-align: center; padding-top: 20px; padding-bottom: 10px;">
+                            <button  type="submit" class="btn btn-primary">Back</button>
+                        </div>
+                    </form>
+
+			<div>
+
+
+
+				<br>
+                <br>
+<div class="panel panel-default">
+				<div class="panel-heading text-center">
+				</div>
+				<div class="panel-body">
+					<table class="CSSTableGenerator" border="1" ; width=100%>
+                        <tr>
+							<td width=30%>Stride category</td>
+							<td align="center">Risk</td>
+						</tr>
+						<tr>
+							<td>Spoofing</td>
+							<td
+								ng-style="{'VERY LOW':{background:'green'},'LOW':{background:'#d9d926'},'MEDIUM':{background:'orange'},'HIGH':{background:'red'},'CRITICAL':{background:'#ff00ff'}}[ctrl.getStrideRisk('SPOOFING')]"
+								align="center">{{ spoofing }}</td>
+						</tr>
+						<tr>
+							<td>Tampering</td>
+							<td
+								ng-style="{'VERY LOW':{background:'green'},'LOW':{background:'#d9d926'},'MEDIUM':{background:'orange'},'HIGH':{background:'red'},'CRITICAL':{background:'#ff00ff'}}[ctrl.getStrideRisk('TAMPERING')]"
+								align="center">{{ tampering }}</td>
+						</tr>
+						<tr>
+							<td>Repudiation</td>
+							<td
+								ng-style="{'VERY LOW':{background:'green'},'LOW':{background:'#d9d926'},'MEDIUM':{background:'orange'},'HIGH':{background:'red'},'CRITICAL':{background:'#ff00ff'}}[ctrl.getStrideRisk('REPUDIATION')]"
+								align="center">{{ repudiation }}</td>
+						</tr>
+						<tr>
+							<td>Information Disclosure</td>
+							<td
+								ng-style="{'VERY LOW':{background:'green'},'LOW':{background:'#d9d926'},'MEDIUM':{background:'orange'},'HIGH':{background:'red'},'CRITICAL':{background:'#ff00ff'}}[ctrl.getStrideRisk('INFORMATION DISCLOSURE')]"
+								align="center">{{ informationdis }}</td>
+						</tr>
+						<tr>
+							<td>Denial of Service</td>
+							<td
+								ng-style="{'VERY LOW':{background:'green'},'LOW':{background:'#d9d926'},'MEDIUM':{background:'orange'},'HIGH':{background:'red'},'CRITICAL':{background:'#ff00ff'}}[ctrl.getStrideRisk('DENIAL OF SERVICE')]"
+								align="center">{{ dos }}</td>
+						</tr>
+						<tr>
+							<td>Elevation of Privileges</td>
+							<td
+								ng-style="{'VERY LOW':{background:'green'},'LOW':{background:'#d9d926'},'MEDIUM':{background:'orange'},'HIGH':{background:'red'},'CRITICAL':{background:'#ff00ff'}}[ctrl.getStrideRisk('ELEVATION OF PRIVILEGES')]"
+								align="center">{{ eop }}</td>
+						</tr>
+					</table>
+				</div>
+
+
+				<br>
+                <br>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+

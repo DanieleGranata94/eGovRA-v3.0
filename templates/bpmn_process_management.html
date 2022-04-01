@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Upload BPMN process</h1>
+    <p style="font-family: 'Times New Roman';font-size: medium">
+        This form allows you to create a new process for the selected system,
+        in case the process to be analyzed is not already present in the list below.
+    </p>
+    <form method="POST" enctype="multipart/form-data" style="font-family: 'Times New Roman';font-size: large">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Upload file</button>
+    </form>
+
+    <h1>Uploaded BPMN processes</h1>
+    <p style="font-family: 'Times New Roman';font-size: medium">
+        You can select the process from those already created to continue with the analysis.
+        It is also possible to delete one of the existing process.
+    </p>
+    <p style="font-family: 'Times New Roman';font-size: medium">
+        N.B.: If the process has not yet undergone the enrichment phase (where necessary),
+        this will be marked with a red cross. Otherwise with a green tick.
+    </p>
+    <table class="table" id="dataTable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th style="text-align: center">BPMN enrichment</th>
+            <th style="text-align: center">BPMN viewer</th>
+            <th style="text-align: center">Download</th>
+            <th style="text-align: center">Select</th>
+            <th style="text-align: center">Edit</th>
+            <th style="text-align: center">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for process in processes_info %}
+            <tr>
+                <td style="font-family: 'Times New Roman';font-size: larger"> {{ process.0.name }}</td>
+                {% if process.1 == False %}
+                    <td style="text-align: center;font-size: 200%">✅</td>
+                {% else %}
+                    <td style="text-align: center;font-size: 200%">❌</td>
+                {% endif %}
+
+                <td style="text-align: center">
+                    <form method="POST" action="{% url 'bpmn_viewer' process.0.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-sm">View BPMN</button>
+                    </form>
+                </td>
+
+                <td style="text-align: center">
+                    <a href="{{ process.0.xml.url }}" class="btn btn-primary btn-sm">
+                        Download file
+                    </a>
+                </td>
+                <td style="text-align: center">
+                    <form method="POST" action="{% url 'process_data_object_input'  systemId=systemId processId=process.0.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-sm">Select process</button>
+                    </form>
+                </td>
+                <td style="text-align: center">
+                    <form method="POST" action="{% url 'edit_process' systemId=systemId processId=process.0.pk %}">
+                        {% csrf_token %}
+                            {% if process.1 == False %}
+                                <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+                            {% else %}
+                                <button type="submit" class="btn btn-primary btn-sm" disabled>Edit</button>
+                            {% endif %}
+                    </form>
+                </td>
+                <td style="text-align: center">
+                    <form method="POST" action="{% url 'delete_process' systemId=systemId processId=process.0.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete process</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

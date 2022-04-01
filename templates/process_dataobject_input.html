@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+    <h1>Data type refinement</h1>
+    <p style="font-family: 'Times New Roman';font-size: medium">
+        It is necessary to report the information associated with the Data of asset,
+        where this has not been explicitly indicated in the bpmn associated with the process in question.
+    </p>
+        <input id="InsertData" class="form-control" type="text" name="InsertData" placeholder="Insert DataObject Name" style="width: 200px" />
+    <div class="valid-feedback">
+        DataObject successfully inserted!
+    </div><br><br>
+    <input id="buttonAdd" type="submit" value="Insert DataObject" class="btn btn-primary btn-sm"/><br><br>
+
+    <form method="POST" action="{% url 'save_dataobject' systemId=systemId processId=processId%}">
+
+        <table class="table">
+        <thead>
+        <tr>
+            <th>DataObject names</th>
+            <th>DataObject Attributes</th>
+        </tr>
+        </thead>
+        <p>The data already present in the process {{ nameprocess }} are:</p><br><br>
+
+<script>
+    const element = document.getElementById("buttonAdd");
+    const element2 = document.getElementById("InsertData");
+    const table = document.getElementsByClassName("table")
+    element.addEventListener("click", () => {
+	console.log("clicked element");
+if (element2.value!="") {
+    element2.className='form-control is-valid'
+
+    $(table).find('tbody').append(`<tr><td style="font-family: 'Times New Roman';font-size: medium;"><B>${element2.value}</B></td> <td style="font-family: 'Times New Roman';font-size: medium;"><i><U style="font-family: 'Times New Roman';font-size: medium;height: 0.2px">This attribute indicates the size of the data:</U></i><br><br>
+    <label for="sizeobj">Size:</label> <input type="number" id="sizeobj" name=${element2.value} style="width: 40px" value="1"><label for="orderSize">Order of Size:</label> <select selected="selected" type="text" id="orderSize" name=${element2.value}> <option value="byte">Byte</option> <option value="kb">KB</option> <option value="mb">MB</option> <option value="gb">GB</option> </select><br><br>
+    <i><U style="font-family: 'Times New Roman';font-size: medium;height: 0.2px">This attribute indicates whether the data is personal or not:</U></i><br><br>
+    <label for="personalObj">Personal or not ?:</label> <select selected="selected" type="text" id="personalObj" name=${element2.value}> <option value="1">Yes</option> <option value="0">No</option> </select><br><br><i><U style="font-family: 'Times New Roman';font-size: medium;height: 0.2px">This attribute indicates the number of instances of the data in the process:</U></i><br><br><label for="loadDependence">Load Dependence:</label> <input type="number" id="loadDependence" name=${element2.value} style="width: 40px" value="1"><br><br> </td> </tr>`);
+}else{
+    element2.className='form-control is-invalid'
+
+
+}
+    });
+
+
+
+</script>
+
+    <tbody>
+
+
+        {% for data in list_data %}
+
+            <tr>
+               <td style="font-family: 'Times New Roman';font-size: medium; ">
+                    <B>{{ data }}</B>
+               </td>
+            <td style="font-family: 'Times New Roman';font-size: medium;">
+                <i><U style="font-family: 'Times New Roman';font-size: small;height: 0.2px">This attribute indicates the size of the data:</U></i><br><br>
+                <label for="sizeobj">Size:</label>
+                <input type="number" id="sizeobj" name={{ data }} style="width: 40px" value="1">
+                <label for="orderSize">Order of Size:</label>
+                <select selected="selected" type="text" id="orderSize" name={{ data }}>
+                    <option value="byte">Byte</option>
+                    <option value="kb">KB</option>
+                    <option value="mb">MB</option>
+                    <option value="gb">GB</option>
+                </select><br><br>
+                <i><U style="font-family: 'Times New Roman';font-size: medium;height: 0.2px">This attribute indicates whether the data is personal or not:</U></i><br><br>
+                <label for="personalObj">Personal:</label>
+                <select selected="selected" type="text" id="personalObj" name={{ data }}>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select><br><br>
+                <i><U style="font-family: 'Times New Roman';font-size: medium;height: 0.2px">This attribute indicates the number of instances of the data in the process:</U></i><br><br>
+                <label for="loadDependence">Load Dependence:</label>
+                  <input type="number" id="loadDependence" name= {{ data }} style="width: 40px" value="1"><br><br>
+
+            </td>
+
+
+        {% endfor %}
+
+        </tbody>
+
+
+    </table>
+            {% csrf_token %}
+        <input type="submit"  value="Save Data " class="btn btn-primary btn-sm" style="width: 300px;margin-left: 400px"/><br><br>
+    </form>
+
+
+
+
+{% endblock %}

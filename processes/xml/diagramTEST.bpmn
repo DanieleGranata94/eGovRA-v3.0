@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.signavio.com/bpmn20" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0eh58s1">
+      <bpmndi:BPMNShape id="Participant_1buoxmf_gui" bpmnElement="Participant_1buoxmf" isHorizontal="true">
+        <omgdc:Bounds width="600" height="250" x="160" y="61" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_1nai1e7_gui" bpmnElement="Activity_1nai1e7">
+        <omgdc:Bounds width="100" height="80" x="360" y="120" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="StartEvent_1gtncvr_gui" bpmnElement="StartEvent_1gtncvr">
+        <omgdc:Bounds width="36" height="36" x="246" y="142" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_16dgztb_gui" bpmnElement="Activity_16dgztb">
+        <omgdc:Bounds width="100" height="80" x="530" y="120" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Event_15yr2ln_gui" bpmnElement="Event_15yr2ln">
+        <omgdc:Bounds width="36" height="36" x="702" y="142" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_tivctlgUn_gui" bpmnElement="TextAnnotation_tivctlgUn">
+        <omgdc:Bounds width="120" height="30" x="380" y="0" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="Association_zAGNRYYGu_di" bpmnElement="Association_zAGNRYYGu">
+        <omgdi:waypoint x="360" y="120" />
+      <omgdi:waypoint x="380" y="0" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNShape id="TextAnnotation_WxGPKhLGU_gui" bpmnElement="TextAnnotation_WxGPKhLGU">
+        <omgdc:Bounds width="120" height="30" x="550" y="0" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="Association_uKZLtydVg_di" bpmnElement="Association_uKZLtydVg">
+        <omgdi:waypoint x="530" y="120" />
+      <omgdi:waypoint x="550" y="0" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_0kxjov4_gui" bpmnElement="Flow_0kxjov4">
+        <omgdi:waypoint x="282" y="160" />
+      <omgdi:waypoint x="360" y="160" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_1j7v6zr_gui" bpmnElement="Flow_1j7v6zr">
+        <omgdi:waypoint x="460" y="160" />
+      <omgdi:waypoint x="530" y="160" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_0gzl0uw_gui" bpmnElement="Flow_0gzl0uw">
+        <omgdi:waypoint x="630" y="160" />
+      <omgdi:waypoint x="702" y="160" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+<collaboration id="Collaboration_0eh58s1">
+    <participant id="Participant_1buoxmf" name="" processRef="Process_020lh86" />
+  </collaboration>
+<process id="Process_020lh86" isClosed="false" isExecutable="false" processType="None">
+    <task id="Activity_1nai1e7" name="task1">
+      <incoming>Flow_0kxjov4</incoming>
+    <outgoing>Flow_1j7v6zr</outgoing>
+    </task>
+  <startEvent id="StartEvent_1gtncvr" name="" parallelMultiple="false" isInterrupting="true" />
+  <task id="Activity_16dgztb" name="task2">
+      <incoming>Flow_1j7v6zr</incoming>
+    <outgoing>Flow_0gzl0uw</outgoing>
+    </task>
+  <endEvent id="Event_15yr2ln" name="">
+      <incoming>Flow_0gzl0uw</incoming>
+    </endEvent>
+  <textAnnotation id="TextAnnotation_tivctlgUn">
+      <text>PEC communication</text>
+    </textAnnotation>
+  <association id="Association_zAGNRYYGu" sourceRef="Activity_1nai1e7" targetRef="TextAnnotation_tivctlgUn" />
+  <textAnnotation id="TextAnnotation_WxGPKhLGU">
+      <text>Statefull</text>
+    </textAnnotation>
+  <association id="Association_uKZLtydVg" sourceRef="Activity_16dgztb" targetRef="TextAnnotation_WxGPKhLGU" />
+  <sequenceFlow id="Flow_0kxjov4" name="" sourceRef="StartEvent_1gtncvr" targetRef="Activity_1nai1e7" />
+  <sequenceFlow id="Flow_1j7v6zr" name="" sourceRef="Activity_1nai1e7" targetRef="Activity_16dgztb" />
+  <sequenceFlow id="Flow_0gzl0uw" name="" sourceRef="Activity_16dgztb" targetRef="Event_15yr2ln" />
+  </process>
+</definitions>

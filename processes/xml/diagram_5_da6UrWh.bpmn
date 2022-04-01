@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.signavio.com/bpmn20" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0g01r1c">
+      <bpmndi:BPMNShape id="Participant_0pfga2g_gui" bpmnElement="Participant_0pfga2g" isHorizontal="true">
+        <omgdc:Bounds width="600" height="250" x="200" y="70" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_1q644ta_gui" bpmnElement="Activity_1q644ta">
+        <omgdc:Bounds width="100" height="80" x="614" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Event_0r4s7q9_gui" bpmnElement="Event_0r4s7q9">
+        <omgdc:Bounds width="36" height="36" x="746" y="181" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="StartEvent_1lauogn_gui" bpmnElement="StartEvent_1lauogn">
+        <omgdc:Bounds width="36" height="36" x="262" y="181" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_09jjdbx_gui" bpmnElement="Activity_09jjdbx">
+        <omgdc:Bounds width="100" height="80" x="390" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_jyZQdemJm_gui" bpmnElement="TextAnnotation_jyZQdemJm">
+        <omgdc:Bounds width="120" height="30" x="634" y="99" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_rWpSeWOAb_gui" bpmnElement="TextAnnotation_rWpSeWOAb">
+        <omgdc:Bounds width="120" height="30" x="410" y="99" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="Flow_0yxh77c_gui" bpmnElement="Flow_0yxh77c">
+        <omgdi:waypoint x="490" y="199" />
+      <omgdi:waypoint x="614" y="199" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_09qc0w4_gui" bpmnElement="Flow_09qc0w4">
+        <omgdi:waypoint x="714" y="199" />
+      <omgdi:waypoint x="746" y="199" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="id851e3cf4-e2f6-41c7-bccc-b6a1459fc564_gui" bpmnElement="id851e3cf4-e2f6-41c7-bccc-b6a1459fc564">
+        <omgdi:waypoint x="614" y="159" />
+      <omgdi:waypoint x="634" y="99" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_1ccaze3_gui" bpmnElement="Flow_1ccaze3">
+        <omgdi:waypoint x="298" y="199" />
+      <omgdi:waypoint x="390" y="199" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="id19dcee48-49e9-4da7-95c6-32fdc9ceae06_gui" bpmnElement="id19dcee48-49e9-4da7-95c6-32fdc9ceae06">
+        <omgdi:waypoint x="390" y="159" />
+      <omgdi:waypoint x="410" y="99" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+<collaboration id="Collaboration_0g01r1c">
+    <participant id="Participant_0pfga2g" name="Municipality" processRef="Process_0373j7m" />
+  </collaboration>
+<process id="Process_0373j7m" isClosed="false" isExecutable="false" processType="None">
+    <task id="Activity_1q644ta" name="Task2">
+      <incoming>Flow_0yxh77c</incoming>
+    <outgoing>Flow_09qc0w4</outgoing>
+    <outgoing>id851e3cf4-e2f6-41c7-bccc-b6a1459fc564</outgoing>
+    <text />
+    </task>
+  <endEvent id="Event_0r4s7q9" name="">
+      <incoming>Flow_09qc0w4</incoming>
+    <text />
+    </endEvent>
+  <startEvent id="StartEvent_1lauogn" name="" parallelMultiple="false" isInterrupting="true">
+      <text />
+    </startEvent>
+  <userTask id="Activity_09jjdbx" name="Task 1">
+      <incoming>Flow_1ccaze3</incoming>
+    <outgoing>Flow_0yxh77c</outgoing>
+    <outgoing>id19dcee48-49e9-4da7-95c6-32fdc9ceae06</outgoing>
+    <text />
+    </userTask>
+  <textAnnotation id="TextAnnotation_jyZQdemJm">
+      <text>PEC communication</text>
+    </textAnnotation>
+  <textAnnotation id="TextAnnotation_rWpSeWOAb">
+      <text>Online</text>
+    </textAnnotation>
+  <sequenceFlow id="Flow_0yxh77c" name="" sourceRef="Activity_09jjdbx" targetRef="Activity_1q644ta" />
+  <sequenceFlow id="Flow_09qc0w4" name="" sourceRef="Activity_1q644ta" targetRef="Event_0r4s7q9" />
+  <sequenceFlow id="id851e3cf4-e2f6-41c7-bccc-b6a1459fc564"

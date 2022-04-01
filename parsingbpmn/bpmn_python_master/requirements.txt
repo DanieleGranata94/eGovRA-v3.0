@@ -1,0 +1,6 @@
+six
+pandas
+networkx
+matplotlib
+pydotplus
+pydot

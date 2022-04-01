@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0fnnbrz" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="9.0.1">
+  <bpmn:collaboration id="Collaboration_17gsp9k">
+    <bpmn:participant id="Participant_1anijh2" name="Citizen" processRef="Process_0gzphmm" />
+    <bpmn:participant id="Participant_0va26cp" name="Municipality" processRef="Process_1mmbaau" />
+    <bpmn:messageFlow id="Flow_1xnq6th" sourceRef="Activity_0m5vgkb" targetRef="Activity_075eaka" />
+    <bpmn:messageFlow id="Flow_0krfn8z" sourceRef="Activity_11l7oi5" targetRef="Activity_15a5z8l" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_0gzphmm" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_04psp8b">
+      <bpmn:outgoing>Flow_1g5roix</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_0e44ssw" name="Compile certificate request">
+      <bpmn:incoming>Flow_1g5roix</bpmn:incoming>
+      <bpmn:outgoing>Flow_1dtu9yf</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1j1awi3">
+        <bpmn:targetRef>DataObjectReference_0k0pelp</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:userTask>
+    <bpmn:sendTask id="Activity_0m5vgkb" name="Certificate request">
+      <bpmn:incoming>Flow_1dtu9yf</bpmn:incoming>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_13n7w96">
+        <bpmn:targetRef>DataObjectReference_0wv3x94</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0spkdpq">
+        <bpmn:targetRef>DataObjectReference_0k0pelp</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:sendTask>
+    <bpmn:receiveTask id="Activity_15a5z8l" name="Recieve notification">
+      <bpmn:outgoing>Flow_05d4pcu</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1m0z3ja">
+        <bpmn:targetRef>DataObjectReference_19l4554</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:receiveTask>
+    <bpmn:userTask id="Activity_1lh76my" name="Download Certificate">
+      <bpmn:incoming>Flow_05d4pcu</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yhf5on</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0493vzf">
+      <bpmn:incoming>Flow_0yhf5on</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:dataObjectReference id="DataObjectReference_19l4554" name="Notifications" dataObjectRef="DataObject_0flkcfy" />
+    <bpmn:dataObject id="DataObject_0flkcfy" />
+    <bpmn:dataObjectReference id="DataObjectReference_0wv3x94" name="Certificate" dataObjectRef="DataObject_1te54v6" />
+    <bpmn:dataObject id="DataObject_1te54v6" />
+    <bpmn:sequenceFlow id="Flow_0yhf5on" sourceRef="Activity_1lh76my" targetRef="Event_0493vzf" />
+    <bpmn:sequenceFlow id="Flow_05d4pcu" sourceRef="Activity_15a5z8l" targetRef="Activity_1lh76my" />
+    <bpmn:sequenceFlow id="Flow_1dtu9yf" sourceRef="Activity_0e44ssw" targetRef="Activity_0m5vgkb" />
+    <bpmn:sequenceFlow id="Flow_1g5roix" sourceRef="StartEvent_04psp8b" targetRef="Activity_0e44ssw" />
+    <bpmn:dataObjectReference id="DataObjectReference_0k0pelp" name="Personal" dataObjectRef="DataObject_02u5ysz" />
+    <bpmn:dataObject id="DataObject_02u5ysz" />
+    <bpmn:textAnnotation id="TextAnnotation_1ee5h6f">
+      <bpmn:text>Size:4</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1ura8rk" sourceRef="DataObjectReference_0k0pelp" targetRef="TextAnnotation_1ee5h6f" />
+  </bpmn:process>
+  <bpmn:process id="Process_1mmbaau">
+    <bpmn:receiveTask id="Activity_075eaka" name="Acquire certificate request">
+      <bpmn:outgoing>Flow_0pn90ry</bpmn:outgoing>
+    </bpmn:receiveTask>
+    <bpmn:serviceTask id="Activity_0yo8nd0" name="Certificate processing">
+      <bpmn:incoming>Flow_0pn90ry</bpmn:incoming>
+      <bpmn:outgoing>Flow_1l2c3sr</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sendTask id="Activity_11l7oi5" name="Notify certification ready">
+      <bpmn:incoming>Flow_1l2c3sr</bpmn:incoming>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_1l2c3sr" sourceRef="Activity_0yo8nd0" targetRef="Activity_11l7oi5" />
+    <bpmn:sequenceFlow id="Flow_0pn90ry" sourceRef="Activity_075eaka" targetRef="Activity_0yo8nd0" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17gsp9k">
+      <bpmndi:BPMNShape id="Participant_1anijh2_di" bpmnElement="Participant_1anijh2" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="900" height="390" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1ee5h6f_di" bpmnElement="TextAnnotation_1ee5h6f">
+        <dc:Bounds x="490" y="140" width="100" height="30" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0yhf5on_di" bpmnElement="Flow_0yhf5on">
+        <di:waypoint x="960" y="350" />
+        <di:waypoint x="1002" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05d4pcu_di" bpmnElement="Flow_05d4pcu">
+        <di:waypoint x="820" y="350" />
+        <di:waypoint x="860" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dtu9yf_di" bpmnElement="Flow_1dtu9yf">
+        <di:waypoint x="410" y="360" />
+        <di:waypoint x="450" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1g5roix_di" bpmnElement="Flow_1g5roix">
+        <di:waypoint x="252" y="360" />
+        <di:waypoint x="310" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_04psp8b">
+        <dc:Bounds x="216" y="342" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1egqv0i_di" bpmnElement="Activity_0e44ssw">
+        <dc:Bounds x="310" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1usacoo_di" bpmnElement="Activity_0m5vgkb">
+        <dc:Bounds x="450" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_15a5z8l_di" bpmnElement="Activity_15a5z8l">
+        <dc:Bounds x="720" y="310" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lh76my_di" bpmnElement="Activity_1lh76my">
+        <dc:Bounds x="860" y="310" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0493vzf_di" bpmnElement="Event_0493vzf">
+        <dc:Bounds x="1002" y="332" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_16x5fmz" bpmnElement="DataObjectReference_19l4554">
+        <dc:Bounds x="852" y="215" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="841" y="272" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0t9i4t6" bpmnElement="DataObjectReference_0wv3x94">
+        <dc:Bounds x="602" y="215" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="596" y="272" width="50" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0k0pelp_di" bpmnElement="DataObjectReference_0k0pelp">
+        <dc:Bounds x="422" y="205" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="419" y="262" width="44" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1ura8rk_di" bpmnElement="Association_1ura8rk">
+        <di:waypoint x="458" y="217" />
+        <di:waypoint x="520" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_0va26cp_di" bpmnElement="Participant_0va26cp" isHorizontal="true">
+        <dc:Bounds x="160" y="490" width="900" height="220" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1l2c3sr_di" bpmnElement="Flow_1l2c3sr">
+        <di:waypoint x="690" y="590" />
+        <di:waypoint x="720" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pn90ry_di" bpmnElement="Flow_0pn90ry">
+        <di:waypoint x="550" y="590" />
+        <di:waypoint x="590" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_0w8rhj9_di" bpmnElement="Activity_075eaka">
+        <dc:Bounds x="450" y="550" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0oh4n08_di" bpmnElement="Activity_0yo8nd0">
+        <dc:Bounds x="590" y="550" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17s3uts_di" bpmnElement="Activity_11l7oi5">
+        <dc:Bounds x="720" y="550" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1j1awi3_di" bpmnElement="DataOutputAssociation_1j1awi3">
+        <di:waypoint x="385" y="320" />
+        <di:waypoint x="426" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xnq6th_di" bpmnElement="Flow_1xnq6th">
+        <di:waypoint x="500" y="400" />
+        <di:waypoint x="500" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_13n7w96_di" bpmnElement="DataOutputAssociation_13n7w96">
+        <di:waypoint x="542" y="321" />
+        <di:waypoint x="602" y="264" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0krfn8z_di" bpmnElement="Flow_0krfn8z">
+        <di:waypoint x="770" y="550" />
+        <di:waypoint x="770" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1m0z3ja_di" bpmnElement="DataOutputAssociation_1m0z3ja">
+        <di:waypoint x="804" y="310" />
+        <di:waypoint x="852" y="254" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0spkdpq_di" bpmnElement="DataOutputAssociation_0spkdpq">
+        <di:waypoint x="483" y="320" />
+        <di:waypoint x="455" y="255" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

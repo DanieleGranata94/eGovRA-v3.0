@@ -1,0 +1,1 @@
+personal = (("yes","Yes"),("Not","Not"))

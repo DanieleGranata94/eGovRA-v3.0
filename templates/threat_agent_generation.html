@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        text-align: left;
+        padding: 8px;
+    }
+
+
+</style>
+
+<div class=container>
+    <form method="POST" action="{% url 'calculate_threat_agent_risks' systemId=systemId processId=processId assetId=assetId %}">
+    {% csrf_token %}
+
+    <div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Categories result</h4>
+             <div class="pull-right">
+                    <table border="2" style="width: 100%;">
+             {% for Category,attributes in ThreatAgents.items %}
+
+            <tr style="border-bottom: 1px solid #ddd" >
+                <br>
+                <td style="padding: 4px;" width="30%">
+                    <h4><b>Category</b></h4>
+                    <h3 type="text" name={{Category.category}}> {{Category.category}} </h3>
+
+                </td>
+
+                <td  style="padding: 4px;" width="45%">
+                    <h4><b>Description</b></h4>
+                     {{Category.description}}
+                    <h4><b>Threat Agent Common Actions</b></h4>
+                       {{Category.common_actions}}
+                        <br>
+                    {% for attribute in attributes %}
+                    <ul>
+                        <li >
+                             {{attribute.attribute.attribute}}: {{attribute.attribute.attribute_value}}
+                        </li>
+
+
+                    </ul>
+                        {% endfor %}
+
+                </td>
+
+                <td width="25%" >
+                    How do you rate the category?
+                    <br>
+                    <br>
+                    <div class="btn-group btn-toggle">
+                        <select cclass="select is-multiple" aria-label="How do you rate the category?" name="{{ Category.category }}">
+                          <option value="L">Low</option>
+                          <option value="M" selected>Medium</option>
+                          <option value="H">High</option>
+                        </select>
+                    </div>
+                </td>
+
+            </tr>
+            {%endfor%}
+        </table>
+             </div>
+        </div>
+        <div class="panel-body">
+        </div>
+    </div>
+</div>
+
+
+
+    <div style="text-align: center;">
+        <button style="text-align: center;" class="btn btn-primary">Submit Evaluation</button>
+    </div>
+
+        </form>
+
+</div>
+
+    <script>
+    function checkInput(TAReply)
+    {
+        console.log(TAReply)
+    if(TAReply.id==1)
+    {
+        self.TAReplies[1].selected=false;
+    }
+    if(TAReply.id==2)
+    {
+        self.TAReplies[0].selected=false;
+    }
+
+    if(TAReply.id==3)
+    {
+        self.TAReplies[3].selected=false;
+    }
+    if(TAReply.id==4)
+    {
+        self.TAReplies[2].selected=false;
+    }
+
+    if(TAReply.id==5)
+    {
+        self.TAReplies[6].selected=false;
+    }
+    if(TAReply.id==6)
+    {
+        self.TAReplies[6].selected=false;
+    }
+    if(TAReply.id==8)
+    {
+        self.TAReplies[6].selected=false;
+    }
+    if(TAReply.id==9)
+    {
+        self.TAReplies[6].selected=false;
+    }
+    if(TAReply.id==10)
+    {
+        self.TAReplies[6].selected=false;
+    }
+    if(TAReply.id==7)
+    {
+        self.TAReplies[4].selected=false;
+        self.TAReplies[5].selected=false;
+        self.TAReplies[7].selected=false;
+        self.TAReplies[8].selected=false;
+        self.TAReplies[9].selected=false;
+    }
+    }
+
+    </script>
+
+{% endblock %}
+

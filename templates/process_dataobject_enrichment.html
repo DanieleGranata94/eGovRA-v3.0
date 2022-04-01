@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+    <h1>Data type enrichment</h1>
+    <p style="font-family: 'Times New Roman';font-size: medium">
+        It is necessary to report which of the Tasks present within the process use the Dataobjects listed below:
+    </p>
+        <form method="POST" action="{% url 'export_dataobject_to_bpmn' systemId=systemId processId=processId%}">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>DataObject names</th>
+            <th>Task</th>
+
+        </tr>
+        </thead>
+
+        <style>
+
+
+            .bootstrap-select .bs-ok-default::after {
+                width: 0.3em;
+                height: 0.6em;
+                border-width: 0 0.1em 0.1em 0;
+                transform: rotate(45deg) translateY(0.5rem);
+            }
+
+            .btn.dropdown-toggle:focus {
+                outline: none !important;
+            }
+        </style>
+
+        <tbody>
+
+
+        {% for data in list_data %}
+
+            <tr>
+                <td style="font-family: 'Times New Roman';font-size: larger">
+                    {{ data }}
+                </td>
+
+                <td style="font-family: 'Times New Roman';font-size: medium" ;>
+                    <div class="row">
+                        <div class="col-lg-6 mx-auto">
+                            <label>Select the tasks that use this DataObject</label>
+                            <!-- Multiselect dropdown -->
+                            <select id={{ data }} name={{ data }}  multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm "
+                                    class="selectpicker w-100">
+                                {% for task in list_task %}
+                                    <option value="{{ task }}">{{ task }}</option>
+                                {% endfor %}
+
+                            </select><!-- End -->
+
+
+                                {% for data2 in task_with_data %}
+                                    {% if data|stringformat:"s" == data2.data|stringformat:"s" %}
+                                        <script>
+                                            var datoSelect = "{{data2.task}}";
+                                            console.log(datoSelect)
+                                            id_D = {{data}};
+                                            console.log(id_D)
+                                            console.log($('#id_D'))
+                                            $(id_D).find('option[value="{{ data2.task }}"]').prop("selected", true);
+
+
+                                            $("#id_D").selectpicker('refresh');
+
+
+
+
+                                        </script>
+                                    {% endif %} {% endfor %}
+
+                        </div>
+
+                </td>
+            </tr>
+
+
+        {% endfor %}
+
+        </tbody>
+
+
+    </table>
+            {% csrf_token %}
+        <input type="submit"  value="Save Data " class="btn btn-primary btn-sm" style="width: 300px;margin-left: 400px"/><br><br>
+        </form>
+
+
+
+
+
+
+{% endblock %}
