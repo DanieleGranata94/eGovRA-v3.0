@@ -52,6 +52,9 @@ class BpmnDiagramGraphImport(object):
             # Diagram has multiple pools and lanes
             collaboration_element = collaboration_element_list[0]
             BpmnDiagramGraphImport.import_collaboration_element(diagram_graph, collaboration_element, collaboration)
+            print(collaboration,"vedi qua collaboration")
+
+
 
         if consts.Consts.message_flows in collaboration:
             message_flows = collaboration[consts.Consts.message_flows]
@@ -69,7 +72,7 @@ class BpmnDiagramGraphImport(object):
                     BpmnDiagramGraphImport.import_shape_di(participants, diagram_graph, element)
                 elif tag_name == consts.Consts.bpmn_edge:
                     BpmnDiagramGraphImport.import_flow_di(diagram_graph, sequence_flows, message_flows, element)
-
+        return collaboration
     @staticmethod
     def import_collaboration_element(diagram_graph, collaboration_element, collaboration_dict):
         """
@@ -92,6 +95,10 @@ class BpmnDiagramGraphImport(object):
                 tag_name = utils.BpmnImportUtils.remove_namespace_from_tag_name(element.tagName)
                 if tag_name == consts.Consts.participant:
                     BpmnDiagramGraphImport.import_participant_element(diagram_graph, participants_dict, element)
+                    print(participants_dict,"participantdict")
+                    collaboration_dict[consts.Consts.participants] = participants_dict
+
+
                 elif tag_name == consts.Consts.message_flow:
                     BpmnDiagramGraphImport.import_message_flow_to_graph(diagram_graph, message_flows_dict, element)
 
@@ -107,12 +114,14 @@ class BpmnDiagramGraphImport(object):
         """
         participant_id = participant_element.getAttribute(consts.Consts.id)
         name = participant_element.getAttribute(consts.Consts.name)
+        print(name,"HERE participant")
         process_ref = participant_element.getAttribute(consts.Consts.process_ref)
         if participant_element.getAttribute(consts.Consts.process_ref) == '':
             diagram_graph.add_node(participant_id)
             diagram_graph.nodes[participant_id][consts.Consts.type] = consts.Consts.participant
             diagram_graph.nodes[participant_id][consts.Consts.process] = participant_id
         participants_dictionary[participant_id] = {consts.Consts.name: name, consts.Consts.process_ref: process_ref}
+        return participants_dictionary
 
     @staticmethod
     def import_diagram_and_plane_attributes(diagram_attributes, plane_attributes, diagram_element, plane_element):
@@ -419,11 +428,6 @@ class BpmnDiagramGraphImport(object):
                 # print(tag_name)
                 if tag_name == consts.Consts.dataOutputAssociation:
                     print(plane_element)
-
-                    dataobjectWaypoints=(100,100)
-
-                    dataoutèputass: [(id,target,x,y),(id,target,x,y),(id,target,x,y)  ]
-
                     if(consts.Consts.dataOutputAssociation not in bpmn_graph.nodes[element_id].keys()):
                         bpmn_graph.nodes[element_id][consts.Consts.dataOutputAssociation] = []
 

@@ -50,6 +50,8 @@ urlpatterns = [
     path('process_data_object_input/<int:systemId>/<int:processId>', views.process_data_object_input, name='process_data_object_input'),
     path('save_dataobject/<int:systemId>/<int:processId>', views.save_dataobject, name='save_dataobject'),
     path('export_dataobject_to_bpmn/<int:systemId>/<int:processId>', views.export_dataobject_to_bpmn, name='export_dataobject_to_bpmn'),
+    path('report_processing_activities/<int:systemId>', views.report_processing_activities, name='report_processing_activities'),
+    path('task_manage_data/<int:systemId>/<int:processId>', views.task_manage_data, name='task_manage_data'),
 
 
 

@@ -42,6 +42,13 @@
                             <button type="submit" class="btn btn-danger btn-sm">Delete system</button>
                         </form>
                     </td>
+                    <td>
+                        <form method="POST" action="{% url 'report_processing_activities' system.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Generate Data Report</button>
+                        </form>
+                    </td>
+
 
                 </tr>
             {% endfor %}

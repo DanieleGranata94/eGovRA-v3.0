@@ -17,7 +17,7 @@ from .forms import ProcessForm, SystemForm
 from .models import Process, Asset, System, Asset_has_attribute, Attribute, Asset_type, Attribute_value, \
     Threat_has_attribute, Threat_has_control, ThreatAgentRiskScores, TACategoryAttribute, ThreatAgentCategory, \
     System_ThreatAgent, TAReplies_Question, TAReplyCategory, Reply, ThreatAgentQuestion, StrideImpactRecord, Stride, \
-    Threat_Stride, Risk, OverallRisk, Actor, DataObjectAttribute, Asset_has_DataObject_attribute
+    Threat_Stride, Risk, OverallRisk, Actor, DataObjectAttribute, Asset_has_DataObject_attribute, Task_manages_Data
 from .Utils.Const import x_padding,y_padding
 from .bpmn_python_master.bpmn_python import bpmn_diagram_rep as diagram
 
@@ -54,8 +54,15 @@ def bpmn_process_management(request, systemId):
 
             bpmn_graph = diagram.BpmnDiagramGraph()
             pk = last_process.pk
-            bpmn_graph.load_diagram_from_xml_file(Process.objects.get(pk=pk).xml)
+            print(pk,"PK")
+            collaboration = bpmn_graph.load_diagram_from_xml_file(Process.objects.get(pk=pk).xml)
 
+            print(collaboration)
+            for id,participant in collaboration['participants'].items():
+                print(participant['name'])
+                actor = Actor(name=participant['name'],process_id=pk,
+                                  process_bpmn_id=participant['processRef'])
+                actor.save()
 
             #var = Actor.objects.all().get_or_create("",last_process,"")
 
@@ -97,6 +104,7 @@ def bpmn_process_management(request, systemId):
             for tuple in lista:
                 for dizionario in tuple:
                     if type(dizionario) is dict:
+                        print(dizionario,"QUA")
                         if dizionario['type'].lower().endswith("task"):
                             attribute_value = []
                             id_task = dizionario['id']
@@ -262,7 +270,7 @@ def delete_Dataobj(request, systemId, processID, assetId):
 
 def process_view_task_type(request, systemId, processId):
     pk = processId
-    task_list = Asset.objects.filter(process=Process.objects.get(pk=pk))
+    task_list = Asset.objects.filter(process=Process.objects.get(pk=pk)).exclude(asset_type=9)
     check_attribute = False
     for task in task_list:
         if task.asset_type == None:# and task.asset_type.lower().endswith("task"):
@@ -1578,10 +1586,109 @@ def process_data_object_input(request, systemId, processId):
                   {"systemId": systemId, "processId": processId, "list_data": list_data})
 
 
+def task_manage_data(request,systemId,processId):
+    post_data = dict(request.POST.lists())
+    print(dict(request.POST),"check here")
+    for data,tasks in post_data.items():
+        if (data != "csrfmiddlewaretoken"):
+            print(data,tasks)
+            for task in tasks:
+                task_db= Asset.objects.filter(name=task).first().id
+                id_data = data.split(':')[0]
+                data_db = Asset.objects.filter(bpmn_id=data).first()
+                print(task_db,data_db,"QUA")
+                task_manage_data = Task_manages_Data(task_id=Asset.objects.filter(name=task).first().id
+                                                     ,data_id=Asset.objects.filter(bpmn_id=data).first().id)
+                task_manage_data.save()
+
+
+
+
+    return redirect('process_view_task_type', systemId, processId)
 
 def export_dataobject_to_bpmn(request, systemId, processId):
     post_data = dict(request.POST.lists())
-    print(post_data)
+    print(post_data,"HERE")
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename={date}-{name}-report.xlsx'.format(
+        date=datetime.now().strftime('%Y-%m-%d'),
+        name=Process.objects.get(pk=processId).name.replace(" ", "_")
+    )
+    workbook = Workbook()
+
+    # Get active worksheet/tab
+    worksheet = workbook.active
+
+    worksheet.title = 'Registro_del_trattamento'
+    columns = ['Data', 'Task', 'Actor']
+    row_num = 1
+
+    # Assign the titles for each cell of the header
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+        cell.font = Font(name="Times New Roman", size=12, bold=True, color='FF0000')
+        cell.border = Border(left=Side(border_style="thin", color='FF000000'),
+                             right=Side(border_style="thin", color='FF000000'),
+                             top=Side(border_style="thin", color='FF000000'),
+                             bottom=Side(border_style="thin", color='FF000000'), )
+    asset_type = Asset_type.objects.get(name="DataObject")
+    assets = Asset.objects.filter(process=Process.objects.get(pk=processId), asset_type=asset_type)
+
+    task_use_data = []
+    data = []
+
+    for data_name, task_data in dict(request.POST).items():
+        print(data_name, task_data, "HERE")
+        if (data_name != "csrfmiddlewaretoken"):
+            row_num += 1
+            taskFin = ""
+            for x in task_data:
+                print(x)
+                taskFin = taskFin+x+" "
+
+            print(taskFin)
+            print(data_name, task_data, "HERE")
+            row = [
+                data_name,
+                taskFin,
+                "Municipality"
+
+
+            ]
+            print(row)
+
+        # Define the data for each cell in the row
+
+
+        # Assign the data for each cell of the row
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+            cell.font = Font(name="Times New Roman", size=11, bold=False, color='FF000000')
+            cell.border = Border(left=Side(border_style="thin", color='FF000000'),
+                                 right=Side(border_style="thin", color='FF000000'),
+                                 top=Side(border_style="thin", color='FF000000'),
+                                 bottom=Side(border_style="thin", color='FF000000'), )
+
+        count_attr = 0
+        old_row = row_num
+    dims = {}
+    for row in worksheet.rows:
+        for cell in row:
+            if cell.value:
+                dims[cell.column_letter] = max((dims.get(cell.column_letter, 0), len(str(cell.value))))
+    for col, value in dims.items():
+        worksheet.column_dimensions[col].width = value
+
+
+
+
+    workbook.save(response)
+    return response
+
 
     return redirect('process_view_task_type', systemId, processId)
 
@@ -1599,9 +1706,21 @@ def save_dataobject(request, systemId, processId):
     list_data = []
     task_with_data = []
     post_data = dict(request.POST.lists())
-    print(dict(request.POST))
+    #print(dict(request.POST))
     temp = []
 
+
+    for tmp in post_data:
+        temp.append(tmp)
+    print(temp)
+    print(len(lista), "json")
+    for dato in range(len(lista),len(post_data)-1):
+        dataref = "DataObjectReference_" + get_random_string(7)
+        asset_type = Asset_type.objects.get(name="DataObject")
+        dataobj_id = "DataObject_" + get_random_string(7)
+        asset = Asset(name=temp[dato], bpmn_id=dataref+":"+dataobj_id, position="",
+                      process=Process.objects.get(pk=processId), asset_type=asset_type)
+        asset.save()
     for data_name, attributes_data in dict(request.POST).items():
         print(data_name, attributes_data, "HERE")
         if (data_name != "csrfmiddlewaretoken"):
@@ -1615,20 +1734,10 @@ def save_dataobject(request, systemId, processId):
             dataobj_attribute.save()
             print(dataobj_attribute)
             asset_id = Asset.objects.filter(name=data_name,process_id=processId).first()
+            print(asset_id,"HERE")
             asset_has_data = Asset_has_DataObject_attribute(asset_id=asset_id.id,asset_type_id=9,
                                                             data_object_attribute_id=dataobj_attribute.id)
             asset_has_data.save()
-    for tmp in post_data:
-        temp.append(tmp)
-    print(temp)
-    print(len(lista), "json")
-    for dato in range(len(lista),len(post_data)-1):
-        dataref = "DataObjectReference_" + get_random_string(7)
-        asset_type = Asset_type.objects.get(name="DataObject")
-
-        asset = Asset(name=temp[dato], bpmn_id=dataref, position="",
-                      process=Process.objects.get(pk=processId), asset_type=asset_type)
-        asset.save()
     for tuple in lista2:
         for dizionario in tuple:
             if type(dizionario) is dict:
@@ -1662,3 +1771,39 @@ def save_dataobject(request, systemId, processId):
     print(list_data,list_task,task_with_data)
     return render(request, 'process_dataobject_enrichment.html',
                   {"systemId": systemId, "processId": processId, "list_data": list_data,"list_task":list_task,"task_with_data":task_with_data})
+
+
+def report_processing_activities(request,systemId):
+    processes = Process.objects.filter(system=systemId)
+    asset_type = Asset_type.objects.get(name="DataObject")
+    list_data = []
+    process_dataoutput = {}
+    list_task_result = []
+    for process in processes:
+        list_task_result = []
+        list_data = []
+        process_dataoutput[process.id] = {}
+
+        list_task = Asset.objects.filter(process=process).exclude(asset_type=9)
+        for task in list_task:
+            task_datas = Task_manages_Data.objects.filter(task=task)
+            print(task_datas,"CHECK HERE")
+
+            for task_data in task_datas:
+                print(task_data.data)
+
+                asset = Asset.objects.filter(name=task_data.data).first()
+                print(Asset_has_DataObject_attribute.objects.filter(asset=asset))
+                if Asset_has_DataObject_attribute.objects.filter(asset=asset).first() is not None:
+                    if Asset_has_DataObject_attribute.objects.filter(asset=asset).first().data_object_attribute.personal == "1":
+                        if task_data.data not in list_data:
+                            list_data.append(task_data.data)
+                        list_task_result.append(task_data.task)
+
+        list_actors = Actor.objects.filter(process=process)
+        process_dataoutput[process.id]["dataobjects"] = list_data
+        process_dataoutput[process.id]["task_list"] = list_task_result
+        process_dataoutput[process.id]["actors"] = list_actors
+
+    return render(request, 'records_of_processing_activities.html',
+                  {"systemId": systemId, "process_dataoutput":process_dataoutput})

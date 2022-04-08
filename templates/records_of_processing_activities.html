@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Records of processing activities</h1>
+    <p style="font-family: 'Times New Roman';font-size: medium">
+        It is necessary to report the information to generate the report register.
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Process code</th>
+            <th>Type of treatment</th>
+            <th>Purposes of the processing</th>
+            <th>Categories of interested parties</th>
+            <th>Categories of personal data</th>
+            <th>Categories of recipients</th>
+            <th>Transfers of personal data to a third country</th>
+            <th>Terms of erasure of personal data</th>
+            <th>Security Measures</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for processid, process in process_dataoutput.items %}
+            <tr>
+            <td>
+                {{ processid }}
+            </td>
+            <td style="font-family: 'Times New Roman';font-size: medium" ;>
+                    <div class="row">
+                        <div class="col-lg-6 mx-auto">
+
+                            <!-- Multiselect dropdown -->
+                            <select id=typologyTable   multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm "
+                                    class="selectpicker w-100">
+
+                                <option value="Collection">Collection</option>
+                                <option value="Registration">Registration</option>
+                                <option value="Organization">Organization</option>
+
+
+                            </select>
+                        </div>
+                    </div>
+            </td>
+            <td>
+                <ul>
+                {% for task in process.task_list %}
+                    <li>{{ task }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <ul>
+                {% for actor in process.actors %}
+                    <li>{{ actor.name }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <ul>
+                {% for data in process.dataobjects %}
+                    <li>{{ data }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+            <td>
+
+                <textarea rows = "5" cols = "60" name = "Recipients">
+                    Enter details here..</textarea><br>
+            </td>
+            <td>
+                NO
+            </td>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

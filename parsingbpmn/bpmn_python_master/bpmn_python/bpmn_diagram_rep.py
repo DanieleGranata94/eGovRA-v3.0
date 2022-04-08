@@ -65,7 +65,7 @@ class BpmnDiagramGraph(object):
         :param filepath: string with output filepath.
         """
 
-        bpmn_import.BpmnDiagramGraphImport.load_diagram_from_xml(filepath, self)
+        return bpmn_import.BpmnDiagramGraphImport.load_diagram_from_xml(filepath,self)
 
     def export_xml_file(self, directory, filename):
         """
@@ -113,6 +113,8 @@ class BpmnDiagramGraph(object):
         :param node_type: string with valid BPMN XML tag name (e.g. 'task', 'sequenceFlow').
         """
         tmp_nodes = self.diagram_graph.nodes(True)
+
+
         if node_type == "":
             return tmp_nodes
         else:
