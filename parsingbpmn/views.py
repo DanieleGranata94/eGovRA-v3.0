@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 import os
 
+from django.core import serializers
 from django.core.files.storage import FileSystemStorage
 from django.core.serializers import python
 from django.http import HttpResponse
@@ -17,8 +18,8 @@ from .forms import ProcessForm, SystemForm
 from .models import Process, Asset, System, Asset_has_attribute, Attribute, Asset_type, Attribute_value, \
     Threat_has_attribute, Threat_has_control, ThreatAgentRiskScores, TACategoryAttribute, ThreatAgentCategory, \
     System_ThreatAgent, TAReplies_Question, TAReplyCategory, Reply, ThreatAgentQuestion, StrideImpactRecord, Stride, \
-    Threat_Stride, Risk, OverallRisk, Actor, DataObjectAttribute, Asset_has_DataObject_attribute, Task_manages_Data
-from .Utils.Const import x_padding,y_padding
+    Threat_Stride, Risk, OverallRisk, Actor, DataObjectAttribute, Asset_has_DataObject_attribute, Task_manages_Data, Actor_manage_Data
+from .Utils.Const import x_padding,y_padding, x_padding_do, y_padding_do, width_do,heigth_do
 from .bpmn_python_master.bpmn_python import bpmn_diagram_rep as diagram
 
 
@@ -223,8 +224,9 @@ def bpmn_process_management(request, systemId):
                                 print()
                             asset = Asset(name=dizionario['node_name'], bpmn_id=dizionario["id"]+ ":" + dizionario["dataObjectRef"], position=position,
                                           process=Process.objects.get(pk=pk), asset_type=asset_type,process_bpmn_id=process_id_bpmn)
-
                             asset.save()
+                            actor = Actor.objects.filter(process_bpmn_id=process_id_bpmn).first()
+                            Actor_manage_Data(actor=actor, data=asset,process=Process.objects.get(pk=pk)).save()
 
 
             return redirect('process_data_object_input', systemId, pk)
@@ -1576,30 +1578,118 @@ def risk_analysis_result(request, systemId, processId):
 
 
 def process_data_object_input(request, systemId, processId):
-    nameprocess = Process.objects.get(pk=processId)
+    process = Process.objects.get(pk=processId)
     asset_type = Asset_type.objects.get(name="DataObject")
-    lista = Asset.objects.filter(process=Process.objects.get(pk=processId), asset_type=asset_type).exclude(name="")
-    list_data = []
-    for tuple in lista:
-        list_data.append(tuple)
+    list_data = Asset.objects.filter(process=Process.objects.get(pk=processId), asset_type=asset_type).exclude(name="")
+
+    actors_manage_data = Actor_manage_Data.objects.filter(process=process)
+    actors = Actor.objects.filter(process=process)
+    actors_names = []
+    for actor in actors:
+        actors_names.append(actor.name)
+    actors_names = serializers.serialize("json", actors)
     return render(request, 'process_dataobject_input.html',
-                  {"systemId": systemId, "processId": processId, "list_data": list_data})
+                  {"systemId": systemId, "processId": processId, "list_data": list_data, "actors_manage_data":actors_manage_data
+                   ,"actors":actors_names})
 
 
 def task_manage_data(request,systemId,processId):
     post_data = dict(request.POST.lists())
-    print(dict(request.POST),"check here")
+   #print(dict(request.POST),"check here")
     for data,tasks in post_data.items():
         if (data != "csrfmiddlewaretoken"):
-            print(data,tasks)
+            #print(data,tasks)
             for task in tasks:
                 task_db= Asset.objects.filter(name=task).first().id
                 id_data = data.split(':')[0]
                 data_db = Asset.objects.filter(bpmn_id=data).first()
-                print(task_db,data_db,"QUA")
+                #print(task_db,data_db,"QUA")
                 task_manage_data = Task_manages_Data(task_id=Asset.objects.filter(name=task).first().id
                                                      ,data_id=Asset.objects.filter(bpmn_id=data).first().id)
                 task_manage_data.save()
+
+    manually_added_data = Asset.objects.filter(process=Process.objects.filter(pk=processId).first())
+    print(manually_added_data)
+
+    pathfile = Process.objects.filter(id=processId)[0].xml
+    pathBPMN, filename = os.path.split(str(pathfile))
+    pathBPMN = pathBPMN + "/"
+    bpmn_graph = diagram.BpmnDiagramGraph()
+    bpmn_graph.load_diagram_from_xml_file(pathfile)
+    for manually_added_single_data in manually_added_data:
+        if manually_added_single_data.process_bpmn_id is None:
+            actor_manage_data = Actor_manage_Data.objects.filter(data_id=manually_added_single_data.id).first()
+            print(actor_manage_data.actor.process_bpmn_id)
+            tasks_manage_data = Task_manages_Data.objects.filter(data_id=manually_added_single_data.id)
+            task_manage_data_result = tasks_manage_data.first()
+            for task_manage_data in tasks_manage_data:
+                if task_manage_data.task.process_bpmn_id == actor_manage_data.actor.process_bpmn_id:
+                    task_manage_data_result = task_manage_data
+
+            manually_added_single_data.process_bpmn_id = actor_manage_data.actor.process_bpmn_id
+            position = task_manage_data_result.task.position.split(":")
+            x = str(int(position[0]) + x_padding_do)
+            y = str(int(position[1]) - y_padding_do)
+            width = width_do
+            height = heigth_do
+            manually_added_single_data.position = str(x)+":"+str(y)+":"+str(width)+":"+str(height)
+            id_data_obj = manually_added_single_data.bpmn_id.split(":")
+            data_obj_bpmnid = id_data_obj[1]
+            data_obj_ref_bpmnid = id_data_obj[0]
+
+            #bpmn_graph.add_dataObject_to_diagram(manually_added_single_data.process_bpmn_id, data_obj_bpmnid)
+            #bpmn_graph.add_dataObjectReference_to_diagram(manually_added_single_data.process_bpmn_id,
+                                                                                      #x, y,manually_added_single_data.name,
+                                                                                      #data_obj_bpmnid, data_obj_ref_bpmnid)
+            x1, y1, id_dataobjectref1 = bpmn_graph.add_dataObject_with_Association_to_diagram(manually_added_single_data.process_bpmn_id,
+                                                                                              manually_added_single_data.name, x,
+                                                                                              y)
+
+
+
+            for task_manage_data_createassoc in tasks_manage_data:
+                print(task_manage_data_createassoc.task.bpmn_id,"here")
+                bpmn_graph.add_dataOutput_to_diagram(task_manage_data_createassoc.task.bpmn_id,x,y,id_dataobjectref1, None)
+
+            asset_has_dataobj = Asset_has_DataObject_attribute.objects.filter(asset_id=manually_added_single_data.id).first()
+
+            attributes = DataObjectAttribute.objects.filter(id=asset_has_dataobj.id).first()
+
+            personal_value = ""
+            if attributes.personal == 1:
+                personal_value = "Personal:Yes"
+            else:
+                personal_value = "Personal:No"
+
+            size_value = "Size:"+str(attributes.size)+" "+str(attributes.order_of_size)
+            load_value = "Load dependence:"+str(attributes.load_dependece)
+
+            textAnnotationBpmn1 = bpmn_graph.add_textAnnotation_to_diagram(manually_added_single_data.process_bpmn_id, x, y,
+                                                                          personal_value, None)
+            textAnnotationBpmn2 = bpmn_graph.add_textAnnotation_to_diagram(manually_added_single_data.process_bpmn_id, x,
+                                                                          y,
+                                                                          size_value, None)
+            textAnnotationBpmn3 = bpmn_graph.add_textAnnotation_to_diagram(manually_added_single_data.process_bpmn_id, x,
+                                                                          y,
+                                                                          load_value, None)
+            bpmn_graph.add_Association_to_diagram(manually_added_single_data.process_bpmn_id, manually_added_single_data.bpmn_id, textAnnotationBpmn1[1]['id'],
+                                                  None)
+            bpmn_graph.add_Association_to_diagram(manually_added_single_data.process_bpmn_id,
+                                                  manually_added_single_data.bpmn_id, textAnnotationBpmn2[1]['id'],
+                                                  None)
+            bpmn_graph.add_Association_to_diagram(manually_added_single_data.process_bpmn_id,
+                                                  manually_added_single_data.bpmn_id, textAnnotationBpmn3[1]['id'],
+                                                  None)
+            manually_added_single_data.save()
+        bpmn_graph.export_xml_file(pathBPMN, filename)
+
+
+
+
+
+
+
+
 
 
 
@@ -1712,12 +1802,13 @@ def save_dataobject(request, systemId, processId):
 
     for tmp in post_data:
         temp.append(tmp)
-    print(temp)
-    print(len(lista), "json")
+    #print(temp,"VEDI QUA")
+    #print(len(lista), "json")
     for dato in range(len(lista),len(post_data)-1):
         dataref = "DataObjectReference_" + get_random_string(7)
         asset_type = Asset_type.objects.get(name="DataObject")
         dataobj_id = "DataObject_" + get_random_string(7)
+        print(dict(request.POST).items(),"VEDI QUA")
         asset = Asset(name=temp[dato], bpmn_id=dataref+":"+dataobj_id, position="",
                       process=Process.objects.get(pk=processId), asset_type=asset_type)
         asset.save()
@@ -1731,6 +1822,10 @@ def save_dataobject(request, systemId, processId):
                 personal=attributes_data[2],
                 load_dependece=int(attributes_data[3])
             )
+            if len(attributes_data)>4:
+                actor = Actor.objects.filter(name=attributes_data[4],process=Process.objects.get(pk=pk)).first()
+                asset = Asset.objects.filter(name=data_name,process=Process.objects.get(pk=pk)).first()
+                Actor_manage_Data(actor=actor, data=asset,process=Process.objects.get(pk=pk)).save()
             dataobj_attribute.save()
             print(dataobj_attribute)
             asset_id = Asset.objects.filter(name=data_name,process_id=processId).first()

@@ -52,7 +52,7 @@ class BpmnDiagramGraphImport(object):
             # Diagram has multiple pools and lanes
             collaboration_element = collaboration_element_list[0]
             BpmnDiagramGraphImport.import_collaboration_element(diagram_graph, collaboration_element, collaboration)
-            print(collaboration,"vedi qua collaboration")
+            #print(collaboration,"vedi qua collaboration")
 
 
 
@@ -95,7 +95,7 @@ class BpmnDiagramGraphImport(object):
                 tag_name = utils.BpmnImportUtils.remove_namespace_from_tag_name(element.tagName)
                 if tag_name == consts.Consts.participant:
                     BpmnDiagramGraphImport.import_participant_element(diagram_graph, participants_dict, element)
-                    print(participants_dict,"participantdict")
+                    #print(participants_dict,"participantdict")
                     collaboration_dict[consts.Consts.participants] = participants_dict
 
 
@@ -114,7 +114,7 @@ class BpmnDiagramGraphImport(object):
         """
         participant_id = participant_element.getAttribute(consts.Consts.id)
         name = participant_element.getAttribute(consts.Consts.name)
-        print(name,"HERE participant")
+        #print(name,"HERE participant")
         process_ref = participant_element.getAttribute(consts.Consts.process_ref)
         if participant_element.getAttribute(consts.Consts.process_ref) == '':
             diagram_graph.add_node(participant_id)
@@ -422,14 +422,15 @@ class BpmnDiagramGraphImport(object):
         data_output = ""
         data_child = {}
         text = ""
+        bpmn_graph.nodes[element_id][consts.Consts.dataOutputAssociation] = []
         for tmp_element in utils.BpmnImportUtils.iterate_elements(flow_node_element):
             if tmp_element.nodeType != tmp_element.TEXT_NODE:
                 tag_name = utils.BpmnImportUtils.remove_namespace_from_tag_name(tmp_element.tagName)
                 # print(tag_name)
                 if tag_name == consts.Consts.dataOutputAssociation:
-                    print(plane_element)
-                    if(consts.Consts.dataOutputAssociation not in bpmn_graph.nodes[element_id].keys()):
-                        bpmn_graph.nodes[element_id][consts.Consts.dataOutputAssociation] = []
+                    #print(plane_element)
+                    #if(consts.Consts.dataOutputAssociation not in bpmn_graph.nodes[element_id].keys()):
+
 
 
 
@@ -464,7 +465,7 @@ class BpmnDiagramGraphImport(object):
                             # data_output = {consts.Consts.dataOutputAssociation: target_ref,
                             # consts.Consts.target_ref: data_child
 
-                    print(temp)
+                    #print(temp)
 
                     for element in utils.BpmnImportUtils.iterate_elements(plane_element):
                         if element.nodeType != element.TEXT_NODE:
@@ -485,7 +486,7 @@ class BpmnDiagramGraphImport(object):
                                     temp[consts.Consts.targetX]= waypoints[1][0]
                                     temp[consts.Consts.targetY]= waypoints[1][1]
                     bpmn_graph.nodes[element_id][consts.Consts.dataOutputAssociation].append(temp)
-                    print(bpmn_graph.nodes[element_id][consts.Consts.dataOutputAssociation])
+                    #print(bpmn_graph.nodes[element_id][consts.Consts.dataOutputAssociation])
 
     @staticmethod
     def import_task_to_graph(diagram_graph, process_id, process_attributes, task_element, plane_element):

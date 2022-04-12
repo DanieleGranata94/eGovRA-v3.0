@@ -160,6 +160,11 @@ class Task_manages_Data(models.Model):
     task = models.ForeignKey(Asset,on_delete=models.CASCADE,related_name="task")
     data = models.ForeignKey(Asset,on_delete=models.CASCADE,related_name="data")
 
+class Actor_manage_Data(models.Model):
+    actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
+    data = models.ForeignKey(Asset, on_delete=models.CASCADE)
+    process = models.ForeignKey(Process, on_delete=models.CASCADE,null=True)
+
 class ThreatAgentCategory(models.Model):
     category = models.CharField(max_length=100,null=True)
     description = models.CharField(max_length=500,null=True)

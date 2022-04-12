@@ -392,9 +392,11 @@ class BpmnDiagramGraphExport(object):
             print()
 
         try:
-            if params[consts.Consts.dataOutputAssociation]:
+
+            if params[consts.Consts.dataOutputAssociation] and type(params[consts.Consts.dataOutputAssociation]) is not dict:
+                print(type(params[consts.Consts.dataOutputAssociation]), "params")
                 for single_dataoutputassociation in params[consts.Consts.dataOutputAssociation]:
-                    #print(dataOut)
+                    print(single_dataoutputassociation,"CHECK HERE")
                     dataoutputchild = eTree.SubElement(output_element,consts.Consts.dataOutputAssociation,id=single_dataoutputassociation[consts.Consts.id])
                     #print(dataoutputchild)
                     data_element = eTree.SubElement(dataoutputchild,consts.Consts.target_ref)

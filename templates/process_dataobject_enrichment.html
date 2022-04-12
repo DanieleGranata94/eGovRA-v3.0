@@ -50,8 +50,9 @@
                     <div class="row">
                         <div class="col-lg-6 mx-auto">
                             <label>Select the tasks that use this DataObject</label>
+
                             <!-- Multiselect dropdown -->
-                            <select id={{ data.bpmn_id }} name={{ data.bpmn_id }}  multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm "
+                            <select id={{ data.name }} name={{ data.bpmn_id }}  multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm "
                                     class="selectpicker w-100">
                                 {% for task in list_task %}
                                     <option value="{{ task }}">{{ task }}</option>
@@ -62,6 +63,7 @@
 
                                 {% for data2 in task_with_data %}
                                     {% if data|stringformat:"s" == data2.data|stringformat:"s" %}
+
                                         <script>
                                             var datoSelect = "{{data2.task}}";
                                             console.log(datoSelect)

@@ -429,10 +429,8 @@ class BpmnDiagramGraph(object):
         """
         letters = string.ascii_letters
         result_str = ''.join(random.choice(letters) for i in range(9))
-
-        self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation] = {}
-        self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.id] = {}
-        self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.target_ref] = {}
+        #print(self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation],"controlla qua")
+        single_dataoutput_assoc_dict = {}
 
         if dataOut_Ass is None:
             dataOut_Ass = "DataOutputAssociation_" + result_str
@@ -445,14 +443,19 @@ class BpmnDiagramGraph(object):
         # self.diagram_graph._node[node_id][consts.Consts.process] = process_id
 
         # Adding dataoutput association
-        self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.id] = dataOut_Ass
-        self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.target_ref] = targetRef
+        single_dataoutput_assoc_dict[consts.Consts.id] = dataOut_Ass
+        single_dataoutput_assoc_dict[consts.Consts.target_ref] = targetRef
+        single_dataoutput_assoc_dict[consts.Consts.x] = Targetx
+        single_dataoutput_assoc_dict[consts.Consts.y] = Targety
+        self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation].append(single_dataoutput_assoc_dict)
+        #self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.id] = dataOut_Ass
+        #self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.target_ref] = targetRef
 
         # Adding some dummy constant values
         # self.diagram_graph._node[node_id][consts.Consts.width] = "100"
         # self.diagram_graph._node[node_id][consts.Consts.height] = "100"
-        self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.x] = Targetx
-        self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.y] = Targety
+        #self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.x] = Targetx
+        #self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.y] = Targety
         return node_id, self.diagram_graph._node[node_id]
 
     def add_task_to_diagram(self, process_id, task_name="", node_id=None):
