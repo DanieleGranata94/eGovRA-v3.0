@@ -24,3 +24,8 @@ The application is developed using the following technologies:
 * Run server typing: bash python3 manage.py runserver
 
 App available on: http://127.0.0.1:8000
+
+## Docker Configuration
+
+sudo docker build .
+sudo docker-compose up
