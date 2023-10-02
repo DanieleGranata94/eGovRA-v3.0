@@ -133,7 +133,6 @@ class Asset_has_attribute(models.Model):
 
 
 class DataObjectAttribute(models.Model):
-
     size = models.IntegerField(null=True)
     order_of_size = models.CharField(max_length=100)
     personal = models.CharField(choices=personal,default="Yes",max_length=100)

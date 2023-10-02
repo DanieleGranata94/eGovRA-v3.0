@@ -1,9 +1,13 @@
+
 {% extends 'base.html' %}
 
 
-
+<!-- Bootstrap Select CSS e JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
 {% block content %}
+
     <h1>Data type enrichment</h1>
     <p style="font-family: 'Times New Roman';font-size: medium">
         It is necessary to report which of the Tasks present within the process use the Dataobjects listed below:
@@ -14,6 +18,7 @@
         <thead>
         <tr>
             <th>DataObject names</th>
+
             <th>Task</th>
 
         </tr>
@@ -43,7 +48,9 @@
 
             <tr>
                 <td style="font-family: 'Times New Roman';font-size: larger">
-                    {{ data }}
+                    {{ data }}<br>
+                    Type:{{ data.asset_type }}
+
                 </td>
 
                 <td style="font-family: 'Times New Roman';font-size: medium" ;>
@@ -52,15 +59,84 @@
                             <label>Select the tasks that use this DataObject</label>
 
                             <!-- Multiselect dropdown -->
-                            <select id={{ data.name }} name={{ data.bpmn_id }}  multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm "
+                            <select id="select-{{ data.name|slugify }}" data-data='{{ data.name|slugify }}' name={{ data.bpmn_id }}  multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm "
                                     class="selectpicker w-100">
                                 {% for task in list_task %}
                                     <option value="{{ task }}">{{ task }}</option>
                                 {% endfor %}
 
                             </select><!-- End -->
+                        </div>
+                    <!-- "data-task='{{ data.name|slugify }}{{ task|slugify }}' tolto-->
+                        {% for task in list_task %}
+
+                            <div id="select-{{ data.name|slugify }}{{ task|slugify }}" style="display: none">
+                                <label for="typeObj">Input/Output {{ task }}:</label>
+                                 <select selected="selected" name={{ type }}  multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm "
+                                    class="selectpicker w-100">
+                                     <option value="">Select</option>
+                                    <option value="1">Input</option>
+                                    <option value="0">Output</option>
+
+                                 </select><br><br></div>
+                        {% endfor %}
 
 
+                                <script>
+
+                                    const tasks = [
+                                        {% for task in list_task %}
+                                            "{{ task|slugify }}",
+                                        {% endfor %}
+                                    ];
+                                    const data1=[
+                                    {% for data3 in list_data %}
+                                        "{{ data3.name|slugify }}",
+                                    {% endfor %}
+                                    ];
+                                    var len=tasks.length;
+                                    const selectedTasks=[];
+
+                                        $(document).ready(function () {
+                                        data1.forEach(function (dataItem) {
+                                            $("#select-" + dataItem).on('change', function () {
+
+                                                selectedTasks[dataItem] = $(this).val().map(function (value) {
+                                                    function rimuoviAccenti(input) {
+                                                      return input.normalize("NFD").replace(/[\u0300-\u036f]/g, '');
+                                                    }
+                                                    value= rimuoviAccenti(value).replace(/ /g, '-').replace(/[ .()]/g, '').toLowerCase();
+                                                    return value;
+                                                });
+                                                for (var i = 0; i < len; i++) {
+
+                                                    if (selectedTasks[dataItem].indexOf(tasks[i]) >= 0) {
+                                                        const id = "select-" + dataItem + tasks[i];
+                                                        $("#" + id).show();
+
+
+                                                    } else {
+                                                        const id = "select-" + dataItem + tasks[i];
+                                                        $("#" + id).css("display", "none");
+
+
+                                                    }
+                                                }
+
+                                            });
+                                        });
+                                        });
+
+                                    /*
+                                    document.addEventListener("DOMContentLoaded", (event) => {
+                                        var select = document.querySelector('select[data-data="{{ data.name }}"]');
+                                        select.addEventListener('change',function(){
+                                            alert('changed');
+                                        });
+                                    });
+                                    */
+
+                                </script>
                                 {% for data2 in task_with_data %}
                                     {% if data|stringformat:"s" == data2.data|stringformat:"s" %}
 
@@ -70,20 +146,24 @@
                                             id_D = {{data}};
                                             console.log(id_D)
                                             console.log($('#id_D'))
-                                            $(id_D).find('option[value="{{ data2.task }}"]').prop("selected", true);
-
-
+                                            $(id_D).find('option[value="{{ data2.task }}"]').prop("selected", true)
                                             $("#id_D").selectpicker('refresh');
 
+
+                                            var typeObjValue = "{{ type }}";
+                                            console.log(typeObjValue);
+                                            $("#typeObj").find('option[value="' + typeObjValue + '"]').prop("selected", true);
+                                            $("#typeObj").selectpicker('refresh');
 
 
 
                                         </script>
                                     {% endif %} {% endfor %}
 
-                        </div>
 
-                </td>
+
+
+                    </div> </td>
             </tr>
 
 

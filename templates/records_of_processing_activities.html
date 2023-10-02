@@ -5,6 +5,8 @@
     <p style="font-family: 'Times New Roman';font-size: medium">
         It is necessary to report the information to generate the report register.
     </p>
+        <form method="POST" action="{% url 'export_dataobject_to_bpmn' systemId=systemId %}">
+
     <table class="table">
         <thead>
         <tr>
@@ -20,27 +22,14 @@
         </tr>
         </thead>
         <tbody>
+
         {% for processid, process in process_dataoutput.items %}
             <tr>
             <td>
                 {{ processid }}
             </td>
             <td style="font-family: 'Times New Roman';font-size: medium" ;>
-                    <div class="row">
-                        <div class="col-lg-6 mx-auto">
-
-                            <!-- Multiselect dropdown -->
-                            <select id=typologyTable   multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm "
-                                    class="selectpicker w-100">
-
-                                <option value="Collection">Collection</option>
-                                <option value="Registration">Registration</option>
-                                <option value="Organization">Organization</option>
-
-
-                            </select>
-                        </div>
-                    </div>
+                <textarea rows = "5" cols = "20" name = "typeTreatment" placeholder="Insert details here"></textarea><br>
             </td>
             <td>
                 <ul>
@@ -65,20 +54,31 @@
             </td>
             <td>
 
-                <textarea rows = "5" cols = "60" name = "Recipients">
-                    Enter details here..</textarea><br>
+                <textarea rows = "5" cols = "20" name = "Recipients" placeholder="Insert details here"></textarea><br>
             </td>
             <td>
-                NO
+                <select id="country">
+                    <option>YES</option>
+                    <option>NO</option>
+                </select>
             </td>
             <td>
-
+                 <textarea rows = "5" cols = "20" name = "erasureData" placeholder="Insert details here"></textarea><br>
             </td>
             <td>
-
+                {% for single_control in control %}
+                    <li>{{ single_control }}</li>
+                    {% endfor %}
             </td>
         </tr>
         {% endfor %}
+
+
         </tbody>
     </table>
+        {% csrf_token %}
+        <input id="back" type="submit" class="btn btn-primary" value="Export as a CSV file"></input>
+    </form>
+
+
 {% endblock %}

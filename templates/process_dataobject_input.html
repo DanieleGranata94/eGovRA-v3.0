@@ -11,7 +11,13 @@
         It is necessary to report the information associated with the Data of asset,
         where this has not been explicitly indicated in the bpmn associated with the process in question.
     </p>
-        <input id="InsertData" class="form-control" type="text" name="InsertData" placeholder="Insert DataObject Name" style="width: 200px" />
+    <div style="display: flex; align-items: center;">
+    <div style="margin-right: 10px; display: flex; align-items: center;">
+        <!--<input id="InsertData" class="form-control" type="text" name="InsertData" placeholder="Insert DataObject Name" style="width: 200px" />-->
+        <textarea id="InsertData" class="form-control" name="InsertData" placeholder="Insert DataObject Name" style="width: 200px; height: 50px;"></textarea>
+    </div>
+
+    </div>
     <div class="valid-feedback">
         DataObject successfully inserted!
     </div><br><br>
@@ -23,6 +29,7 @@
         <thead>
         <tr>
             <th>DataObject names</th>
+            <th>Type</th>
             <th>DataObject Attributes</th>
             <th>Actor</th>
         </tr>
@@ -30,18 +37,46 @@
         <p>The data already present in the process {{ nameprocess }} are:</p><br><br>
 
 <script>
+
     const element = document.getElementById("buttonAdd");
     const element2 = document.getElementById("InsertData");
+
     const table = document.getElementsByClassName("table")
     element.addEventListener("click", () => {
 	console.log("clicked element");
 if (element2.value!="") {
     element2.className='form-control is-valid'
-    var table_content = `<tr><td style="font-family: 'Times New Roman';font-size: medium;"><B>${element2.value}</B></td> <td style="font-family: 'Times New Roman';font-size: medium;"><i><U style="font-family: 'Times New Roman';font-size: medium;height: 0.2px">This attribute indicates the size of the data:</U></i><br><br>
-    <label for="sizeobj">Size:</label> <input type="number" id="sizeobj" name=${element2.value} style="width: 40px" value="1"><label for="orderSize">Order of Size:</label> <select selected="selected" type="text" id="orderSize" name=${element2.value}> <option value="byte">Byte</option> <option value="kb">KB</option> <option value="mb">MB</option> <option value="gb">GB</option> </select><br><br>
-    <i><U style="font-family: 'Times New Roman';font-size: medium;height: 0.2px">This attribute indicates whether the data is personal or not:</U></i><br><br>
-    <label for="personalObj">Personal or not ?:</label> <select selected="selected" type="text" id="personalObj" name=${element2.value}> <option value="1">Yes</option> <option value="0">No</option> </select><br><br><i><U style="font-family: 'Times New Roman';font-size: medium;height: 0.2px">This attribute indicates the number of instances of the data in the process:</U></i><br><br><label for="loadDependence">Load Dependence:</label> <input type="number" id="loadDependence" name=${element2.value} style="width: 40px" value="1"><br><br> </td>
-  <td><label>Select the actor that use this DataObject</label><select id=${element2.value} name=${element2.value}></select></td></tr>`
+    var table_content = `
+    <tr>
+        <td style="font-family: 'Times New Roman';font-size: medium;">
+        <B>${element2.value}</B></td>
+        <td style="font-family: 'Times New Roman';font-size: medium;">
+        <label for="TypeData">Type:</label>
+
+                <select selected="selected" type="text" id="typeData" name="${element2.value}">
+                    <option value="Data Object">Data Object</option>
+                    <option value="Data Store">Data Store</option>
+                </select><br><br></td>
+        <td style="font-family: 'Times New Roman';font-size: medium;">
+            <i><U style="font-family: 'Times New Roman';font-size: medium;height: 0.2px">This attribute indicates the size of the data:</U></i><br><br>
+            <label for="sizeobj">Size:</label>
+            <input type="number" id="sizeobj" name="${element2.value}" style="width: 40px" value="1">
+            <label for="orderSize">Order of Size:</label>
+            <select selected="selected" type="text" id="orderSize" name="${element2.value}">
+            <option value="byte">Byte</option> <option value="kb">KB</option>
+                <option value="mb">MB</option> <option value="gb">GB</option> </select><br><br>
+            <i><U style="font-family: 'Times New Roman';font-size: medium;height: 0.2px">This attribute indicates whether the data is personal or not:</U></i><br><br>
+            <label for="personalObj">Personal or not ?:</label>
+            <select selected="selected" type="text" id="personalObj" name="${element2.value}">
+                <option value="1">Yes</option>
+                <option value="0">No</option> </select><br><br>
+            <i><U style="font-family: 'Times New Roman';font-size: medium;height: 0.2px">This attribute indicates the number of instances of the data in the process:</U></i><br><br>
+            <label for="loadDependence">Load Dependence:</label>
+            <input type="number" id="loadDependence" name="${element2.value}"style="width: 40px" value="1"><br><br>
+        </td>
+        <td>
+            <label>Select the actor that use this DataObject</label>
+                <select id="${element2.value}" name="${element2.value}"></select></td></tr>`
 $(table).find('tbody').append(table_content);
     /*var actors = "{{ actors }}";
 for (var actor in actors)
@@ -50,10 +85,10 @@ for (var actor in actors)
 }*/
 
     var actors = JSON.parse('{{ actors| safe }}');
-    console.log(actors);
+    console.log("prova1", actors);
 
     select = document.getElementById(`${element2.value}`);
-    console.log(select)
+    console.log("prova",select)
     for (var i=0; i< actors.length; i++){
 
     var opt = document.createElement('option');
@@ -85,7 +120,16 @@ for (var actor in actors)
 
             <tr>
                <td style="font-family: 'Times New Roman';font-size: medium; ">
-                    <B>{{ data }}</B>
+                   <B>{{ data }}</B></td>
+               <td style="font-family: 'Times New Roman';font-size: medium; ">
+                   <label for="TypeData">Type:</label>
+                {% if data.asset_type   is not None  %}
+                   {{ data.asset_type }}
+                {% else %}
+                <select selected="selected" type="text" id="typeData" name={{ data }}>
+                    <option value="Data Object">Data Object</option>
+                    <option value="Data Store">Data Store</option>
+                </select><br><br>{% endif %}
                </td>
             <td style="font-family: 'Times New Roman';font-size: medium;">
                 <i><U style="font-family: 'Times New Roman';font-size: small;height: 0.2px">This attribute indicates the size of the data:</U></i><br><br>

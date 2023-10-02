@@ -164,6 +164,20 @@ class BpmnDiagramGraph(object):
                 id_list.append(node[0])
         return id_list
 
+
+    def get_node_id_by_name(self, name=''):
+        tmp_nodes = self.diagram_graph.nodes(data=True)
+        for node in tmp_nodes:
+            if node[1][consts.Consts.node_name] == name:
+                id = node[0]
+                return id
+    def get_node_by_name(self, name=''):
+        tmp_nodes = self.diagram_graph.nodes(data=True)
+        for node in tmp_nodes:
+            if node[1][consts.Consts.node_name] == name:
+                return node
+
+
     def get_flows(self):
         """
         Gets all graph edges (process flows).
@@ -248,7 +262,7 @@ class BpmnDiagramGraph(object):
         self.plane_attributes[consts.Consts.bpmn_element] = process_id
         return process_id
 
-    # qui ho mdificatio io
+
 
     def add_textAnnotation_flow_node_to_diagram(self, process_id, type, text,x,y, node_id=None):
         """
@@ -337,6 +351,39 @@ class BpmnDiagramGraph(object):
         self.diagram_graph._node[node_id_dor][consts.Consts.x] = x
         self.diagram_graph._node[node_id_dor][consts.Consts.y] = y
         return node_id_dor, self.diagram_graph._node[node_id_dor]
+        # return node_id2, self.diagram_graph._node[node_id2]
+    def add_dataStoreReference_flow_node_to_diagram(self, process_id, text, x,y, node_id_dsr=None):
+        """
+        (process_id,text connected_task, node_id,)
+        Helper function that adds a new Flow Node to diagram. It is used to add a new node of specified type.
+        Adds a basic information inherited from Flow Node type.
+
+        :param process_id: string object. ID of parent process,
+        :param node_type: string object. Represents type of BPMN node passed to method,
+        :param name: string object. Name of the node,
+        :param node_id: string object. ID of node. Default value - None.
+        """
+        letters = string.ascii_letters
+        result_str = ''.join(random.choice(letters) for i in range(9))
+
+        if node_id_dsr is None:
+            node_id_dsr = "DataStoreReference_" + result_str
+        self.diagram_graph.add_node(node_id_dsr)
+        self.diagram_graph._node[node_id_dsr][consts.Consts.id] = node_id_dsr
+        self.diagram_graph._node[node_id_dsr][consts.Consts.type] = consts.Consts.dataStoreReference
+        self.diagram_graph._node[node_id_dsr][consts.Consts.node_name] = text
+        self.diagram_graph._node[node_id_dsr][consts.Consts.dataStoreRef]=consts.Consts.dataStoreRef
+        # self.diagram_graph._node[node_id][consts.Consts.incoming_flow] = []
+        # self.diagram_graph._node[node_id][consts.Consts.outgoing_flow] = []
+        self.diagram_graph._node[node_id_dsr][consts.Consts.process] = process_id
+        #self.diagram_graph._node[node_id_dor][consts.Consts.dataObjectRef] = id_dataObject
+
+        # Adding some dummy constant values
+        self.diagram_graph._node[node_id_dsr][consts.Consts.width] = "50"
+        self.diagram_graph._node[node_id_dsr][consts.Consts.height] = "50"
+        self.diagram_graph._node[node_id_dsr][consts.Consts.x] = x
+        self.diagram_graph._node[node_id_dsr][consts.Consts.y] = y
+        return x, y, self.diagram_graph._node[node_id_dsr]
         # return node_id2, self.diagram_graph._node[node_id2]
 
     def add_Assocation_flow_node_to_diagram(self, process_id, sourceId, targetId, node_id=None):
@@ -448,8 +495,6 @@ class BpmnDiagramGraph(object):
         single_dataoutput_assoc_dict[consts.Consts.x] = Targetx
         single_dataoutput_assoc_dict[consts.Consts.y] = Targety
         self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation].append(single_dataoutput_assoc_dict)
-        #self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.id] = dataOut_Ass
-        #self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.target_ref] = targetRef
 
         # Adding some dummy constant values
         # self.diagram_graph._node[node_id][consts.Consts.width] = "100"
@@ -457,6 +502,36 @@ class BpmnDiagramGraph(object):
         #self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.x] = Targetx
         #self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.y] = Targety
         return node_id, self.diagram_graph._node[node_id]
+    def update_InputTask_to_diagram(self, dataObjectRef,sourcex, sourcey, Targetx,Targety, dataIn_Ass, target_node_id):
+        """
+        Helper function that adds a new Flow Node to diagram. It is used to add a new node of specified type.
+        Adds a basic information inherited from Flow Node type.
+
+        :param process_id: string object. ID of parent process,
+        :param node_type: string object. Represents type of BPMN node passed to method,
+        :param name: string object. Name of the node,
+        :param node_id: string object. ID of node. Default value - None.
+        """
+        letters = string.ascii_letters
+        result_str = ''.join(random.choice(letters) for i in range(9))
+        #print(self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation],"controlla qua")
+        single_datainput_assoc_dict = {}
+
+        if dataIn_Ass is None:
+            dataIn_Ass = "DataInputAssociation_" + result_str
+
+        single_datainput_assoc_dict[consts.Consts.id] = dataIn_Ass
+        single_datainput_assoc_dict[consts.Consts.source_ref]=dataObjectRef
+        single_datainput_assoc_dict[consts.Consts.target_ref] = target_node_id
+        single_datainput_assoc_dict[consts.Consts.waypoints]=([sourcex, sourcey], [Targetx, Targety])
+        self.diagram_graph._node[target_node_id][consts.Consts.dataInputAssociation].append(single_datainput_assoc_dict)
+
+        # Adding some dummy constant values
+        # self.diagram_graph._node[node_id][consts.Consts.width] = "100"
+        # self.diagram_graph._node[node_id][consts.Consts.height] = "100"
+        #self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.x] = Targetx
+        #self.diagram_graph._node[node_id][consts.Consts.dataOutputAssociation][consts.Consts.y] = Targety
+        return target_node_id, self.diagram_graph._node[target_node_id]
 
     def add_task_to_diagram(self, process_id, task_name="", node_id=None):
         """
@@ -521,7 +596,23 @@ class BpmnDiagramGraph(object):
         """
         return self.add_dataObjectReference_flow_node_to_diagram(process_id, text, id_dataObject,x,y, node_id)
 
-    def add_dataOutput_to_diagram(self, node_id,Targetx,Targety, targetRef, dataOutput_id=""):
+    def add_dataStoreReference_to_diagram(self, process_id, x, y, text="", node_id=None):
+        """
+        Adds a dataObjectReference element to BPMN diagram.
+        User-defined attributes:
+
+        - name
+
+
+        :param text: text related to TextAnnotation:
+        :param process_id: string object. ID of parent process,
+        :param connected_task: string object. Name of connected task
+        :param node_id: string object. ID of node. Default value - None.
+        :return: a tuple, where first value is task ID, second a reference to created object.
+        """
+        return self.add_dataStoreReference_flow_node_to_diagram(process_id, text, x, y, node_id)
+
+    def add_dataOutput_to_diagram(self, node_id,dataObx, dataOby, dataObjectRef, dataOutput_id=""):
         """
         Adds a TextAnnotation element to BPMN diagram.
         User-defined attributes:
@@ -535,7 +626,22 @@ class BpmnDiagramGraph(object):
         :param node_id: string object. ID of node. Default value - None.
         :return: a tuple, where first value is task ID, second a reference to created object.
         """
-        return self.update_task_to_diagram(node_id,Targetx,Targety, dataOutput_id, targetRef)
+        return self.update_task_to_diagram(node_id,dataObx,dataOby, dataOutput_id, dataObjectRef)
+    def add_dataInput_to_diagram(self,dataObjectRef ,sourcex, sourcey, Targetx,Targety, target_node_id, dataInput_id=""):#modifica
+        """
+        Adds a TextAnnotation element to BPMN diagram.
+        User-defined attributes:
+
+        - name
+
+
+        :param text: text related to TextAnnotation:
+        :param process_id: string object. ID of parent process,
+        :param connected_task: string object. Name of connected task
+        :param node_id: string object. ID of node. Default value - None.
+        :return: a tuple, where first value is task ID, second a reference to created object.
+        """
+        return self.update_InputTask_to_diagram(dataObjectRef,sourcex, sourcey,Targetx,Targety, dataInput_id, target_node_id)
 
     def add_Association_to_diagram(self, process_id, sourceId, targetId, node_id=None):
         """
@@ -685,7 +791,7 @@ class BpmnDiagramGraph(object):
         return event_def
 
     def add_gateway_to_diagram(self, process_id, gateway_type, gateway_name="", gateway_direction="Unspecified",
-                               node_id=None):
+                               node_id=None, instantiate= None, event_type=None):
         """
         Adds an exclusiveGateway element to BPMN diagram.
 
@@ -703,8 +809,31 @@ class BpmnDiagramGraph(object):
             raise bpmn_exception.BpmnPythonError("Invalid value passed as gatewayDirection parameter. Value passed: "
                                                  + gateway_direction)
         self.diagram_graph._node[gateway_id][consts.Consts.gateway_direction] = gateway_direction
-        return gateway_id, gateway
+        if (gateway_type== consts.Consts.event_based_gateway): ##modifica
+            if instantiate is not None and instantiate is bool:
+                if instantiate:
+                    self.diagram_graph._node[gateway_id][consts.Consts.instantiate] = "true"
+                else:
+                    self.diagram_graph._node[gateway_id][consts.Consts.instantiate] = "false"
+            elif instantiate is None or instantiate is not bool:
+                self.diagram_graph._node[gateway_id][consts.Consts.instantiate] = "false"
+            if event_type is not None:
+                self.diagram_graph._node[gateway_id][consts.Consts.event_gateway_type] = event_type
+            else:
+                self.diagram_graph._node[gateway_id][consts.Consts.event_gateway_type] = "Exclusive"
 
+
+        return gateway_id, gateway
+    def add_event_based_gateway_to_diagram(self, process_id, gateway_name="", instantiate=False, event_type=None, gateway_direction="Unspecified", default=None, node_id=None, ):
+        event_based_gateway_id, event_based_gateway = self.add_gateway_to_diagram(process_id,
+                                                                              consts.Consts.event_based_gateway,
+                                                                              gateway_name=gateway_name,
+                                                                              gateway_direction=gateway_direction,
+                                                                              node_id=node_id,
+                                                                              instantiate=instantiate,
+                                                                              event_type=event_type)
+        self.diagram_graph._node[event_based_gateway_id][consts.Consts.default] = default
+        return event_based_gateway_id, event_based_gateway
     def add_exclusive_gateway_to_diagram(self, process_id, gateway_name="", gateway_direction="Unspecified",
                                          default=None, node_id=None):
         """
@@ -726,6 +855,28 @@ class BpmnDiagramGraph(object):
                                                                               node_id=node_id)
         self.diagram_graph._node[exclusive_gateway_id][consts.Consts.default] = default
         return exclusive_gateway_id, exclusive_gateway
+
+    def add_complex_gateway_to_diagram(self, process_id, gateway_name="", gateway_direction="Unspecified",
+                                       default=None, node_id=None):
+        """
+        Adds an exclusiveGateway element to BPMN diagram.
+
+        :param process_id: string object. ID of parent process,
+        :param gateway_name: string object. Name of exclusive gateway,
+        :param gateway_direction: string object. Accepted values - "Unspecified", "Converging", "Diverging", "Mixed".
+            Default value - "Unspecified".
+        :param default: string object. ID of flow node, target of gateway default path. Default value - None,
+        :param node_id: string object. ID of node. Default value - None.
+
+        :return: a tuple, where first value is exculusiveGateway ID, second a reference to created object.
+        """
+        complex_gateway_id, complex_gateway = self.add_gateway_to_diagram(process_id,
+                                                                          consts.Consts.complex_gateway,
+                                                                          gateway_name=gateway_name,
+                                                                          gateway_direction=gateway_direction,
+                                                                          node_id=node_id)
+        self.diagram_graph._node[complex_gateway_id][consts.Consts.default] = default
+        return complex_gateway_id, complex_gateway
 
     def add_inclusive_gateway_to_diagram(self, process_id, gateway_name="", gateway_direction="Unspecified",
                                          default=None, node_id=None):
@@ -828,3 +979,43 @@ class BpmnDiagramGraph(object):
         id_dataobjectref, dataRef = self.add_dataObjectReference_to_diagram(ProcessId, XDataObject, YDataObject,
                                                                                   DataObjectName, id_DataObject, None)
         return XDataObject,YDataObject,id_dataobjectref
+
+        # modifiche
+    def set_task_type(self, node_id='', task_type='', name=''):
+        node=self.get_node_by_id(node_id)
+        #node=self.get_node_by_name(name)
+
+        if (task_type == consts.Consts.task):
+                node[1][consts.Consts.type] = task_type
+        elif (task_type == consts.Consts.user_task or task_type.__contains__("User")):
+                node[1][consts.Consts.type] = consts.Consts.user_task
+        elif (task_type == consts.Consts.service_task or task_type.__contains__("Service")):
+                node[1][consts.Consts.type] = consts.Consts.service_task
+        elif (task_type == consts.Consts.manual_task or task_type.__contains__("Manual")):
+                node[1][consts.Consts.type] = consts.Consts.manual_task
+        elif (task_type == consts.Consts.send_task or task_type.__contains__("Send")):
+                node[1][consts.Consts.type] = consts.Consts.send_task
+        elif (task_type == consts.Consts.receive_task or task_type.__contains__("Receive")):
+                node[1][consts.Consts.type] = consts.Consts.receive_task
+        elif (task_type == consts.Consts.script_task or task_type.__contains__("Script")):
+                node[1][consts.Consts.type] = consts.Consts.script_task
+        elif (task_type == consts.Consts.business_rule_task or task_type.__contains__("Business")):
+                node[1][consts.Consts.type] = consts.Consts.business_rule_task
+        return node
+
+    def add_association_dataObject_node(self, dataObjectRef, node_id, mode):
+            x1, y1 = self.get_node_position_by_id(dataObjectRef)
+            x2, y2 =self.get_node_position_by_id(node_id)
+            if mode == "input":
+                association_id = self.add_dataInput_to_diagram(dataObjectRef, x1, y1, x2, y2, node_id, None)
+                return association_id
+            elif mode == "output":
+                association_id = self.add_dataOutput_to_diagram(node_id, x1, y1, dataObjectRef, None)
+                return association_id
+            else:
+                return None
+    def get_node_position_by_id(self, node_id):
+        node = self.get_node_by_id(node_id)
+        x=node[1][consts.Consts.x]
+        y=node[1][consts.Consts.y]
+        return x, y

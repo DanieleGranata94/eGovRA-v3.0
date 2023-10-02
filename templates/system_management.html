@@ -24,6 +24,7 @@
                 <th>Name</th>
                 <th>Select system</th>
                 <th>Delete system</th>
+                <th>Data report</th>
             </tr>
         </thead>
         <tbody>
@@ -45,7 +46,7 @@
                     <td>
                         <form method="POST" action="{% url 'report_processing_activities' system.pk %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">Generate Data Report</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Generate Data Report</button>
                         </form>
                     </td>
 

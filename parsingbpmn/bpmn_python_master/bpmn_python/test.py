@@ -4,9 +4,9 @@ from parsingbpmn.bpmn_python_master.bpmn_python import bpmn_python_consts as con
 
 bpmn_graph = diagram.BpmnDiagramGraph()
 
-collab = bpmn_graph.load_diagram_from_xml_file(r"/Users/giacomodiguida/Downloads/diagram7.bpmn")
-lista = bpmn_graph.get_nodes()
-print(lista,"RISOLTO")
+collab = bpmn_graph.load_diagram_from_xml_file(r"C:\Users\veron\OneDrive\Desktop\Tesi\Materiale\eGovRa\prov\processo-civile-cognizione-07.bpmn")
+#lista = bpmn_graph.get_nodes()
+#print(lista,"RISOLTO")
 
 
 #bpmn_graph.add_flow_node_to_diagram("Activity_0e44ssw", "Task", "TestProva", None)
@@ -27,20 +27,30 @@ print(lista,"RISOLTO")
 #(self,ProcessId,DataObjectName,XDataObject,YDataObject):
 
 #x,y,id_dataobjectref=bpmn_graph.add_dataObject_with_Association_to_diagram("Process_0gwcszw","NomeProva","320", "80")
-x1,y1,id_dataobjectref1=bpmn_graph.add_dataObject_with_Association_to_diagram("Process_0gwcszw","NomeProva2","380", "180")
+#x1,y1,id_dataobjectref1=bpmn_graph.add_dataObject_with_Association_to_diagram("Process_17ewa3x","NomeProva2","380", "180")
 
 
 
 
-bpmn_graph.add_dataOutput_to_diagram("Activity_1xtu41w",x1,y1,id_dataobjectref1, None)
 
-lista = bpmn_graph.get_nodes()
-print(lista,"after")
 
 #bpmn_graph.add_dataOutput_to_diagram("Activity_1xtu41w","100","100",id_dataobjectref, None)
+#x, y, dataobject_ref=bpmn_graph.add_dataObject_with_Association_to_diagram("Process_17ewa3x", "prova input", "200", "200",)
+#bpmn_graph.add_dataOutput_to_diagram("Activity_0ihnntb", x, y,dataobject_ref, None )
+#x, y, id=bpmn_graph.add_dataStoreReference_to_diagram("Process_17ewa3x", "200", "200", "datastore prova 2", None)
+#bpmn_graph.add_dataInput_to_diagram(dataobject_ref, x, y,"360", "159","Activity_0ihnntb", None)
+#bpmn_graph.add_association_dataObject_node(dataRef, "Activity_0ihnntb", "input" )
+#bpmn_graph.add_dataInput_to_diagram("DataStoreReference_YzvcTexCI", "200", "200","360", "409","Activity_0ihnntb", None)
+#bpmn_graph.set_task_type("Activity_0ihnntb", "task")
+#id=bpmn_graph.get_node_id_by_name('Compile certificate request')
+#print( "id:", id)
+#print("x, y, id", x, y, id)
+#textAnnotation=bpmn_graph.add_textAnnotation_to_diagram("Process_17ewa3x", "200", "200", "prova", None)
+#bpmn_graph.add_Association_to_diagram("Process_17ewa3x", textAnnotation[1]['id'], "Activity_0ihnntb")
+#bpmn_graph.add_dataStoreReference_to_diagram()
 
-
-bpmn_graph.export_xml_file(r"/Users/giacomodiguida/Downloads", "CHECKHERE.bpmn")
+#bpmn_graph.add_dataStoreReference_to_diagram("Process_17ewa3x", "200", "200", "prova","Activity_0qbnh9m" )
+bpmn_graph.export_xml_file(r"C:/Users/veron/OneDrive/Desktop/Tesi/Materiale/eGovRa/prov/", "prova1.bpmn")
 
 """
 for tuple in lista:

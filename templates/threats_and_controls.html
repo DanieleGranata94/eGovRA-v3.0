@@ -4,45 +4,70 @@
 
     <h1>Threats and policy of process: {{ process_name }}</h1>
     <p style="font-family: 'Times New Roman';font-size: medium">
-        Below is a list of threats associated with the process and possible countermeasures. Click on "<b>more details</b>" to view a detailed report.
+        Below is a list of threats associated with the process and possible countermeasures. Click on "<b>more
+        details</b>" to view a detailed report.
     </p>
 
     <table class="table">
         <thead>
-            <tr>
-                <th style="text-align: center">Threats</th>
-                <th style="text-align: center">Policy</th>
-            </tr>
+        <tr>
+            <th style="text-align: center">Threats</th>
+            <th style="text-align: center">Policy</th>
+        </tr>
         </thead>
 
         <tbody>
-            <tr>
-                <td>
-                    <ol>
-                        {% for threat in clear_list_threats %}
-                            <li>{{ threat }}</li>
-                        {% endfor %}
-                    </ol>
-                </td>
-                <td>
-                    <ul>
-                        {% for control in clear_list_controls %}
-                            <li>{{ control }}</li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <ol>
+                    {% for threat in clear_list_threats %}
+                        <li>{{ threat }}</li>
+                    {% endfor %}
+                </ol>
+            </td>
+            <td>
+                <ul>
+                    {% for control in clear_list_controls %}
+                        <li>{{ control }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <table>
+                    {% for control in clear_list_controls %}
+                        <tr>
+                        <td>
+                            <li>CIS {{ control.id }}: {{ control }}</li>
+                        </td>
+                        <td>
+                            <form method="POST"
+                                  action="{% url 'countermeasures_selection' systemId=systemId processId=processId cisId=control.id %}">
+                                {% csrf_token %}
+                                <div style="text-align: center; padding-top: 20px; padding-bottom: 10px;">
+                                    <button type="submit" id = {{ control.id }}class="btn btn-primary">Add countermeasures</button>
+
+                                </div>
+                            </form>
+                        </td>
+                        </tr>
+
+                    {% endfor %}
+
+                </table>
+            </td>
+        </tr>
         </tbody>
     </table>
-        <form method="POST" action="{% url 'threat_modeling_view' systemId=systemId processId=processId %}">
-            {% csrf_token %}
+    <form method="POST" action="{% url 'threat_modeling_view' systemId=systemId processId=processId %}">
+        {% csrf_token %}
         <div style="text-align: center; padding-top: 20px; padding-bottom: 10px;">
-            <button  type="submit" class="btn btn-primary">Start Risk Analysis process</button>
+            <button type="submit" class="btn btn-primary">Start Risk Analysis process</button>
         </div>
-        </form>
+    </form>
 
 
 
+</script>
 
 
 {% endblock %}

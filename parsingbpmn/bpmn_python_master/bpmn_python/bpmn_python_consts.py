@@ -69,6 +69,7 @@ class Consts(object):
     manual_task = "manualTask"
     subprocess = "subProcess"
     data_object = "dataObject"
+    data_store= "dataStore"
     complex_gateway = "complexGateway"
     event_based_gateway = "eventBasedGateway"
     inclusive_gateway = "inclusiveGateway"
@@ -111,12 +112,19 @@ class Consts(object):
     #data object
     dataObjectReference = "dataObjectReference"
     dataObjectRef = "dataObjectRef"
+    #data store
+    dataStoreReference = "dataStoreReference"
+    dataStoreRef = "dataStoreRef"
 
 
     dataOutputAssociation = "dataOutputAssociation"
-    dataOutputAssociationEdge= "dataOutputAssociationEdge"
+    dataOutputAssociationEdge = "dataOutputAssociationEdge"
+    dataInputAssociation = "dataInputAssociation"
+    dataInputAssociationEdge = "dataInputAssociationEdge"
     targetX = "x" #used for target position for dataoutputAssociation
     targetY = "y" #used for target position for dataoutputAssociation
+    source_X="x"#used for source position for datainputAssociation
+    source_Y="y"#used for source position for datainputAssociation
 
 
 

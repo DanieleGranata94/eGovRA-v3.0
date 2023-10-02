@@ -104,6 +104,18 @@ class BpmnDiagramGraphExport(object):
         output_element.set(consts.Consts.is_collection, data_object_params[consts.Consts.is_collection])
 
     @staticmethod
+    def export_data_store(bpmn_diagram, data_store_params, output_element):
+        """
+        Adds Datastore node attributes to exported XML element
+
+        :param bpmn_diagram: BPMNDiagramGraph class instantion representing a BPMN process diagram,
+        :param data_store_params: dictionary with given subprocess parameters,
+        :param output_element: object representing BPMN XML 'subprocess' element.
+        """
+
+        output_element.set(consts.Consts.is_collection, data_store_params[consts.Consts.is_collection])
+
+    @staticmethod
     def export_data_object_reference(bpmn_diagram, data_object_params, output_element):
         """
         Adds DataObject node attributes to exported XML element
@@ -115,6 +127,21 @@ class BpmnDiagramGraphExport(object):
         output_element.set(consts.Consts.dataObjectRef, data_object_params[consts.Consts.dataObjectRef])
         try:
             output_element.set(consts.Consts.is_collection, data_object_params[consts.Consts.is_collection])
+        except KeyError:
+            print()
+
+    @staticmethod#modifiche datastore
+    def export_data_store_reference(bpmn_diagram, data_store_params, output_element):
+        """
+        Adds Datastore node attributes to exported XML element
+
+        :param bpmn_diagram: BPMNDiagramGraph class instantion representing a BPMN process diagram,
+        :param data_object_params: dictionary with given subprocess parameters,
+        :param output_element: object representing BPMN XML 'subprocess' element.
+        """
+        output_element.set(consts.Consts.dataStoreRef, data_store_params[consts.Consts.dataStoreRef])
+        try:
+            output_element.set(consts.Consts.is_collection, data_store_params[consts.Consts.is_collection])
         except KeyError:
             print()
 
@@ -396,11 +423,30 @@ class BpmnDiagramGraphExport(object):
             if params[consts.Consts.dataOutputAssociation] and type(params[consts.Consts.dataOutputAssociation]) is not dict:
                 print(type(params[consts.Consts.dataOutputAssociation]), "params")
                 for single_dataoutputassociation in params[consts.Consts.dataOutputAssociation]:
-                    print(single_dataoutputassociation,"CHECK HERE")
+                    #print(single_dataoutputassociation,"CHECK HERE")
                     dataoutputchild = eTree.SubElement(output_element,consts.Consts.dataOutputAssociation,id=single_dataoutputassociation[consts.Consts.id])
-                    #print(dataoutputchild)
                     data_element = eTree.SubElement(dataoutputchild,consts.Consts.target_ref)
                     data_element.text = single_dataoutputassociation[consts.Consts.target_ref]
+                    #text_element.text = params[consts.Consts.text_in_Textann]
+                    #print(data_element,"DATAELEMENT",data_element.text)
+        except KeyError:
+            print()
+        #modfica dataIn
+        try:
+
+            if params[consts.Consts.dataInputAssociation] and type(params[consts.Consts.dataInputAssociation]) is not dict:
+                print(type(params[consts.Consts.dataInputAssociation]), "params")
+
+                for single_datainputassociation in params[consts.Consts.dataInputAssociation]:
+                    #print(single_datainputassociation,"CHECK HERE INP")
+                    datainputchild = eTree.SubElement(output_element,consts.Consts.dataInputAssociation,id=single_datainputassociation[consts.Consts.id])
+
+                    data_element = eTree.SubElement(datainputchild,consts.Consts.source_ref)
+                    data_element.text = single_datainputassociation[consts.Consts.source_ref]
+                    data_element = eTree.SubElement(datainputchild, consts.Consts.target_ref)
+                    data_element.text = single_datainputassociation[consts.Consts.target_ref]
+                    #print(data_element.text, "dovrebbe essere target")
+
                     #text_element.text = params[consts.Consts.text_in_Textann]
                     #print(data_element,"DATAELEMENT",data_element.text)
         except KeyError:
@@ -416,6 +462,10 @@ class BpmnDiagramGraphExport(object):
             BpmnDiagramGraphExport.export_subprocess_info(bpmn_diagram, params, output_element)
         elif node_type == consts.Consts.dataObjectReference:
             BpmnDiagramGraphExport.export_data_object_reference(bpmn_diagram, params, output_element)
+        elif node_type == consts.Consts.dataStoreReference:#modifiche datastore
+            BpmnDiagramGraphExport.export_data_store_reference(bpmn_diagram, params, output_element)
+        #elif node_type == consts.Consts.data_store:#mod datastore
+        #    BpmnDiagramGraphExport.export_data_store(bpmn_diagram, params, output_element)
         elif node_type == consts.Consts.data_object:
             BpmnDiagramGraphExport.export_data_object(bpmn_diagram, params, output_element)
         elif node_type == consts.Consts.complex_gateway:
@@ -533,8 +583,6 @@ class BpmnDiagramGraphExport(object):
         output_flow.set(consts.Consts.id, params[consts.Consts.id] + "_di")
         output_flow.set(consts.Consts.bpmn_element, params[consts.Consts.id])
         prefix_waypoint = "omgdi:waypoint"
-        #if params["id"].lower().startswith("dataoutput"):
-            #prefix_waypoint = "omgdi:waypoint"
 
         waypoints = [(x1, y1), (x2, y2)]
         for waypoint in waypoints:
@@ -635,6 +683,23 @@ class BpmnDiagramGraphExport(object):
                                                                           ,plane, params[consts.Consts.x],params[consts.Consts.y],
                                                                           singleDataOutputAssociation[consts.Consts.targetX],
                                                                           singleDataOutputAssociation[consts.Consts.targetY])
+                    else:
+                        BpmnDiagramGraphExport.export_node_di_data(node_id, params, plane)
+
+                except KeyError:
+                    print()
+                try:
+                    if params[consts.Consts.dataInputAssociation]:
+                        print("check")
+                        for singleDataInputAssociation in params[consts.Consts.dataInputAssociation]:
+
+                            BpmnDiagramGraphExport.export_Association_xml(singleDataInputAssociation
+                                                                          ,plane, singleDataInputAssociation[consts.Consts.waypoints][0][0],
+                                                                          singleDataInputAssociation[consts.Consts.waypoints][0][1],
+                                                                          singleDataInputAssociation[consts.Consts.waypoints][1][0],
+                                                                          singleDataInputAssociation[consts.Consts.waypoints][1][1])
+
+
                     else:
                         BpmnDiagramGraphExport.export_node_di_data(node_id, params, plane)
 
