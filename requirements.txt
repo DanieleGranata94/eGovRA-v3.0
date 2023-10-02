@@ -1,0 +1,12 @@
+Django==3.1.2
+cryptography
+djangorestframework==3.12.2
+django-rest-framework==0.1.0
+mysqlclient==2.0.1
+django-mysql==3.9
+django-cors-headers==3.5.0
+pika==1.1.0
+pymysql==1.0.0
+openpyxl==3.0.7
+networkx==2.5.1
+pandas==1.2.4

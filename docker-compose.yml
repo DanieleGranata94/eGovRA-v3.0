@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  egov_db:
+    image: mysql
+    ports:
+    - '3306'
+    restart: always
+    environment:
+        MYSQL_DATABASE: egov_db
+        MYSQL_USER: user
+        MYSQL_PASSWORD: user
+        MYSQL_ROOT_PASSWORD: root
+
+    volumes:
+    - ./egov_db.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  web:
+    build: .
+    #command: bash -c "sleep 15; entrypoint.sh"
+    command: sudo chmod +x entrypoint.sh
+    entrypoint: ./entrypoint.sh egov_db 3306
+    restart: always
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - egov_db
