@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='utf-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.signavio.com/bpmn20" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_16wfedz">
+      <bpmndi:BPMNEdge id="Flow_1jfs7w9_gui" bpmnElement="Flow_1jfs7w9">
+        <omgdi:waypoint x="580" y="239" />
+      <omgdi:waypoint x="580" y="480" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_1805bqb_gui" bpmnElement="Flow_1805bqb">
+        <omgdi:waypoint x="920" y="480" />
+      <omgdi:waypoint x="920" y="239" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNShape id="Participant_12a5r8p_gui" bpmnElement="Participant_12a5r8p" isHorizontal="true">
+        <omgdc:Bounds width="1110" height="250" x="160" y="80" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Participant_1u0entd_gui" bpmnElement="Participant_1u0entd" isHorizontal="true">
+        <omgdc:Bounds width="1110" height="250" x="160" y="380" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="StartEvent_0tcjdvv_gui" bpmnElement="StartEvent_0tcjdvv">
+        <omgdc:Bounds width="36" height="36" x="252" y="181" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_0ihnntb_gui" bpmnElement="Activity_0ihnntb">
+        <omgdc:Bounds width="100" height="80" x="360" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="DataInputAssociation_iEexlYKOP_di" bpmnElement="DataInputAssociation_iEexlYKOP">
+        <omgdi:waypoint x="300" y="279" />
+      <omgdi:waypoint x="360" y="159" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNShape id="Activity_0ihnntb_gui" bpmnElement="Activity_0ihnntb">
+        <omgdc:Bounds width="100" height="80" x="360" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_0qbnh9m_gui" bpmnElement="Activity_0qbnh9m">
+        <omgdc:Bounds width="100" height="80" x="530" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_0qbnh9m_gui" bpmnElement="Activity_0qbnh9m">
+        <omgdc:Bounds width="100" height="80" x="530" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_0qbnh9m_gui" bpmnElement="Activity_0qbnh9m">
+        <omgdc:Bounds width="100" height="80" x="530" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_1mpak4x_gui" bpmnElement="Activity_1mpak4x">
+        <omgdc:Bounds width="100" height="80" x="860" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_1mpak4x_gui" bpmnElement="Activity_1mpak4x">
+        <omgdc:Bounds width="100" height="80" x="860" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_1mpak4x_gui" bpmnElement="Activity_1mpak4x">
+        <omgdc:Bounds width="100" height="80" x="860" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_07cabl5_gui" bpmnElement="Activity_07cabl5">
+        <omgdc:Bounds width="100" height="80" x="1020" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="DataInputAssociation_fsjdwrrrg_di" bpmnElement="DataInputAssociation_fsjdwrrrg">
+        <omgdi:waypoint x="960" y="279" />
+      <omgdi:waypoint x="1020" y="159" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNShape id="Activity_07cabl5_gui" bpmnElement="Activity_07cabl5">
+        <omgdc:Bounds width="100" height="80" x="1020" y="159" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Event_123mdp7_gui" bpmnElement="Event_123mdp7">
+        <omgdc:Bounds width="36" height="36" x="1192" y="181" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_SjQUxVWPE_gui" bpmnElement="TextAnnotation_SjQUxVWPE">
+        <omgdc:Bounds width="120" height="30" x="200" y="200" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="Association_ZTmHzpnFg_di" bpmnElement="Association_ZTmHzpnFg">
+        <omgdi:waypoint x="200" y="200" />
+      <omgdi:waypoint x="360" y="159" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNShape id="Activity_0b2zcr0_gui" bpmnElement="Activity_0b2zcr0">
+        <omgdc:Bounds width="100" height="80" x="530" y="480" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="DataInputAssociation_ZJJMLKibj_di" bpmnElement="DataInputAssociation_ZJJMLKibj">
+        <omgdi:waypoint x="470" y="600" />
+      <omgdi:waypoint x="530" y="480" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNShape id="Activity_0b2zcr0_gui" bpmnElement="Activity_0b2zcr0">
+        <omgdc:Bounds width="100" height="80" x="530" y="480" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_0dnap2h_gui" bpmnElement="Activity_0dnap2h">
+        <omgdc:Bounds width="100" height="80" x="700" y="480" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="DataInputAssociation_gCdbOjYMd_di" bpmnElement="DataInputAssociation_gCdbOjYMd">
+        <omgdi:waypoint x="640" y="600" />
+      <omgdi:waypoint x="700" y="480" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNShape id="Activity_0dnap2h_gui" bpmnElement="Activity_0dnap2h">
+        <omgdc:Bounds width="100" height="80" x="700" y="480" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_0kn0uil_gui" bpmnElement="Activity_0kn0uil">
+        <omgdc:Bounds width="100" height="80" x="870" y="480" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_0kn0uil_gui" bpmnElement="Activity_0kn0uil">
+        <omgdc:Bounds width="100" height="80" x="870" y="480" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="Activity_0kn0uil_gui" bpmnElement="Activity_0kn0uil">
+        <omgdc:Bounds width="100" height="80" x="870" y="480" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="DataObject_YRCmbEZNU_gui" bpmnElement="DataObject_YRCmbEZNU">
+        <omgdc:Bounds />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="DataObjectReference_QMpqrOPvF_gui" bpmnElement="DataObjectReference_QMpqrOPvF">
+        <omgdc:Bounds width="36" height="50" x="300" y="279" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_XKOkxeBwv_gui" bpmnElement="TextAnnotation_XKOkxeBwv">
+        <omgdc:Bounds width="120" height="30" x="400" y="299" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_WwjxzXTNn_gui" bpmnElement="TextAnnotation_WwjxzXTNn">
+        <omgdc:Bounds width="120" height="30" x="400" y="269" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_uajpIEPPd_gui" bpmnElement="TextAnnotation_uajpIEPPd">
+        <omgdc:Bounds width="120" height="30" x="400" y="239" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="Association_WcRBjMEMZ_di" bpmnElement="Association_WcRBjMEMZ">
+        <omgdi:waypoint x="300" y="279" />
+      <omgdi:waypoint x="400" y="299" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Association_gHodXigQj_di" bpmnElement="Association_gHodXigQj">
+        <omgdi:waypoint x="300" y="279" />
+      <omgdi:waypoint x="400" y="269" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Association_iWMTYXQnS_di" bpmnElement="Association_iWMTYXQnS">
+        <omgdi:waypoint x="300" y="279" />
+      <omgdi:waypoint x="400" y="239" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNShape id="DataObject_sEEMAzSBs_gui" bpmnElement="DataObject_sEEMAzSBs">
+        <omgdc:Bounds />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="DataObjectReference_pydgYwFUX_gui" bpmnElement="DataObjectReference_pydgYwFUX">
+        <omgdc:Bounds width="36" height="50" x="960" y="279" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_rRzxEvevg_gui" bpmnElement="TextAnnotation_rRzxEvevg">
+        <omgdc:Bounds width="120" height="30" x="1060" y="299" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_AgeoVNivX_gui" bpmnElement="TextAnnotation_AgeoVNivX">
+        <omgdc:Bounds width="120" height="30" x="1060" y="269" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_qaMgsujkD_gui" bpmnElement="TextAnnotation_qaMgsujkD">
+        <omgdc:Bounds width="120" height="30" x="1060" y="239" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="Association_ERHajAHEE_di" bpmnElement="Association_ERHajAHEE">
+        <omgdi:waypoint x="960" y="279" />
+      <omgdi:waypoint x="1060" y="299" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Association_VAgKGTPwN_di" bpmnElement="Association_VAgKGTPwN">
+        <omgdi:waypoint x="960" y="279" />
+      <omgdi:waypoint x="1060" y="269" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Association_lTsNwPFmd_di" bpmnElement="Association_lTsNwPFmd">
+        <omgdi:waypoint x="960" y="279" />
+      <omgdi:waypoint x="1060" y="239" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNShape id="DataObject_jpefcXdjq_gui" bpmnElement="DataObject_jpefcXdjq">
+        <omgdc:Bounds />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="DataObjectReference_iNpucknsK_gui" bpmnElement="DataObjectReference_iNpucknsK">
+        <omgdc:Bounds width="36" height="50" x="470" y="600" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_aOdEvFShE_gui" bpmnElement="TextAnnotation_aOdEvFShE">
+        <omgdc:Bounds width="120" height="30" x="570" y="620" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_Wuxzygxeo_gui" bpmnElement="TextAnnotation_Wuxzygxeo">
+        <omgdc:Bounds width="120" height="30" x="570" y="590" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_zIrTVlqBW_gui" bpmnElement="TextAnnotation_zIrTVlqBW">
+        <omgdc:Bounds width="120" height="30" x="570" y="560" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="Association_AzajJItTc_di" bpmnElement="Association_AzajJItTc">
+        <omgdi:waypoint x="470" y="600" />
+      <omgdi:waypoint x="570" y="620" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Association_vHNtRlcSU_di" bpmnElement="Association_vHNtRlcSU">
+        <omgdi:waypoint x="470" y="600" />
+      <omgdi:waypoint x="570" y="590" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Association_tcmlVjcAA_di" bpmnElement="Association_tcmlVjcAA">
+        <omgdi:waypoint x="470" y="600" />
+      <omgdi:waypoint x="570" y="560" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNShape id="DataObject_bRaJIhtRv_gui" bpmnElement="DataObject_bRaJIhtRv">
+        <omgdc:Bounds />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="DataObjectReference_sSQwvltUR_gui" bpmnElement="DataObjectReference_sSQwvltUR">
+        <omgdc:Bounds width="36" height="50" x="640" y="600" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_dXCZveoep_gui" bpmnElement="TextAnnotation_dXCZveoep">
+        <omgdc:Bounds width="120" height="30" x="740" y="620" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_xymtsUNzF_gui" bpmnElement="TextAnnotation_xymtsUNzF">
+        <omgdc:Bounds width="120" height="30" x="740" y="590" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="TextAnnotation_mPlFHAbjJ_gui" bpmnElement="TextAnnotation_mPlFHAbjJ">
+        <omgdc:Bounds width="120" height="30" x="740" y="560" />
+      </bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="Association_vkIqqgxtF_di" bpmnElement="Association_vkIqqgxtF">
+        <omgdi:waypoint x="640" y="600" />
+      <omgdi:waypoint x="740" y="620" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Association_WtfVJqdjj_di" bpmnElement="Association_WtfVJqdjj">
+        <omgdi:waypoint x="640" y="600" />
+      <omgdi:waypoint x="740" y="590" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Association_iduzGGlnx_di" bpmnElement="Association_iduzGGlnx">
+        <omgdi:waypoint x="640" y="600" />
+      <omgdi:waypoint x="740" y="560" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_1h9l6eh_gui" bpmnElement="Flow_1h9l6eh">
+        <omgdi:waypoint x="288" y="199" />
+      <omgdi:waypoint x="360" y="199" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_1j5http_gui" bpmnElement="Flow_1j5http">
+        <omgdi:waypoint x="460" y="199" />
+      <omgdi:waypoint x="530" y="199" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_1jfs7w9_gui" bpmnElement="Flow_1jfs7w9">
+        <omgdi:waypoint x="580" y="239" />
+      <omgdi:waypoint x="580" y="480" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_1go7fv5_gui" bpmnElement="Flow_1go7fv5">
+        <omgdi:waypoint x="960" y="199" />
+      <omgdi:waypoint x="1020" y="199" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_1805bqb_gui" bpmnElement="Flow_1805bqb">
+        <omgdi:waypoint x="920" y="480" />
+      <omgdi:waypoint x="920" y="239" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_0ivfhwn_gui" bpmnElement="Flow_0ivfhwn">
+        <omgdi:waypoint x="1120" y="199" />
+      <omgdi:waypoint x="1192" y="199" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_1axr7ro_gui" bpmnElement="Flow_1axr7ro">
+        <omgdi:waypoint x="630" y="520" />
+      <omgdi:waypoint x="700" y="520" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="Flow_08z0r7j_gui" bpmnElement="Flow_08z0r7j">
+        <omgdi:waypoint x="800" y="520" />
+      <omgdi:waypoint x="870" y="520" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+<collaboration id="Collaboration_16wfedz">
+    <messageFlow id="Flow_1jfs7w9" name="" sourceRef="Activity_0qbnh9m" targetRef="Activity_0b2zcr0" />
+  <messageFlow id="Flow_1805bqb" name="" sourceRef="Activity_0kn0uil" targetRef="Activity_1mpak4x" />
+  <participant id="Participant_12a5r8p" name="Citizen" processRef="Process_17ewa3x" />
+  <participant id="Participant_1u0entd" name="Municipality" processRef="Process_1qzlfax" />
+  </collaboration>
+<process id="Process_17ewa3x" isClosed="false" isExecutable="false" processType="None">
+    <startEvent id="StartEvent_0tcjdvv" name="" parallelMultiple="false" isInterrupting="true" />
+  <userTask id="Activity_0ihnntb" name="Compile certificate request">
+      <incoming>Flow_1h9l6eh</incoming>
+    <outgoing>Flow_1j5http</outgoing>
+    <dataInputAssociation id="DataInputAssociation_iEexlYKOP">
+        <sourceRef>DataObjectReference_QMpqrOPvF</sourceRef>
+      <targetRef>Activity_0ihnntb</targetRef>
+      </dataInputAssociation>
+    </userTask>
+  <sendTask id="Activity_0qbnh9m" name="Certificate request">
+      <incoming>Flow_1j5http</incoming>
+    <outgoing>Flow_1jfs7w9</outgoing>
+    </sendTask>
+  <receiveTask id="Activity_1mpak4x" name="Receive notification">
+      <incoming>Flow_1805bqb</incoming>
+    <outgoing>Flow_1go7fv5</outgoing>
+    </receiveTask>
+  <userTask id="Activity_07cabl5" name="Certificate download">
+      <incoming>Flow_1go7fv5</incoming>
+    <outgoing>Flow_0ivfhwn</outgoing>
+    <dataInputAssociation id="DataInputAssociation_fsjdwrrrg">
+        <sourceRef>DataObjectReference_pydgYwFUX</sourceRef>
+      <targetRef>Activity_07cabl5</targetRef>
+      </dataInputAssociation>
+    </userTask>
+  <endEvent id="Event_123mdp7" name="">
+      <incoming>Flow_0ivfhwn</incoming>
+    </endEvent>
+  <textAnnotation id="TextAnnotation_SjQUxVWPE">
+      <text>prova</text>
+    </textAnnotation>
+  <association id="Association_ZTmHzpnFg" sourceRef="TextAnnotation_SjQUxVWPE" targetRef="Activity_0ihnntb" />
+  <dataObject id="DataObject_YRCmbEZNU" isCollection="" />
+  <dataObjectReference id="DataObjectReference_QMpqrOPvF" name="in" dataObjectRef="DataObject_YRCmbEZNU" />
+  <textAnnotation id="TextAnnotation_XKOkxeBwv">
+      <text>Personal:No</text>
+    </textAnnotation>
+  <textAnnotation id="TextAnnotation_WwjxzXTNn">
+      <text>Size:1 byte</text>
+    </textAnnotation>
+  <textAnnotation id="TextAnnotation_uajpIEPPd">
+      <text>Load dependence:1</text>
+    </textAnnotation>
+  <association id="Association_WcRBjMEMZ" sourceRef="DataObjectReference_QMpqrOPvF" targetRef="TextAnnotation_XKOkxeBwv" />
+  <association id="Association_gHodXigQj" sourceRef="DataObjectReference_QMpqrOPvF" targetRef="TextAnnotation_WwjxzXTNn" />
+  <association id="Association_iWMTYXQnS" sourceRef="DataObjectReference_QMpqrOPvF" targetRef="TextAnnotation_uajpIEPPd" />
+  <dataObject id="DataObject_sEEMAzSBs" isCollection="" />
+  <dataObjectReference id="DataObjectReference_pydgYwFUX" name="out" dataObjectRef="DataObject_sEEMAzSBs" />
+  <textAnnotation id="TextAnnotation_rRzxEvevg">
+      <text>Personal:No</text>
+    </textAnnotation>
+  <textAnnotation id="TextAnnotation_AgeoVNivX">
+      <text>Size:1 byte</text>
+    </textAnnotation>
+  <textAnnotation id="TextAnnotation_qaMgsujkD">
+      <text>Load dependence:1</text>
+    </textAnnotation>
+  <association id="Association_ERHajAHEE" sourceRef="DataObjectReference_pydgYwFUX" targetRef="TextAnnotation_rRzxEvevg" />
+  <association id="Association_VAgKGTPwN" sourceRef="DataObjectReference_pydgYwFUX" targetRef="TextAnnotation_AgeoVNivX" />
+  <association id="Association_lTsNwPFmd" sourceRef="DataObjectReference_pydgYwFUX" targetRef="TextAnnotation_qaMgsujkD" />
+  <sequenceFlow id="Flow_1h9l6eh" name="" sourceRef="StartEvent_0tcjdvv" targetRef="Activity_0ihnntb" />
+  <sequenceFlow id="Flow_1j5http" name="" sourceRef="Activity_0ihnntb" targetRef="Activity_0qbnh9m" />
+  <sequenceFlow id="Flow_1go7fv5" name="" sourceRef="Activity_1mpak4x" targetRef="Activity_07cabl5" />
+  <sequenceFlow id="Flow_0ivfhwn" name="" sourceRef="Activity_07cabl5" targetRef="Event_123mdp7" />
+  </process>
+<process id="Process_1qzlfax" isClosed="false" isExecutable="false" processType="None">
+    <receiveTask id="Activity_0b2zcr0" name="Acquire certificate request">
+      <incoming>Flow_1jfs7w9</incoming>
+    <outgoing>Flow_1axr7ro</outgoing>
+    <dataInputAssociation id="DataInputAssociation_ZJJMLKibj">
+        <sourceRef>DataObjectReference_iNpucknsK</sourceRef>
+      <targetRef>Activity_0b2zcr0</targetRef>
+      </dataInputAssociation>
+    </receiveTask>
+  <serviceTask id="Activity_0dnap2h" name="Certificate processing">
+      <incoming>Flow_1axr7ro</incoming>
+    <outgoing>Flow_08z0r7j</outgoing>
+    <dataInputAssociation id="DataInputAssociation_gCdbOjYMd">
+        <sourceRef>DataObjectReference_sSQwvltUR</sourceRef>
+      <targetRef>Activity_0dnap2h</targetRef>
+      </dataInputAssociation>
+    </serviceTask>
+  <sendTask id="Activity_0kn0uil" name="Notify certificate ready">
+      <incoming>Flow_08z0r7j</incoming>
+    <outgoing>Flow_1805bqb</outgoing>
+    </sendTask>
+  <dataObject id="DataObject_jpefcXdjq" isCollection="" />
+  <dataObjectReference id="DataObjectReference_iNpucknsK" name="in2" dataObjectRef="DataObject_jpefcXdjq" />
+  <textAnnotation id="TextAnnotation_aOdEvFShE">
+      <text>Personal:No</text>
+    </textAnnotation>
+  <textAnnotation id="TextAnnotation_Wuxzygxeo">
+      <text>Size:1 byte</text>
+    </textAnnotation>
+  <textAnnotation id="TextAnnotation_zIrTVlqBW">
+      <text>Load dependence:1</text>
+    </textAnnotation>
+  <association id="Association_AzajJItTc" sourceRef="DataObjectReference_iNpucknsK" targetRef="TextAnnotation_aOdEvFShE" />
+  <association id="Association_vHNtRlcSU" sourceRef="DataObjectReference_iNpucknsK" targetRef="TextAnnotation_Wuxzygxeo" />
+  <association id="Association_tcmlVjcAA" sourceRef="DataObjectReference_iNpucknsK" targetRef="TextAnnotation_zIrTVlqBW" />
+  <dataObject id="DataObject_bRaJIhtRv" isCollection="" />
+  <dataObjectReference id="DataObjectReference_sSQwvltUR" name="out2" dataObjectRef="DataObject_bRaJIhtRv" />
+  <textAnnotation id="TextAnnotation_dXCZveoep">
+      <text>Personal:No</text>
+    </textAnnotation>
+  <textAnnotation id="TextAnnotation_xymtsUNzF">
+      <text>Size:1 byte</text>
+    </textAnnotation>
+  <textAnnotation id="TextAnnotation_mPlFHAbjJ">
+      <text>Load dependence:1</text>
+    </textAnnotation>
+  <association id="Association_vkIqqgxtF" sourceRef="DataObjectReference_sSQwvltUR" targetRef="TextAnnotation_dXCZveoep" />
+  <association id="Association_WtfVJqdjj" sourceRef="DataObjectReference_sSQwvltUR" targetRef="TextAnnotation_xymtsUNzF" />
+  <association id="Association_iduzGGlnx" sourceRef="DataObjectReference_sSQwvltUR" targetRef="TextAnnotation_mPlFHAbjJ" />
+  <sequenceFlow id="Flow_1axr7ro" name="" sourceRef="Activity_0b2zcr0" targetRef="Activity_0dnap2h" />
+  <sequenceFlow id="Flow_08z0r7j" name="" sourceRef="Activity_0dnap2h" targetRef="Activity_0kn0uil" />
+  </process>
+</definitions>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0l9v2ap" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="8.8.3">
+  <bpmn:collaboration id="Collaboration_1th4r7v">
+    <bpmn:participant id="Participant_0yey89k" name="SECURITY ADMIN" processRef="Process_1g3vlhm" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1g3vlhm" isExecutable="false">
+    <bpmn:adHocSubProcess id="Activity_0e439cz">
+      <bpmn:standardLoopCharacteristics />
+      <bpmn:task id="Activity_10ya9x4" name="Ensure the Use of Fully Supported Email Clients and Browsers" />
+      <bpmn:textAnnotation id="TextAnnotation_1cya6ee">
+        <bpmn:text>9.1T</bpmn:text>
+      </bpmn:textAnnotation>
+      <bpmn:association id="Association_1ol3iwy" sourceRef="Activity_10ya9x4" targetRef="TextAnnotation_1cya6ee" />
+    </bpmn:adHocSubProcess>
+    <bpmn:adHocSubProcess id="Activity_0ou4tol">
+      <bpmn:standardLoopCharacteristics />
+      <bpmn:task id="Activity_11w83ub" name="Implement DMARC" />
+      <bpmn:textAnnotation id="TextAnnotation_081v0p6">
+        <bpmn:text>9.5T</bpmn:text>
+      </bpmn:textAnnotation>
+      <bpmn:association id="Association_1z0shbq" sourceRef="Activity_11w83ub" targetRef="TextAnnotation_081v0p6" />
+    </bpmn:adHocSubProcess>
+    <bpmn:adHocSubProcess id="Activity_1qfhk5l">
+      <bpmn:standardLoopCharacteristics />
+      <bpmn:task id="Activity_0uk0ukw" name="Use DNS Filtering Services" />
+      <bpmn:textAnnotation id="TextAnnotation_1oh1cqs">
+        <bpmn:text>9.2T</bpmn:text>
+      </bpmn:textAnnotation>
+      <bpmn:association id="Association_1sxhil4" sourceRef="Activity_0uk0ukw" targetRef="TextAnnotation_1oh1cqs" />
+    </bpmn:adHocSubProcess>
+    <bpmn:adHocSubProcess id="Activity_13g4xey">
+      <bpmn:standardLoopCharacteristics />
+      <bpmn:task id="Activity_01gw6v4" name="Restrict Unnecessary or Unauthorized Email Client and Browser Extensions" />
+      <bpmn:textAnnotation id="TextAnnotation_0d8y630">
+        <bpmn:text>9.4T</bpmn:text>
+      </bpmn:textAnnotation>
+      <bpmn:association id="Association_0ue713f" sourceRef="Activity_01gw6v4" targetRef="TextAnnotation_0d8y630" />
+    </bpmn:adHocSubProcess>
+    <bpmn:adHocSubProcess id="Activity_1mj8c7c">
+      <bpmn:standardLoopCharacteristics />
+      <bpmn:task id="Activity_14ksf0m" name="Install and Maintain Mail Server Anti-Malware Protections" />
+      <bpmn:textAnnotation id="TextAnnotation_12ict03">
+        <bpmn:text>9.7T</bpmn:text>
+      </bpmn:textAnnotation>
+      <bpmn:association id="Association_1q17428" sourceRef="Activity_14ksf0m" targetRef="TextAnnotation_12ict03" />
+    </bpmn:adHocSubProcess>
+    <bpmn:adHocSubProcess id="Activity_04qbbn2">
+      <bpmn:standardLoopCharacteristics />
+      <bpmn:task id="Activity_1k74irg" name="Block Unnecessary File Types" />
+      <bpmn:textAnnotation id="TextAnnotation_063uk0i">
+        <bpmn:text>9.6T</bpmn:text>
+      </bpmn:textAnnotation>
+      <bpmn:association id="Association_0deqljq" sourceRef="Activity_1k74irg" targetRef="TextAnnotation_063uk0i" />
+    </bpmn:adHocSubProcess>
+    <bpmn:adHocSubProcess id="Activity_0cjkgr3">
+      <bpmn:standardLoopCharacteristics />
+      <bpmn:task id="Activity_1tjor9l" name="Maintain and Apply Network URL Filters" />
+      <bpmn:textAnnotation id="TextAnnotation_144qngk">
+        <bpmn:text>9.3T</bpmn:text>
+      </bpmn:textAnnotation>
+      <bpmn:association id="Association_0wtjcij" sourceRef="Activity_1tjor9l" targetRef="TextAnnotation_144qngk" />
+    </bpmn:adHocSubProcess>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1th4r7v">
+      <bpmndi:BPMNShape id="Participant_0yey89k_di" bpmnElement="Participant_0yey89k" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1390" height="520" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0axu74j_di" bpmnElement="Activity_0e439cz" isExpanded="true">
+        <dc:Bounds x="240" y="120" width="260" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1cya6ee_di" bpmnElement="TextAnnotation_1cya6ee">
+        <dc:Bounds x="350" y="150" width="99.9933932346723" height="29.99471458773785" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10ya9x4_di" bpmnElement="Activity_10ya9x4">
+        <dc:Bounds x="260" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1ol3iwy_di" bpmnElement="Association_1ol3iwy">
+        <di:waypoint x="350" y="210" />
+        <di:waypoint x="370" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_0ou4tol_di" bpmnElement="Activity_0ou4tol" isExpanded="true">
+        <dc:Bounds x="360" y="360" width="270" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_081v0p6_di" bpmnElement="TextAnnotation_081v0p6">
+        <dc:Bounds x="490" y="370" width="99.9933932346723" height="29.99471458773785" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11w83ub_di" bpmnElement="Activity_11w83ub">
+        <dc:Bounds x="390" y="450" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1z0shbq_di" bpmnElement="Association_1z0shbq">
+        <di:waypoint x="478" y="450" />
+        <di:waypoint x="526" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_1qfhk5l_di" bpmnElement="Activity_1qfhk5l" isExpanded="true">
+        <dc:Bounds x="540" y="120" width="240" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1oh1cqs_di" bpmnElement="TextAnnotation_1oh1cqs">
+        <dc:Bounds x="650" y="160" width="99.9933932346723" height="29.99471458773785" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0uk0ukw_di" bpmnElement="Activity_0uk0ukw">
+        <dc:Bounds x="560" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1sxhil4_di" bpmnElement="Association_1sxhil4">
+        <di:waypoint x="656" y="212" />
+        <di:waypoint x="682" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_13g4xey_di" bpmnElement="Activity_13g4xey" isExpanded="true">
+        <dc:Bounds x="1130" y="120" width="250" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0d8y630_di" bpmnElement="TextAnnotation_0d8y630">
+        <dc:Bounds x="1250" y="140" width="99.9933932346723" height="29.99471458773785" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01gw6v4_di" bpmnElement="Activity_01gw6v4">
+        <dc:Bounds x="1150" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0ue713f_di" bpmnElement="Association_0ue713f">
+        <di:waypoint x="1238" y="220" />
+        <di:waypoint x="1286" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_1mj8c7c_di" bpmnElement="Activity_1mj8c7c" isExpanded="true">
+        <dc:Bounds x="980" y="360" width="300" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_12ict03_di" bpmnElement="TextAnnotation_12ict03">
+        <dc:Bounds x="1120" y="370" width="99.9933932346723" height="29.99471458773785" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14ksf0m_di" bpmnElement="Activity_14ksf0m">
+        <dc:Bounds x="1020" y="450" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1q17428_di" bpmnElement="Association_1q17428">
+        <di:waypoint x="1108" y="450" />
+        <di:waypoint x="1156" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_04qbbn2_di" bpmnElement="Activity_04qbbn2" isExpanded="true">
+        <dc:Bounds x="660" y="360" width="280" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_063uk0i_di" bpmnElement="TextAnnotation_063uk0i">
+        <dc:Bounds x="790" y="370" width="99.9933932346723" height="29.99471458773785" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1k74irg_di" bpmnElement="Activity_1k74irg">
+        <dc:Bounds x="690" y="450" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0deqljq_di" bpmnElement="Association_0deqljq">
+        <di:waypoint x="778" y="450" />
+        <di:waypoint x="826" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_0cjkgr3_di" bpmnElement="Activity_0cjkgr3" isExpanded="true">
+        <dc:Bounds x="830" y="120" width="270" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_144qngk_di" bpmnElement="TextAnnotation_144qngk">
+        <dc:Bounds x="950" y="140" width="99.9933932346723" height="29.99471458773785" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1tjor9l_di" bpmnElement="Activity_1tjor9l">
+        <dc:Bounds x="850" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0wtjcij_di" bpmnElement="Association_0wtjcij">
+        <di:waypoint x="938" y="220" />
+        <di:waypoint x="986" y="170" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
