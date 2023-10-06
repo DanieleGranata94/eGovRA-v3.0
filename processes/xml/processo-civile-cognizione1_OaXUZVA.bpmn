@@ -315,7 +315,7 @@
         <omgdc:Bounds width="50" height="50" x="3976" y="1389" />
       </bpmndi:BPMNShape>
     <bpmndi:BPMNShape id="DataObject_YkbxuyXXL_gui" bpmnElement="DataObject_YkbxuyXXL">
-        <omgdc:Bounds />
+        <omgdc:Bounds width="" height="" x="" y="" />
       </bpmndi:BPMNShape>
     <bpmndi:BPMNShape id="DataObjectReference_ypIqMoglB_gui" bpmnElement="DataObjectReference_ypIqMoglB">
         <omgdc:Bounds width="36" height="50" x="250" y="939" />
@@ -590,11 +590,11 @@
   <endEvent id="Event_1kse5pb" name="end">
       <incoming>Flow_147972f</incoming>
     </endEvent>
-  <task id="Activity_0esn2m3" name="costituzione in giudizio">
+  <sendTask id="Activity_0esn2m3" name="costituzione in giudizio">
       <incoming>Flow_1x645dg</incoming>
     <outgoing>Flow_147972f</outgoing>
     <outgoing>Flow_0gvy5l2</outgoing>
-    </task>
+    </sendTask>
   <sendTask id="Activity_0mvs33e" name="redazione atto di citazione e notifica">
       <incoming>Flow_1qkg8tm</incoming>
     <outgoing>Flow_1x645dg</outgoing>
@@ -620,10 +620,10 @@
     <outgoing>Flow_129zglg</outgoing>
     <outgoing>Flow_1f3zyqr</outgoing>
     </sendTask>
-  <task id="Activity_11q2se6" name="Costituzione convenuto">
+  <sendTask id="Activity_11q2se6" name="Costituzione convenuto">
       <incoming>Flow_1h257ry</incoming>
     <outgoing>Flow_07kti3w</outgoing>
-    </task>
+    </sendTask>
   <startEvent id="Event_138k02o" name="notifica" parallelMultiple="false" isInterrupting="true">
       <incoming>Flow_036pwkh</incoming>
     <outgoing>Flow_1h257ry</outgoing>
@@ -688,60 +688,60 @@
     <outgoing>Flow_06ag6wp</outgoing>
     <outgoing>Flow_0funesb</outgoing>
     </exclusiveGateway>
-  <task id="Activity_11gcpnf" name="Studio della giurisprudenza">
+  <sendTask id="Activity_11gcpnf" name="Studio della giurisprudenza">
       <incoming>Flow_12lbali</incoming>
     <outgoing>Flow_0jrnsgz</outgoing>
-    </task>
-  <task id="Activity_0a5d0ut" name="Udienza prima comparizione parti">
+    </sendTask>
+  <sendTask id="Activity_0a5d0ut" name="Udienza prima comparizione parti">
       <incoming>Flow_1771lzn</incoming>
     <outgoing>Flow_0crth7n</outgoing>
-    </task>
-  <task id="Activity_1ee105s" name="Supporto attività di udienza">
+    </sendTask>
+  <sendTask id="Activity_1ee105s" name="Supporto attività di udienza">
       <incoming>Flow_05plh0e</incoming>
     <outgoing>Flow_12lbali</outgoing>
-    </task>
-  <task id="Activity_1kgryo2" name="Iscrizione al ruolo">
+    </sendTask>
+  <sendTask id="Activity_1kgryo2" name="Iscrizione al ruolo">
       <incoming>Flow_1i934up</incoming>
     <outgoing>Flow_1sp7bxx</outgoing>
     <dataInputAssociation id="DataInputAssociation_JrdfvbrAw">
         <sourceRef>DataObjectReference_ypIqMoglB</sourceRef>
       <targetRef>Activity_1kgryo2</targetRef>
       </dataInputAssociation>
-    </task>
+    </sendTask>
   <startEvent id="Event_1lsyc5u" name="richiesta iscrizione ruolo" parallelMultiple="false" isInterrupting="true">
       <incoming>Flow_0gvy5l2</incoming>
     <outgoing>Flow_1i934up</outgoing>
     <messageEventDefinition id="MessageEventDefinition_0zy5p4a" />
     </startEvent>
-  <task id="Activity_0if7ywt" name="Redazione provvedimento finale">
+  <sendTask id="Activity_0if7ywt" name="Redazione provvedimento finale">
       <incoming>Flow_0jrnsgz</incoming>
     <outgoing>Flow_0vby8pl</outgoing>
-    </task>
+    </sendTask>
   <intermediateThrowEvent id="Event_0n44shz" name="Causa matura per la decisione">
       <incoming>Flow_11wwvs7</incoming>
     <outgoing>Flow_1ks0fxk</outgoing>
     </intermediateThrowEvent>
-  <task id="Activity_04c04lo" name="Invito alle parti a precisare le conclusioni">
+  <sendTask id="Activity_04c04lo" name="Invito alle parti a precisare le conclusioni">
       <incoming>Flow_1ks0fxk</incoming>
     <outgoing>Flow_0ezbl6k</outgoing>
-    </task>
-  <task id="Activity_129vxxd" name="Causa rimessa in decisione con attribuzione dei termini ex art. 190 cpc">
+    </sendTask>
+  <sendTask id="Activity_129vxxd" name="Causa rimessa in decisione con attribuzione dei termini ex art. 190 cpc">
       <incoming>Flow_0ezbl6k</incoming>
     <outgoing>Flow_1y6yy2h</outgoing>
-    </task>
-  <task id="Activity_0uvwj4r" name="Comparse conclusionali">
+    </sendTask>
+  <sendTask id="Activity_0uvwj4r" name="Comparse conclusionali">
       <incoming>Flow_1y6yy2h</incoming>
     <outgoing>Flow_01utl6b</outgoing>
-    </task>
+    </sendTask>
   <exclusiveGateway id="Gateway_0tgozbv" name="altrimenti" gatewayDirection="Unspecified">
       <incoming>Flow_0i81kym</incoming>
     <incoming>Flow_0091em6</incoming>
     <outgoing>Flow_11wwvs7</outgoing>
     </exclusiveGateway>
-  <task id="Activity_1oamtta" name="Sentenza">
+  <sendTask id="Activity_1oamtta" name="Sentenza">
       <incoming>Flow_11zz92w</incoming>
     <outgoing>Flow_0kk19cs</outgoing>
-    </task>
+    </sendTask>
   <intermediateCatchEvent id="Event_0g59lk1" name="30 gg" parallelMultiple="false">
       <incoming>Flow_0kk19cs</incoming>
     <outgoing>Flow_1fcc5vx</outgoing>
@@ -750,60 +750,60 @@
   <endEvent id="Event_1qydajv" name="end">
       <incoming>Flow_1fcc5vx</incoming>
     </endEvent>
-  <task id="Activity_1k7t415" name="Concessione termini ex art. 183, co. 6 cpc">
+  <sendTask id="Activity_1k7t415" name="Concessione termini ex art. 183, co. 6 cpc">
       <incoming>Flow_17zkspi</incoming>
     <incoming>Flow_1f3zyqr</incoming>
     <outgoing>Flow_0i2uc4n</outgoing>
-    </task>
+    </sendTask>
   <exclusiveGateway id="Gateway_1bbkh6x" name="XOR G5" gatewayDirection="Unspecified">
       <incoming>Flow_0i2uc4n</incoming>
     <outgoing>Flow_0m6c9vs</outgoing>
     <outgoing>Flow_1kpk5sk</outgoing>
     </exclusiveGateway>
-  <task id="Activity_19up0ut" name="default">
+  <sendTask id="Activity_19up0ut" name="default">
       <incoming>Flow_1kpk5sk</incoming>
     <outgoing>Flow_0kfl3gt</outgoing>
-    </task>
+    </sendTask>
   <exclusiveGateway id="Gateway_14x3438" name="" gatewayDirection="Unspecified">
       <incoming>Flow_0kfl3gt</incoming>
     <incoming>Flow_04ez4ai</incoming>
     <outgoing>Flow_0i81kym</outgoing>
     </exclusiveGateway>
-  <task id="Activity_1ncg9m8" name="memorie difensive">
+  <sendTask id="Activity_1ncg9m8" name="memorie difensive">
       <incoming>Flow_0m6c9vs</incoming>
     <outgoing>Flow_0amw0rx</outgoing>
-    </task>
+    </sendTask>
   <exclusiveGateway id="Gateway_09p5uk9" name="XOR G6" gatewayDirection="Unspecified">
       <incoming>Flow_0amw0rx</incoming>
     <outgoing>Flow_04ez4ai</outgoing>
     <outgoing>Flow_1n8b04k</outgoing>
     </exclusiveGateway>
-  <task id="Activity_0eq47r6" name="Fissazione udienza ex art. 184">
+  <sendTask id="Activity_0eq47r6" name="Fissazione udienza ex art. 184">
       <incoming>Flow_1n8b04k</incoming>
     <outgoing>Flow_0091em6</outgoing>
-    </task>
-  <task id="Activity_1bm8ce5" name="Assegnazione Causa">
+    </sendTask>
+  <sendTask id="Activity_1bm8ce5" name="Assegnazione Causa">
       <incoming>Flow_1sp7bxx</incoming>
     <outgoing>Flow_1kwrx66</outgoing>
-    </task>
-  <task id="Activity_0vf97bu" name="Remissione al Collegio (solo per decisione su questione preliminare)">
+    </sendTask>
+  <sendTask id="Activity_0vf97bu" name="Remissione al Collegio (solo per decisione su questione preliminare)">
       <incoming>Flow_0v15d6p</incoming>
     <outgoing>Flow_1r4cj90</outgoing>
-    </task>
-  <task id="Activity_1qhpffa" name="Decise al momento decisione definitiva">
+    </sendTask>
+  <sendTask id="Activity_1qhpffa" name="Decise al momento decisione definitiva">
       <incoming>Flow_0ek1905</incoming>
     <outgoing>Flow_0ewfe4m</outgoing>
-    </task>
+    </sendTask>
   <exclusiveGateway id="Gateway_0olbdb6" name="XOR G2" gatewayDirection="Unspecified">
       <incoming>Flow_06ag6wp</incoming>
     <outgoing>Flow_0v15d6p</outgoing>
     <outgoing>Flow_0ek1905</outgoing>
     <outgoing>Flow_1yhhw21</outgoing>
     </exclusiveGateway>
-  <task id="Activity_0p11glk" name="Decise separatamente rispetto a decisione finale">
+  <sendTask id="Activity_0p11glk" name="Decise separatamente rispetto a decisione finale">
       <incoming>Flow_1yhhw21</incoming>
     <outgoing>Flow_1nrtkgw</outgoing>
-    </task>
+    </sendTask>
   <exclusiveGateway id="Gateway_13jhq8u" name="XOR G4" gatewayDirection="Unspecified">
       <incoming>Flow_0mi8rqb</incoming>
     <incoming>Flow_0h1ulct</incoming>
@@ -816,30 +816,30 @@
     <incoming>Flow_1nrtkgw</incoming>
     <outgoing>Flow_0h1ulct</outgoing>
     </exclusiveGateway>
-  <task id="Activity_0ae7jkh" name="Apertura istruzione probatoria">
+  <sendTask id="Activity_0ae7jkh" name="Apertura istruzione probatoria">
       <incoming>Flow_0funesb</incoming>
     <outgoing>Flow_15kbujh</outgoing>
-    </task>
-  <task id="Activity_1kx2wz8" name="Parti rimesse davanti al Collegio">
+    </sendTask>
+  <sendTask id="Activity_1kx2wz8" name="Parti rimesse davanti al Collegio">
       <incoming>Flow_07rmnl8</incoming>
     <outgoing>Flow_0mi8rqb</outgoing>
-    </task>
+    </sendTask>
   <parallelGateway id="Gateway_19742i2" name="" gatewayDirection="Unspecified">
       <incoming>Flow_0crth7n</incoming>
     <outgoing>Flow_1loft79</outgoing>
     <outgoing>Flow_05plh0e</outgoing>
     </parallelGateway>
-  <task id="Activity_03jy6ap" name="Memorie di replica">
+  <sendTask id="Activity_03jy6ap" name="Memorie di replica">
       <incoming>Flow_01utl6b</incoming>
     <outgoing>Flow_0dq3r09</outgoing>
-    </task>
+    </sendTask>
   <parallelGateway id="Gateway_0cvfvy4" name="" gatewayDirection="Unspecified">
       <incoming>Flow_0vby8pl</incoming>
     <incoming>Flow_0dq3r09</incoming>
     <outgoing>Flow_11zz92w</outgoing>
     </parallelGateway>
-  <dataObject id="DataObject_YkbxuyXXL" isCollection="" />
-  <dataObjectReference id="DataObjectReference_ypIqMoglB" name="nota di iscrizione al ruolo" dataObjectRef="DataObject_YkbxuyXXL" />
+  <dataObject id="DataObject_YkbxuyXXL" name="" isCollection="" />
+  <dataObjectReference id="DataObjectReference_ypIqMoglB" name="nota di iscrizione al ruolo" dataObjectRef="DataObject_YkbxuyXXL" isCollection="false" />
   <textAnnotation id="TextAnnotation_YnYSGbanw">
       <text>Personal:No</text>
     </textAnnotation>

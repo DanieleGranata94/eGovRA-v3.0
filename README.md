@@ -13,14 +13,10 @@ The application is developed using the following technologies:
 ## Configuration guide
 ### Software Requirements
 
-* Python 3
-* Django
-* MySQL
+* Docker 
 
-**N.B.:** In order to use and start the application you need to:
+### Docker 
 
-* Install django using command: bash pip3 install Django
-
-* Run server typing: bash python3 manage.py runserver
+* Run server typing: docker-compose up
 
 App available on: http://127.0.0.1:8000

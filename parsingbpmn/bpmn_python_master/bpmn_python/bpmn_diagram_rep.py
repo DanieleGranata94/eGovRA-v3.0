@@ -168,9 +168,14 @@ class BpmnDiagramGraph(object):
     def get_node_id_by_name(self, name=''):
         tmp_nodes = self.diagram_graph.nodes(data=True)
         for node in tmp_nodes:
-            if node[1][consts.Consts.node_name] == name:
-                id = node[0]
-                return id
+            print(node, "nodeeeeee")
+            try:
+
+                if node[1][consts.Consts.node_name] == name:
+                    id = node[0]
+                    return id
+            except:
+                print()
     def get_node_by_name(self, name=''):
         tmp_nodes = self.diagram_graph.nodes(data=True)
         for node in tmp_nodes:

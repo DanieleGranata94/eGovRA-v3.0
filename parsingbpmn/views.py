@@ -2040,7 +2040,7 @@ def save_dataobject(request, systemId, processId):#modifiche name
                     load_dependece=int(attributes_data[3]),
                 )
 
-            if len(attributes_data)>5:
+            if len(attributes_data) == 6:
                 print( attributes_data[5], "name")
 
                 actor = Actor.objects.filter(name=attributes_data[5],process=Process.objects.get(pk=pk)).first()
@@ -2055,14 +2055,17 @@ def save_dataobject(request, systemId, processId):#modifiche name
             dataobj_attribute.save()
 
             asset_id = Asset.objects.filter(name=data_name,process_id=processId).first()
-
+            #modifica per data obj contenenti spazi e stesso inizio
+            control = []
             if asset_id is None:
                 for element in lista:
-                    if data_name in str(element):
+                    if data_name in str(element) and str(element) not in control:
+                        control.append(str(element))
                         data_name1 = str(element)
+                        print(data_name1, "data name:")
                         asset_id = Asset.objects.filter(name=data_name1,process_id=processId).first()
 
-            print(asset_id,"cosa")
+
             if (attributes_data[0] == "Data Store"):
                 asset_has_data = Asset_has_DataObject_attribute(asset_id=asset_id.id,asset_type_id=10,
                                                             data_object_attribute_id=dataobj_attribute.id)
