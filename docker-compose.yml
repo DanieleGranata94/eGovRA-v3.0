@@ -20,6 +20,8 @@ services:
     command: sudo chmod +x entrypoint.sh
     entrypoint: ./entrypoint.sh egov_db 3306
     restart: always
+    features:
+      buildkit: false
     volumes:
       - .:/app
     ports:
