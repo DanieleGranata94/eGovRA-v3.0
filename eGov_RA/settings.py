@@ -95,9 +95,9 @@ DATABASES = {
         'NAME': 'egov_db',
         'USER': 'root',
         #'PASSWORD': 'root',
-        'HOST':'egovra-v30-master4-egov_db-1',
+        #'HOST':'egovra-v30-master4-egov_db-1',
         'PASSWORD': '',
-        #'HOST':'localhost',
+        'HOST':'localhost',
         'PORT':'3306',
 
     }
