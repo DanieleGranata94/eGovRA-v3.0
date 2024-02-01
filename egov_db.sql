@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Mar 07, 2022 alle 16:27
--- Versione del server: 10.4.14-MariaDB
--- Versione PHP: 7.2.34
+-- Host: localhost
+-- Generation Time: Feb 01, 2024 at 11:00 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,30 +24,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `auth_group`
+-- Table structure for table `auth_group`
 --
 
 CREATE TABLE `auth_group` (
   `id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `auth_group_permissions`
+-- Table structure for table `auth_group_permissions`
 --
 
 CREATE TABLE `auth_group_permissions` (
   `id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `auth_permission`
+-- Table structure for table `auth_permission`
 --
 
 CREATE TABLE `auth_permission` (
@@ -55,13 +55,137 @@ CREATE TABLE `auth_permission` (
   `name` varchar(255) NOT NULL,
   `content_type_id` int(11) NOT NULL,
   `codename` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `auth_permission`
+-- Dumping data for table `auth_permission`
 --
 
 INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
+(1, 'Can add log entry', 1, 'add_logentry'),
+(2, 'Can change log entry', 1, 'change_logentry'),
+(3, 'Can delete log entry', 1, 'delete_logentry'),
+(4, 'Can view log entry', 1, 'view_logentry'),
+(5, 'Can add permission', 2, 'add_permission'),
+(6, 'Can change permission', 2, 'change_permission'),
+(7, 'Can delete permission', 2, 'delete_permission'),
+(8, 'Can view permission', 2, 'view_permission'),
+(9, 'Can add group', 3, 'add_group'),
+(10, 'Can change group', 3, 'change_group'),
+(11, 'Can delete group', 3, 'delete_group'),
+(12, 'Can view group', 3, 'view_group'),
+(13, 'Can add user', 4, 'add_user'),
+(14, 'Can change user', 4, 'change_user'),
+(15, 'Can delete user', 4, 'delete_user'),
+(16, 'Can view user', 4, 'view_user'),
+(17, 'Can add content type', 5, 'add_contenttype'),
+(18, 'Can change content type', 5, 'change_contenttype'),
+(19, 'Can delete content type', 5, 'delete_contenttype'),
+(20, 'Can view content type', 5, 'view_contenttype'),
+(21, 'Can add session', 6, 'add_session'),
+(22, 'Can change session', 6, 'change_session'),
+(23, 'Can delete session', 6, 'delete_session'),
+(24, 'Can view session', 6, 'view_session'),
+(25, 'Can add System', 7, 'add_system'),
+(26, 'Can change System', 7, 'change_system'),
+(27, 'Can delete System', 7, 'delete_system'),
+(28, 'Can view System', 7, 'view_system'),
+(29, 'Can add Process', 8, 'add_process'),
+(30, 'Can change Process', 8, 'change_process'),
+(31, 'Can delete Process', 8, 'delete_process'),
+(32, 'Can view Process', 8, 'view_process'),
+(33, 'Can add Asset_type', 9, 'add_asset_type'),
+(34, 'Can change Asset_type', 9, 'change_asset_type'),
+(35, 'Can delete Asset_type', 9, 'delete_asset_type'),
+(36, 'Can view Asset_type', 9, 'view_asset_type'),
+(37, 'Can add Asset', 10, 'add_asset'),
+(38, 'Can change Asset', 10, 'change_asset'),
+(39, 'Can delete Asset', 10, 'delete_asset'),
+(40, 'Can view Asset', 10, 'view_asset'),
+(41, 'Can add Attribute_value', 11, 'add_attribute_value'),
+(42, 'Can change Attribute_value', 11, 'change_attribute_value'),
+(43, 'Can delete Attribute_value', 11, 'delete_attribute_value'),
+(44, 'Can view Attribute_value', 11, 'view_attribute_value'),
+(45, 'Can add Threat', 12, 'add_threat'),
+(46, 'Can change Threat', 12, 'change_threat'),
+(47, 'Can delete Threat', 12, 'delete_threat'),
+(48, 'Can view Threat', 12, 'view_threat'),
+(49, 'Can add Attribute', 13, 'add_attribute'),
+(50, 'Can change Attribute', 13, 'change_attribute'),
+(51, 'Can delete Attribute', 13, 'delete_attribute'),
+(52, 'Can view Attribute', 13, 'view_attribute'),
+(53, 'Can add Control', 14, 'add_control'),
+(54, 'Can change Control', 14, 'change_control'),
+(55, 'Can delete Control', 14, 'delete_control'),
+(56, 'Can view Control', 14, 'view_control'),
+(57, 'Can add asset_has_attribute', 15, 'add_asset_has_attribute'),
+(58, 'Can change asset_has_attribute', 15, 'change_asset_has_attribute'),
+(59, 'Can delete asset_has_attribute', 15, 'delete_asset_has_attribute'),
+(60, 'Can view asset_has_attribute', 15, 'view_asset_has_attribute'),
+(61, 'Can add threat_has_attribute', 16, 'add_threat_has_attribute'),
+(62, 'Can change threat_has_attribute', 16, 'change_threat_has_attribute'),
+(63, 'Can delete threat_has_attribute', 16, 'delete_threat_has_attribute'),
+(64, 'Can view threat_has_attribute', 16, 'view_threat_has_attribute'),
+(65, 'Can add threat_has_control', 17, 'add_threat_has_control'),
+(66, 'Can change threat_has_control', 17, 'change_threat_has_control'),
+(67, 'Can delete threat_has_control', 17, 'delete_threat_has_control'),
+(68, 'Can view threat_has_control', 17, 'view_threat_has_control'),
+(69, 'Can add threat agent category', 18, 'add_threatagentcategory'),
+(70, 'Can change threat agent category', 18, 'change_threatagentcategory'),
+(71, 'Can delete threat agent category', 18, 'delete_threatagentcategory'),
+(72, 'Can view threat agent category', 18, 'view_threatagentcategory'),
+(73, 'Can add threat agent attribute', 19, 'add_threatagentattribute'),
+(74, 'Can change threat agent attribute', 19, 'change_threatagentattribute'),
+(75, 'Can delete threat agent attribute', 19, 'delete_threatagentattribute'),
+(76, 'Can view threat agent attribute', 19, 'view_threatagentattribute'),
+(77, 'Can add threat agent question', 20, 'add_threatagentquestion'),
+(78, 'Can change threat agent question', 20, 'change_threatagentquestion'),
+(79, 'Can delete threat agent question', 20, 'delete_threatagentquestion'),
+(80, 'Can view threat agent question', 20, 'view_threatagentquestion'),
+(81, 'Can add reply', 21, 'add_reply'),
+(82, 'Can change reply', 21, 'change_reply'),
+(83, 'Can delete reply', 21, 'delete_reply'),
+(84, 'Can view reply', 21, 'view_reply'),
+(85, 'Can add ta replies_ question', 22, 'add_tareplies_question'),
+(86, 'Can change ta replies_ question', 22, 'change_tareplies_question'),
+(87, 'Can delete ta replies_ question', 22, 'delete_tareplies_question'),
+(88, 'Can view ta replies_ question', 22, 'view_tareplies_question'),
+(89, 'Can add ta category attribute', 23, 'add_tacategoryattribute'),
+(90, 'Can change ta category attribute', 23, 'change_tacategoryattribute'),
+(91, 'Can delete ta category attribute', 23, 'delete_tacategoryattribute'),
+(92, 'Can view ta category attribute', 23, 'view_tacategoryattribute'),
+(93, 'Can add ta reply category', 24, 'add_tareplycategory'),
+(94, 'Can change ta reply category', 24, 'change_tareplycategory'),
+(95, 'Can delete ta reply category', 24, 'delete_tareplycategory'),
+(96, 'Can view ta reply category', 24, 'view_tareplycategory'),
+(97, 'Can add threat agent risk scores', 25, 'add_threatagentriskscores'),
+(98, 'Can change threat agent risk scores', 25, 'change_threatagentriskscores'),
+(99, 'Can delete threat agent risk scores', 25, 'delete_threatagentriskscores'),
+(100, 'Can view threat agent risk scores', 25, 'view_threatagentriskscores'),
+(101, 'Can add system_ threat agent', 26, 'add_system_threatagent'),
+(102, 'Can change system_ threat agent', 26, 'change_system_threatagent'),
+(103, 'Can delete system_ threat agent', 26, 'delete_system_threatagent'),
+(104, 'Can view system_ threat agent', 26, 'view_system_threatagent'),
+(105, 'Can add risk', 27, 'add_risk'),
+(106, 'Can change risk', 27, 'change_risk'),
+(107, 'Can delete risk', 27, 'delete_risk'),
+(108, 'Can view risk', 27, 'view_risk'),
+(109, 'Can add stride', 28, 'add_stride'),
+(110, 'Can change stride', 28, 'change_stride'),
+(111, 'Can delete stride', 28, 'delete_stride'),
+(112, 'Can view stride', 28, 'view_stride'),
+(113, 'Can add stride impact record', 29, 'add_strideimpactrecord'),
+(114, 'Can change stride impact record', 29, 'change_strideimpactrecord'),
+(115, 'Can delete stride impact record', 29, 'delete_strideimpactrecord'),
+(116, 'Can view stride impact record', 29, 'view_strideimpactrecord'),
+(117, 'Can add threat_ stride', 30, 'add_threat_stride'),
+(118, 'Can change threat_ stride', 30, 'change_threat_stride'),
+(119, 'Can delete threat_ stride', 30, 'delete_threat_stride'),
+(120, 'Can view threat_ stride', 30, 'view_threat_stride'),
+(121, 'Can add overall risk', 31, 'add_overallrisk'),
+(122, 'Can change overall risk', 31, 'change_overallrisk'),
+(123, 'Can delete overall risk', 31, 'delete_overallrisk'),
+(124, 'Can view overall risk', 31, 'view_overallrisk'),
 (1, 'Can add log entry', 1, 'add_logentry'),
 (2, 'Can change log entry', 1, 'change_logentry'),
 (3, 'Can delete log entry', 1, 'delete_logentry'),
@@ -190,7 +314,7 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `auth_user`
+-- Table structure for table `auth_user`
 --
 
 CREATE TABLE `auth_user` (
@@ -205,36 +329,36 @@ CREATE TABLE `auth_user` (
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `auth_user_groups`
+-- Table structure for table `auth_user_groups`
 --
 
 CREATE TABLE `auth_user_groups` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `auth_user_user_permissions`
+-- Table structure for table `auth_user_user_permissions`
 --
 
 CREATE TABLE `auth_user_user_permissions` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `django_admin_log`
+-- Table structure for table `django_admin_log`
 --
 
 CREATE TABLE `django_admin_log` (
@@ -246,25 +370,56 @@ CREATE TABLE `django_admin_log` (
   `change_message` longtext NOT NULL,
   `content_type_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `django_content_type`
+-- Table structure for table `django_content_type`
 --
 
 CREATE TABLE `django_content_type` (
   `id` int(11) NOT NULL,
   `app_label` varchar(100) NOT NULL,
   `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `django_content_type`
+-- Dumping data for table `django_content_type`
 --
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
+(1, 'admin', 'logentry'),
+(3, 'auth', 'group'),
+(2, 'auth', 'permission'),
+(4, 'auth', 'user'),
+(5, 'contenttypes', 'contenttype'),
+(10, 'parsingbpmn', 'asset'),
+(15, 'parsingbpmn', 'asset_has_attribute'),
+(9, 'parsingbpmn', 'asset_type'),
+(13, 'parsingbpmn', 'attribute'),
+(11, 'parsingbpmn', 'attribute_value'),
+(14, 'parsingbpmn', 'control'),
+(31, 'parsingbpmn', 'overallrisk'),
+(8, 'parsingbpmn', 'process'),
+(21, 'parsingbpmn', 'reply'),
+(27, 'parsingbpmn', 'risk'),
+(28, 'parsingbpmn', 'stride'),
+(29, 'parsingbpmn', 'strideimpactrecord'),
+(7, 'parsingbpmn', 'system'),
+(26, 'parsingbpmn', 'system_threatagent'),
+(23, 'parsingbpmn', 'tacategoryattribute'),
+(22, 'parsingbpmn', 'tareplies_question'),
+(24, 'parsingbpmn', 'tareplycategory'),
+(12, 'parsingbpmn', 'threat'),
+(19, 'parsingbpmn', 'threatagentattribute'),
+(18, 'parsingbpmn', 'threatagentcategory'),
+(20, 'parsingbpmn', 'threatagentquestion'),
+(25, 'parsingbpmn', 'threatagentriskscores'),
+(16, 'parsingbpmn', 'threat_has_attribute'),
+(17, 'parsingbpmn', 'threat_has_control'),
+(30, 'parsingbpmn', 'threat_stride'),
+(6, 'sessions', 'session'),
 (1, 'admin', 'logentry'),
 (3, 'auth', 'group'),
 (2, 'auth', 'permission'),
@@ -300,7 +455,7 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `django_migrations`
+-- Table structure for table `django_migrations`
 --
 
 CREATE TABLE `django_migrations` (
@@ -308,107 +463,171 @@ CREATE TABLE `django_migrations` (
   `app` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `django_migrations`
+-- Dumping data for table `django_migrations`
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2022-02-13 15:10:39.059863'),
-(2, 'auth', '0001_initial', '2022-02-13 15:10:39.251986'),
-(3, 'admin', '0001_initial', '2022-02-13 15:10:39.737981'),
-(4, 'admin', '0002_logentry_remove_auto_add', '2022-02-13 15:10:39.858984'),
-(5, 'admin', '0003_logentry_add_action_flag_choices', '2022-02-13 15:10:39.871026'),
-(6, 'contenttypes', '0002_remove_content_type_name', '2022-02-13 15:10:39.999996'),
-(7, 'auth', '0002_alter_permission_name_max_length', '2022-02-13 15:10:40.059016'),
-(8, 'auth', '0003_alter_user_email_max_length', '2022-02-13 15:10:40.086018'),
-(9, 'auth', '0004_alter_user_username_opts', '2022-02-13 15:10:40.099003'),
-(10, 'auth', '0005_alter_user_last_login_null', '2022-02-13 15:10:40.162998'),
-(11, 'auth', '0006_require_contenttypes_0002', '2022-02-13 15:10:40.167986'),
-(12, 'auth', '0007_alter_validators_add_error_messages', '2022-02-13 15:10:40.180014'),
-(13, 'auth', '0008_alter_user_username_max_length', '2022-02-13 15:10:40.202985'),
-(14, 'auth', '0009_alter_user_last_name_max_length', '2022-02-13 15:10:40.227012'),
-(15, 'auth', '0010_alter_group_name_max_length', '2022-02-13 15:10:40.248979'),
-(16, 'auth', '0011_update_proxy_permissions', '2022-02-13 15:10:40.271979'),
-(17, 'auth', '0012_alter_user_first_name_max_length', '2022-02-13 15:10:40.292998'),
-(18, 'sessions', '0001_initial', '2022-02-13 15:10:40.316978'),
-(19, 'parsingbpmn', '0001_initial', '2022-02-13 15:21:16.860121'),
-(20, 'parsingbpmn', '0002_auto_20220215_1634', '2022-02-15 15:35:36.111560'),
-(21, 'parsingbpmn', '0003_auto_20220215_1636', '2022-02-15 15:36:33.882514'),
-(22, 'parsingbpmn', '0002_auto_20220226_1917', '2022-02-26 18:17:34.925177'),
-(23, 'parsingbpmn', '0003_auto_20220302_1056', '2022-03-02 10:10:47.121448'),
-(24, 'parsingbpmn', '0004_auto_20220302_1136', '2022-03-02 10:37:19.665538'),
-(25, 'parsingbpmn', '0005_auto_20220303_1344', '2022-03-03 12:44:56.033049'),
-(26, 'parsingbpmn', '0006_remove_strideimpactrecord_app', '2022-03-03 16:43:49.509998'),
-(27, 'parsingbpmn', '0007_auto_20220303_1742', '2022-03-03 16:43:49.674014'),
-(28, 'parsingbpmn', '0008_auto_20220303_1854', '2022-03-03 17:54:36.089723'),
-(29, 'parsingbpmn', '0009_auto_20220303_1930', '2022-03-03 18:30:34.721832'),
-(30, 'parsingbpmn', '0010_auto_20220303_1956', '2022-03-03 18:57:05.166347'),
-(31, 'parsingbpmn', '0011_auto_20220303_2003', '2022-03-03 19:03:40.608639'),
-(32, 'parsingbpmn', '0012_auto_20220303_2132', '2022-03-03 20:32:58.253143');
+(1, 'parsingbpmn', '0001_initial', '2024-01-17 14:57:41.748178');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `django_session`
+-- Table structure for table `django_session`
 --
 
 CREATE TABLE `django_session` (
   `session_key` varchar(40) NOT NULL,
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_asset`
+-- Table structure for table `parsingbpmn_actor`
+--
+
+CREATE TABLE `parsingbpmn_actor` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `process_bpmn_id` varchar(100) DEFAULT NULL,
+  `process_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `parsingbpmn_actor`
+--
+
+INSERT INTO `parsingbpmn_actor` (`id`, `name`, `process_bpmn_id`, `process_id`) VALUES
+(1, 'Citizen', 'Process_0gzphmm', 70),
+(2, 'Municipality', 'Process_1mmbaau', 70),
+(3, 'Citizen', 'Process_0gzphmm', 71),
+(4, 'Municipality', 'Process_1mmbaau', 71),
+(5, 'Citizen', 'Process_0gzphmm', 72),
+(6, 'Municipality', 'Process_1mmbaau', 72),
+(7, 'Citizen', 'Process_0gzphmm', 73),
+(8, 'Municipality', 'Process_1mmbaau', 73),
+(9, 'Citizen', 'Process_0gzphmm', 74),
+(10, 'Municipality', 'Process_1mmbaau', 74);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parsingbpmn_actor_manage_data`
+--
+
+CREATE TABLE `parsingbpmn_actor_manage_data` (
+  `id` int(11) NOT NULL,
+  `actor_id` int(11) DEFAULT NULL,
+  `data_id` int(11) DEFAULT NULL,
+  `process_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `parsingbpmn_actor_manage_data`
+--
+
+INSERT INTO `parsingbpmn_actor_manage_data` (`id`, `actor_id`, `data_id`, `process_id`) VALUES
+(1, 3, NULL, 71),
+(2, 6, NULL, 72),
+(3, 5, NULL, 72),
+(4, 5, NULL, 72),
+(5, 7, NULL, 73),
+(6, 9, NULL, 74);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parsingbpmn_asset`
 --
 
 CREATE TABLE `parsingbpmn_asset` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `bpmn_id` varchar(99) DEFAULT NULL,
+  `position` varchar(99) DEFAULT NULL,
+  `process_bpmn_id` varchar(99) DEFAULT NULL,
   `asset_type_id` int(11) DEFAULT NULL,
-  `process_id` int(11) NOT NULL,
-  `position` varchar(99) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `process_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_asset`
+-- Dumping data for table `parsingbpmn_asset`
 --
 
-INSERT INTO `parsingbpmn_asset` (`id`, `name`, `bpmn_id`, `asset_type_id`, `process_id`, `position`) VALUES
-(742, 'Compile certificate request', 'Activity_0e44ssw', 3, 68, '310:150:100:80'),
-(743, 'Certificate request', 'Activity_0m5vgkb', 1, 68, '450:150:100:80'),
-(744, 'Recieve notification', 'Activity_15a5z8l', 2, 68, '720:140:100:80'),
-(745, 'Download Certificate', 'Activity_1lh76my', 3, 68, '860:140:100:80'),
-(746, 'Acquire certificate request', 'Activity_075eaka', 2, 68, '450:380:100:80'),
-(747, 'Certificate processing', 'Activity_0yo8nd0', 5, 68, '590:380:100:80'),
-(748, 'Notify certification ready', 'Activity_11l7oi5', 1, 68, '720:380:100:80'),
-(749, 'Compile certificate request', 'Activity_0e44ssw', 3, 69, '310:150:100:80'),
-(750, 'Certificate request', 'Activity_0m5vgkb', 1, 69, '450:150:100:80'),
-(751, 'Recieve notification', 'Activity_15a5z8l', 2, 69, '720:140:100:80'),
-(752, 'Download Certificate', 'Activity_1lh76my', 3, 69, '860:140:100:80'),
-(753, 'Acquire certificate request', 'Activity_075eaka', 2, 69, '450:380:100:80'),
-(754, 'Certificate processing', 'Activity_0yo8nd0', 5, 69, '590:380:100:80'),
-(755, 'Notify certification ready', 'Activity_11l7oi5', 1, 69, '720:380:100:80');
+INSERT INTO `parsingbpmn_asset` (`id`, `name`, `bpmn_id`, `position`, `process_bpmn_id`, `asset_type_id`, `process_id`) VALUES
+(742, 'Compile certificate request', 'Activity_0e44ssw', '310:150:100:80', NULL, 3, 68),
+(743, 'Certificate request', 'Activity_0m5vgkb', '450:150:100:80', NULL, 1, 68),
+(744, 'Recieve notification', 'Activity_15a5z8l', '720:140:100:80', NULL, 2, 68),
+(745, 'Download Certificate', 'Activity_1lh76my', '860:140:100:80', NULL, 3, 68),
+(746, 'Acquire certificate request', 'Activity_075eaka', '450:380:100:80', NULL, 2, 68),
+(747, 'Certificate processing', 'Activity_0yo8nd0', '590:380:100:80', NULL, 5, 68),
+(748, 'Notify certification ready', 'Activity_11l7oi5', '720:380:100:80', NULL, 1, 68),
+(749, 'Compile certificate request', 'Activity_0e44ssw', '310:150:100:80', NULL, 3, 69),
+(750, 'Certificate request', 'Activity_0m5vgkb', '450:150:100:80', NULL, 1, 69),
+(751, 'Recieve notification', 'Activity_15a5z8l', '720:140:100:80', NULL, 2, 69),
+(752, 'Download Certificate', 'Activity_1lh76my', '860:140:100:80', NULL, 3, 69),
+(753, 'Acquire certificate request', 'Activity_075eaka', '450:380:100:80', NULL, 2, 69),
+(754, 'Certificate processing', 'Activity_0yo8nd0', '590:380:100:80', NULL, 5, 69),
+(755, 'Notify certification ready', 'Activity_11l7oi5', '720:380:100:80', NULL, 1, 69),
+(756, 'Compile certificate request', 'Activity_0e44ssw', '310:150:100:80', 'Process_0gzphmm', 3, 70),
+(757, 'Certificate request', 'Activity_0m5vgkb', '450:150:100:80', 'Process_0gzphmm', 1, 70),
+(758, 'Recieve notification', 'Activity_15a5z8l', '720:140:100:80', 'Process_0gzphmm', 2, 70),
+(759, 'Download Certificate', 'Activity_1lh76my', '860:140:100:80', 'Process_0gzphmm', 3, 70),
+(760, 'Acquire certificate request', 'Activity_075eaka', '450:380:100:80', 'Process_1mmbaau', 2, 70),
+(761, 'Certificate processing', 'Activity_0yo8nd0', '590:380:100:80', 'Process_1mmbaau', 5, 70),
+(762, 'Notify certification ready', 'Activity_11l7oi5', '720:380:100:80', 'Process_1mmbaau', 1, 70),
+(763, 'Compile certificate request', 'Activity_0e44ssw', '310:150:100:80', 'Process_0gzphmm', 3, 71),
+(764, 'Certificate request', 'Activity_0m5vgkb', '450:150:100:80', 'Process_0gzphmm', 1, 71),
+(765, 'Recieve notification', 'Activity_15a5z8l', '720:140:100:80', 'Process_0gzphmm', 2, 71),
+(766, 'Download Certificate', 'Activity_1lh76my', '860:140:100:80', 'Process_0gzphmm', 3, 71),
+(767, 'Acquire certificate request', 'Activity_075eaka', '450:380:100:80', 'Process_1mmbaau', 2, 71),
+(768, 'Certificate processing', 'Activity_0yo8nd0', '590:380:100:80', 'Process_1mmbaau', 5, 71),
+(769, 'Notify certification ready', 'Activity_11l7oi5', '720:380:100:80', 'Process_1mmbaau', 1, 71),
+(770, 'test', 'DataObjectReference_iQhqDgh:DataObject_FCtLbDf', '', NULL, 8, 71),
+(771, 'Compile certificate request', 'Activity_0e44ssw', '310:150:100:80', 'Process_0gzphmm', 3, 72),
+(772, 'Certificate request', 'Activity_0m5vgkb', '450:150:100:80', 'Process_0gzphmm', 1, 72),
+(773, 'Recieve notification', 'Activity_15a5z8l', '720:140:100:80', 'Process_0gzphmm', 2, 72),
+(774, 'Download Certificate', 'Activity_1lh76my', '860:140:100:80', 'Process_0gzphmm', 3, 72),
+(775, 'Acquire certificate request', 'Activity_075eaka', '450:380:100:80', 'Process_1mmbaau', 2, 72),
+(776, 'Certificate processing', 'Activity_0yo8nd0', '590:380:100:80', 'Process_1mmbaau', 5, 72),
+(777, 'Notify certification ready', 'Activity_11l7oi5', '720:380:100:80', 'Process_1mmbaau', 1, 72),
+(778, 'testobj', 'DataObjectReference_BGJIKiT:DataObject_pzJLTpO', '', NULL, 8, 72),
+(779, 'test3', 'DataObjectReference_zcnfxaR:DataObject_PdhpquX', '', NULL, 8, 70),
+(780, 'Compile certificate request', 'Activity_0e44ssw', '310:150:100:80', 'Process_0gzphmm', 3, 73),
+(781, 'Certificate request', 'Activity_0m5vgkb', '450:150:100:80', 'Process_0gzphmm', 1, 73),
+(782, 'Recieve notification', 'Activity_15a5z8l', '720:140:100:80', 'Process_0gzphmm', 2, 73),
+(783, 'Download Certificate', 'Activity_1lh76my', '860:140:100:80', 'Process_0gzphmm', 3, 73),
+(784, 'Acquire certificate request', 'Activity_075eaka', '450:380:100:80', 'Process_1mmbaau', 2, 73),
+(785, 'Certificate processing', 'Activity_0yo8nd0', '590:380:100:80', 'Process_1mmbaau', 5, 73),
+(786, 'Notify certification ready', 'Activity_11l7oi5', '720:380:100:80', 'Process_1mmbaau', 1, 73),
+(787, 'prova', 'DataObjectReference_WNVwpWS:DataObject_sGNgEYU', '', NULL, 8, 73),
+(788, 'Compile certificate request', 'Activity_0e44ssw', '310:150:100:80', 'Process_0gzphmm', 3, 74),
+(789, 'Certificate request', 'Activity_0m5vgkb', '450:150:100:80', 'Process_0gzphmm', 1, 74),
+(790, 'Recieve notification', 'Activity_15a5z8l', '720:140:100:80', 'Process_0gzphmm', 2, 74),
+(791, 'Download Certificate', 'Activity_1lh76my', '860:140:100:80', 'Process_0gzphmm', 3, 74),
+(792, 'Acquire certificate request', 'Activity_075eaka', '450:380:100:80', 'Process_1mmbaau', 2, 74),
+(793, 'Certificate processing', 'Activity_0yo8nd0', '590:380:100:80', 'Process_1mmbaau', 5, 74),
+(794, 'Notify certification ready', 'Activity_11l7oi5', '720:380:100:80', 'Process_1mmbaau', 1, 74),
+(795, 'test1', 'DataObjectReference_RlVkkUM:DataObject_JLePwKY', '', NULL, 8, 74);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_asset_has_attribute`
+-- Table structure for table `parsingbpmn_asset_has_attribute`
 --
 
 CREATE TABLE `parsingbpmn_asset_has_attribute` (
   `id` int(11) NOT NULL,
   `asset_id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_asset_has_attribute`
+-- Dumping data for table `parsingbpmn_asset_has_attribute`
 --
 
 INSERT INTO `parsingbpmn_asset_has_attribute` (`id`, `asset_id`, `attribute_id`) VALUES
@@ -425,22 +644,53 @@ INSERT INTO `parsingbpmn_asset_has_attribute` (`id`, `asset_id`, `attribute_id`)
 (428, 752, 7),
 (429, 753, 4),
 (430, 754, 10),
-(431, 755, 1);
+(431, 755, 1),
+(432, 788, 7),
+(433, 789, 1),
+(434, 790, 4),
+(435, 791, 7),
+(436, 792, 4),
+(437, 793, 10),
+(438, 794, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_asset_type`
+-- Table structure for table `parsingbpmn_asset_has_dataobject_attribute`
+--
+
+CREATE TABLE `parsingbpmn_asset_has_dataobject_attribute` (
+  `id` int(11) NOT NULL,
+  `asset_id` int(11) NOT NULL,
+  `asset_type_id` int(11) NOT NULL,
+  `data_object_attribute_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `parsingbpmn_asset_has_dataobject_attribute`
+--
+
+INSERT INTO `parsingbpmn_asset_has_dataobject_attribute` (`id`, `asset_id`, `asset_type_id`, `data_object_attribute_id`) VALUES
+(1, 770, 9, 1),
+(2, 778, 9, 2),
+(3, 779, 9, 3),
+(5, 787, 9, 5),
+(6, 795, 9, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parsingbpmn_asset_type`
 --
 
 CREATE TABLE `parsingbpmn_asset_type` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_asset_type`
+-- Dumping data for table `parsingbpmn_asset_type`
 --
 
 INSERT INTO `parsingbpmn_asset_type` (`id`, `name`, `description`) VALUES
@@ -450,12 +700,14 @@ INSERT INTO `parsingbpmn_asset_type` (`id`, `name`, `description`) VALUES
 (4, 'Manual task', 'A Manual Task is a Task that is performed physically.'),
 (5, 'Service task', 'A Service Task is a Task that uses a Web service, an automated application, or other kinds of service in completing the task.'),
 (6, 'Script task', 'A Script Task is executed by a business process engine. The task defines a script that the engine can interpret. When the task begin, the engine will execute the script. The Task will be completed when the script is completed.'),
-(7, 'Business rule task', 'It provides a mechanism for a process to provide input to a Business Rules Engine and then obtain the output provided by the Business Rules Engine. As for service and script task, it is a task without human interaction.');
+(7, 'Business rule task', 'It provides a mechanism for a process to provide input to a Business Rules Engine and then obtain the output provided by the Business Rules Engine. As for service and script task, it is a task without human interaction.'),
+(8, 'DataObject', ''),
+(9, 'DataStore', '');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_attribute`
+-- Table structure for table `parsingbpmn_attribute`
 --
 
 CREATE TABLE `parsingbpmn_attribute` (
@@ -463,10 +715,10 @@ CREATE TABLE `parsingbpmn_attribute` (
   `attribute_name` varchar(100) NOT NULL,
   `asset_type_id` int(11) NOT NULL,
   `attribute_value_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_attribute`
+-- Dumping data for table `parsingbpmn_attribute`
 --
 
 INSERT INTO `parsingbpmn_attribute` (`id`, `attribute_name`, `asset_type_id`, `attribute_value_id`) VALUES
@@ -489,16 +741,16 @@ INSERT INTO `parsingbpmn_attribute` (`id`, `attribute_name`, `asset_type_id`, `a
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_attribute_value`
+-- Table structure for table `parsingbpmn_attribute_value`
 --
 
 CREATE TABLE `parsingbpmn_attribute_value` (
   `id` int(11) NOT NULL,
   `value` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_attribute_value`
+-- Dumping data for table `parsingbpmn_attribute_value`
 --
 
 INSERT INTO `parsingbpmn_attribute_value` (`id`, `value`) VALUES
@@ -517,17 +769,17 @@ INSERT INTO `parsingbpmn_attribute_value` (`id`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_control`
+-- Table structure for table `parsingbpmn_control`
 --
 
 CREATE TABLE `parsingbpmn_control` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_control`
+-- Dumping data for table `parsingbpmn_control`
 --
 
 INSERT INTO `parsingbpmn_control` (`id`, `name`, `description`) VALUES
@@ -555,7 +807,33 @@ INSERT INTO `parsingbpmn_control` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_overallrisk`
+-- Table structure for table `parsingbpmn_dataobjectattribute`
+--
+
+CREATE TABLE `parsingbpmn_dataobjectattribute` (
+  `id` int(11) NOT NULL,
+  `size` int(11) DEFAULT NULL,
+  `order_of_size` varchar(100) NOT NULL,
+  `personal` varchar(100) NOT NULL,
+  `load_dependece` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `parsingbpmn_dataobjectattribute`
+--
+
+INSERT INTO `parsingbpmn_dataobjectattribute` (`id`, `size`, `order_of_size`, `personal`, `load_dependece`) VALUES
+(1, 1, 'byte', '1', 1),
+(2, 1, 'byte', '1', 1),
+(3, 1, 'byte', '1', 1),
+(4, 1, 'byte', '1', 1),
+(5, 1, 'byte', '1', 1),
+(6, 1, 'byte', '1', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parsingbpmn_overallrisk`
 --
 
 CREATE TABLE `parsingbpmn_overallrisk` (
@@ -569,10 +847,10 @@ CREATE TABLE `parsingbpmn_overallrisk` (
   `asset_id` int(11) DEFAULT NULL,
   `process_id` int(11) DEFAULT NULL,
   `system_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_overallrisk`
+-- Dumping data for table `parsingbpmn_overallrisk`
 --
 
 INSERT INTO `parsingbpmn_overallrisk` (`id`, `spoofing`, `tampering`, `repudiation`, `information`, `dos`, `eop`, `asset_id`, `process_id`, `system_id`) VALUES
@@ -587,7 +865,7 @@ INSERT INTO `parsingbpmn_overallrisk` (`id`, `spoofing`, `tampering`, `repudiati
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_process`
+-- Table structure for table `parsingbpmn_process`
 --
 
 CREATE TABLE `parsingbpmn_process` (
@@ -595,30 +873,35 @@ CREATE TABLE `parsingbpmn_process` (
   `name` varchar(100) NOT NULL,
   `xml` varchar(100) NOT NULL,
   `system_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_process`
+-- Dumping data for table `parsingbpmn_process`
 --
 
 INSERT INTO `parsingbpmn_process` (`id`, `name`, `xml`, `system_id`) VALUES
 (68, 'Municipality', 'processes/xml/bpmn_1.0_alxG2XZ.bpmn', 8),
-(69, 'Municipality', 'processes/xml/bpmn_1.0_kYQIAXL.bpmn', 11);
+(69, 'Municipality', 'processes/xml/bpmn_1.0_kYQIAXL.bpmn', 11),
+(70, 'test', 'processes/xml/bpmn_1.0_oLqrE4P.bpmn', 3),
+(71, 'test', 'processes/xml/bpmn_1.0_llYxk7V.bpmn', 3),
+(72, 'test2', 'processes/xml/bpmn_1.0_m2ub47n.bpmn', 3),
+(73, 'example', 'processes/xml/bpmn_1.0_2.bpmn', 3),
+(74, 'prova2', 'processes/xml/bpmn_1.0_2_LNmHJy0.bpmn', 3);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_reply`
+-- Table structure for table `parsingbpmn_reply`
 --
 
 CREATE TABLE `parsingbpmn_reply` (
   `id` int(11) NOT NULL,
   `reply` varchar(500) NOT NULL,
   `multiple` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_reply`
+-- Dumping data for table `parsingbpmn_reply`
 --
 
 INSERT INTO `parsingbpmn_reply` (`id`, `reply`, `multiple`) VALUES
@@ -641,11 +924,14 @@ INSERT INTO `parsingbpmn_reply` (`id`, `reply`, `multiple`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_risk`
+-- Table structure for table `parsingbpmn_risk`
 --
 
 CREATE TABLE `parsingbpmn_risk` (
   `id` int(11) NOT NULL,
+  `likelihood` int(11) DEFAULT NULL,
+  `impact` int(11) DEFAULT NULL,
+  `severity` varchar(100) NOT NULL,
   `skill` int(11) DEFAULT NULL,
   `motive` int(11) DEFAULT NULL,
   `opportunity` int(11) DEFAULT NULL,
@@ -663,123 +949,120 @@ CREATE TABLE `parsingbpmn_risk` (
   `non_compliance` int(11) DEFAULT NULL,
   `privacy` int(11) DEFAULT NULL,
   `asset_id` int(11) DEFAULT NULL,
-  `system_id` int(11) DEFAULT NULL,
   `process_id` int(11) DEFAULT NULL,
-  `threat_stride_id` int(11) DEFAULT NULL,
-  `impact` int(11) DEFAULT NULL,
-  `likelihood` int(11) DEFAULT NULL,
-  `severity` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `system_id` int(11) DEFAULT NULL,
+  `threat_stride_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_risk`
+-- Dumping data for table `parsingbpmn_risk`
 --
 
-INSERT INTO `parsingbpmn_risk` (`id`, `skill`, `motive`, `opportunity`, `size`, `ease_of_discovery`, `ease_of_exploit`, `intrusion_detection`, `awareness`, `loss_of_confidentiality`, `loss_of_integrity`, `loss_of_availability`, `loss_of_accountability`, `financial`, `reputation`, `non_compliance`, `privacy`, `asset_id`, `system_id`, `process_id`, `threat_stride_id`, `impact`, `likelihood`, `severity`) VALUES
-(1121, 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 749, 11, 69, 1, 5, 5, 'MEDIUM'),
-(1122, 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 749, 11, 69, 2, 6, 5, 'HIGH'),
-(1123, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 749, 11, 69, 23, 5, 6, 'HIGH'),
-(1124, 9, 7, 5, 7, 6, 4, 4, 6, 5, 5, 5, 7, 9, 8, 8, 8, 749, 11, 69, 29, 6, 6, 'MEDIUM'),
-(1125, 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 749, 11, 69, 37, 7, 5, 'HIGH'),
-(1126, 9, 7, 5, 7, 8, 7, 7, 8, 5, 9, 5, 5, 5, 5, 5, 5, 749, 11, 69, 38, 5, 7, 'HIGH'),
-(1127, 9, 7, 5, 7, 2, 2, 3, 2, 5, 5, 5, 5, 9, 8, 8, 8, 749, 11, 69, 40, 6, 4, 'HIGH'),
-(1128, 9, 7, 5, 7, 7, 5, 5, 7, 7, 7, 8, 7, 9, 8, 8, 8, 749, 11, 69, 50, 7, 6, 'CRITICAL'),
-(1129, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 749, 11, 69, 56, 6, 7, 'CRITICAL'),
-(1130, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 749, 11, 69, 57, 2, 6, 'MEDIUM'),
-(1131, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 749, 11, 69, 60, 6, 7, 'CRITICAL'),
-(1132, 9, 7, 5, 7, 7, 7, 8, 8, 8, 7, 8, 9, 9, 8, 8, 8, 749, 11, 69, 74, 8, 7, 'CRITICAL'),
-(1133, 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 750, 11, 69, 1, 5, 5, 'MEDIUM'),
-(1134, 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 750, 11, 69, 2, 6, 5, 'HIGH'),
-(1135, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 750, 11, 69, 23, 5, 6, 'HIGH'),
-(1136, 9, 7, 5, 7, 4, 8, 2, 1, 5, 5, 5, 4, 7, 6, 7, 5, 750, 11, 69, 27, 5, 5, 'MEDIUM'),
-(1137, 9, 7, 5, 7, 6, 4, 4, 6, 5, 5, 5, 7, 9, 8, 8, 8, 750, 11, 69, 29, 6, 6, 'MEDIUM'),
-(1138, 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 750, 11, 69, 37, 7, 5, 'HIGH'),
-(1139, 9, 7, 5, 7, 7, 5, 5, 7, 7, 7, 8, 7, 9, 8, 8, 8, 750, 11, 69, 50, 7, 6, 'CRITICAL'),
-(1140, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 750, 11, 69, 51, 6, 6, 'MEDIUM'),
-(1141, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 750, 11, 69, 52, 6, 6, 'MEDIUM'),
-(1142, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 750, 11, 69, 53, 6, 6, 'MEDIUM'),
-(1143, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 750, 11, 69, 56, 6, 7, 'CRITICAL'),
-(1144, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 750, 11, 69, 60, 6, 7, 'CRITICAL'),
-(1145, 9, 7, 5, 7, 8, 7, 5, 8, 5, 5, 5, 5, 7, 6, 7, 5, 750, 11, 69, 65, 5, 7, 'HIGH'),
-(1146, 9, 7, 5, 7, 7, 6, 5, 5, 5, 5, 5, 5, 7, 6, 7, 5, 750, 11, 69, 69, 5, 6, 'HIGH'),
-(1147, 9, 7, 5, 7, 9, 8, 7, 8, 5, 5, 5, 5, 7, 6, 7, 5, 750, 11, 69, 71, 5, 7, 'HIGH'),
-(1148, 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 751, 11, 69, 1, 5, 5, 'MEDIUM'),
-(1149, 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 751, 11, 69, 2, 6, 5, 'HIGH'),
-(1150, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 751, 11, 69, 23, 5, 6, 'HIGH'),
-(1151, 9, 7, 5, 7, 4, 8, 2, 1, 5, 5, 5, 4, 7, 6, 7, 5, 751, 11, 69, 27, 5, 5, 'MEDIUM'),
-(1152, 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 751, 11, 69, 37, 7, 5, 'HIGH'),
-(1153, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 751, 11, 69, 51, 6, 6, 'MEDIUM'),
-(1154, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 751, 11, 69, 52, 6, 6, 'MEDIUM'),
-(1155, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 751, 11, 69, 53, 6, 6, 'MEDIUM'),
-(1156, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 751, 11, 69, 56, 6, 7, 'CRITICAL'),
-(1157, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 751, 11, 69, 60, 6, 7, 'CRITICAL'),
-(1158, 9, 7, 5, 7, 8, 7, 5, 8, 5, 5, 5, 5, 7, 6, 7, 5, 751, 11, 69, 65, 5, 7, 'HIGH'),
-(1159, 9, 7, 5, 7, 7, 6, 7, 8, 5, 5, 5, 5, 7, 6, 7, 5, 751, 11, 69, 67, 5, 7, 'HIGH'),
-(1160, 9, 7, 5, 7, 7, 6, 5, 5, 5, 5, 5, 5, 7, 6, 7, 5, 751, 11, 69, 69, 5, 6, 'HIGH'),
-(1161, 9, 7, 5, 7, 9, 8, 7, 8, 5, 5, 5, 5, 7, 6, 7, 5, 751, 11, 69, 71, 5, 7, 'HIGH'),
-(1162, 9, 7, 5, 7, 9, 8, 8, 9, 3, 2, 2, 1, 7, 6, 7, 5, 751, 11, 69, 72, 4, 7, 'HIGH'),
-(1163, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 9, 8, 9, 8, 8, 8, 751, 11, 69, 73, 7, 6, 'MEDIUM'),
-(1164, 9, 7, 5, 7, 7, 7, 8, 8, 8, 7, 8, 9, 9, 8, 8, 8, 751, 11, 69, 74, 8, 7, 'CRITICAL'),
-(1165, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 7, 6, 7, 5, 751, 11, 69, 80, 5, 6, 'HIGH'),
-(1166, 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 752, 11, 69, 1, 5, 5, 'MEDIUM'),
-(1167, 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 752, 11, 69, 2, 6, 5, 'HIGH'),
-(1168, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 752, 11, 69, 23, 5, 6, 'HIGH'),
-(1169, 9, 7, 5, 7, 6, 4, 4, 6, 5, 5, 5, 7, 9, 8, 8, 8, 752, 11, 69, 29, 6, 6, 'MEDIUM'),
-(1170, 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 752, 11, 69, 37, 7, 5, 'HIGH'),
-(1171, 9, 7, 5, 7, 8, 7, 7, 8, 5, 9, 5, 5, 5, 5, 5, 5, 752, 11, 69, 38, 5, 7, 'HIGH'),
-(1172, 9, 7, 5, 7, 2, 2, 3, 2, 5, 5, 5, 5, 9, 8, 8, 8, 752, 11, 69, 40, 6, 4, 'HIGH'),
-(1173, 9, 7, 5, 7, 7, 5, 5, 7, 7, 7, 8, 7, 9, 8, 8, 8, 752, 11, 69, 50, 7, 6, 'CRITICAL'),
-(1174, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 752, 11, 69, 56, 6, 7, 'CRITICAL'),
-(1175, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 752, 11, 69, 57, 2, 6, 'MEDIUM'),
-(1176, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 752, 11, 69, 60, 6, 7, 'CRITICAL'),
-(1177, 9, 7, 5, 7, 7, 7, 8, 8, 8, 7, 8, 9, 9, 8, 8, 8, 752, 11, 69, 74, 8, 7, 'CRITICAL'),
-(1178, 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 753, 11, 69, 1, 5, 5, 'MEDIUM'),
-(1179, 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 753, 11, 69, 2, 6, 5, 'HIGH'),
-(1180, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 753, 11, 69, 23, 5, 6, 'HIGH'),
-(1181, 9, 7, 5, 7, 4, 8, 2, 1, 5, 5, 5, 4, 7, 6, 7, 5, 753, 11, 69, 27, 5, 5, 'MEDIUM'),
-(1182, 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 753, 11, 69, 37, 7, 5, 'HIGH'),
-(1183, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 753, 11, 69, 51, 6, 6, 'MEDIUM'),
-(1184, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 753, 11, 69, 52, 6, 6, 'MEDIUM'),
-(1185, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 753, 11, 69, 53, 6, 6, 'MEDIUM'),
-(1186, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 753, 11, 69, 56, 6, 7, 'CRITICAL'),
-(1187, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 753, 11, 69, 60, 6, 7, 'CRITICAL'),
-(1188, 9, 7, 5, 7, 8, 7, 5, 8, 5, 5, 5, 5, 7, 6, 7, 5, 753, 11, 69, 65, 5, 7, 'HIGH'),
-(1189, 9, 7, 5, 7, 9, 8, 7, 8, 5, 5, 5, 5, 7, 6, 7, 5, 753, 11, 69, 71, 5, 7, 'HIGH'),
-(1190, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 754, 11, 69, 32, 6, 6, 'MEDIUM'),
-(1191, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 754, 11, 69, 34, 6, 6, 'MEDIUM'),
-(1192, 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 754, 11, 69, 37, 7, 5, 'HIGH'),
-(1193, 9, 7, 5, 7, 7, 5, 5, 7, 7, 7, 8, 7, 9, 8, 8, 8, 754, 11, 69, 50, 7, 6, 'CRITICAL'),
-(1194, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 754, 11, 69, 53, 6, 6, 'MEDIUM'),
-(1195, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 754, 11, 69, 56, 6, 7, 'CRITICAL'),
-(1196, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 754, 11, 69, 60, 6, 7, 'CRITICAL'),
-(1197, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 9, 8, 9, 8, 8, 8, 754, 11, 69, 73, 7, 6, 'MEDIUM'),
-(1198, 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 755, 11, 69, 1, 5, 5, 'MEDIUM'),
-(1199, 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 755, 11, 69, 2, 6, 5, 'HIGH'),
-(1200, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 755, 11, 69, 23, 5, 6, 'HIGH'),
-(1201, 9, 7, 5, 7, 4, 8, 2, 1, 5, 5, 5, 4, 7, 6, 7, 5, 755, 11, 69, 27, 5, 5, 'MEDIUM'),
-(1202, 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 755, 11, 69, 37, 7, 5, 'HIGH'),
-(1203, 9, 7, 5, 7, 7, 5, 5, 7, 7, 7, 8, 7, 9, 8, 8, 8, 755, 11, 69, 50, 7, 6, 'CRITICAL'),
-(1204, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 755, 11, 69, 51, 6, 6, 'MEDIUM'),
-(1205, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 755, 11, 69, 52, 6, 6, 'MEDIUM'),
-(1206, 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 755, 11, 69, 53, 6, 6, 'MEDIUM'),
-(1207, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 755, 11, 69, 56, 6, 7, 'CRITICAL'),
-(1208, 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 755, 11, 69, 60, 6, 7, 'CRITICAL'),
-(1209, 9, 7, 5, 7, 8, 7, 5, 8, 5, 5, 5, 5, 7, 6, 7, 5, 755, 11, 69, 65, 5, 7, 'HIGH'),
-(1210, 9, 7, 5, 7, 9, 8, 7, 8, 5, 5, 5, 5, 7, 6, 7, 5, 755, 11, 69, 71, 5, 7, 'HIGH');
+INSERT INTO `parsingbpmn_risk` (`id`, `likelihood`, `impact`, `severity`, `skill`, `motive`, `opportunity`, `size`, `ease_of_discovery`, `ease_of_exploit`, `intrusion_detection`, `awareness`, `loss_of_confidentiality`, `loss_of_integrity`, `loss_of_availability`, `loss_of_accountability`, `financial`, `reputation`, `non_compliance`, `privacy`, `asset_id`, `process_id`, `system_id`, `threat_stride_id`) VALUES
+(1121, 5, 5, 'MEDIUM', 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 749, 69, 11, 1),
+(1122, 5, 6, 'HIGH', 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 749, 69, 11, 2),
+(1123, 6, 5, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 749, 69, 11, 23),
+(1124, 6, 6, 'MEDIUM', 9, 7, 5, 7, 6, 4, 4, 6, 5, 5, 5, 7, 9, 8, 8, 8, 749, 69, 11, 29),
+(1125, 5, 7, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 749, 69, 11, 37),
+(1126, 7, 5, 'HIGH', 9, 7, 5, 7, 8, 7, 7, 8, 5, 9, 5, 5, 5, 5, 5, 5, 749, 69, 11, 38),
+(1127, 4, 6, 'HIGH', 9, 7, 5, 7, 2, 2, 3, 2, 5, 5, 5, 5, 9, 8, 8, 8, 749, 69, 11, 40),
+(1128, 6, 7, 'CRITICAL', 9, 7, 5, 7, 7, 5, 5, 7, 7, 7, 8, 7, 9, 8, 8, 8, 749, 69, 11, 50),
+(1129, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 749, 69, 11, 56),
+(1130, 6, 2, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 749, 69, 11, 57),
+(1131, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 749, 69, 11, 60),
+(1132, 7, 8, 'CRITICAL', 9, 7, 5, 7, 7, 7, 8, 8, 8, 7, 8, 9, 9, 8, 8, 8, 749, 69, 11, 74),
+(1133, 5, 5, 'MEDIUM', 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 750, 69, 11, 1),
+(1134, 5, 6, 'HIGH', 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 750, 69, 11, 2),
+(1135, 6, 5, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 750, 69, 11, 23),
+(1136, 5, 5, 'MEDIUM', 9, 7, 5, 7, 4, 8, 2, 1, 5, 5, 5, 4, 7, 6, 7, 5, 750, 69, 11, 27),
+(1137, 6, 6, 'MEDIUM', 9, 7, 5, 7, 6, 4, 4, 6, 5, 5, 5, 7, 9, 8, 8, 8, 750, 69, 11, 29),
+(1138, 5, 7, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 750, 69, 11, 37),
+(1139, 6, 7, 'CRITICAL', 9, 7, 5, 7, 7, 5, 5, 7, 7, 7, 8, 7, 9, 8, 8, 8, 750, 69, 11, 50),
+(1140, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 750, 69, 11, 51),
+(1141, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 750, 69, 11, 52),
+(1142, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 750, 69, 11, 53),
+(1143, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 750, 69, 11, 56),
+(1144, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 750, 69, 11, 60),
+(1145, 7, 5, 'HIGH', 9, 7, 5, 7, 8, 7, 5, 8, 5, 5, 5, 5, 7, 6, 7, 5, 750, 69, 11, 65),
+(1146, 6, 5, 'HIGH', 9, 7, 5, 7, 7, 6, 5, 5, 5, 5, 5, 5, 7, 6, 7, 5, 750, 69, 11, 69),
+(1147, 7, 5, 'HIGH', 9, 7, 5, 7, 9, 8, 7, 8, 5, 5, 5, 5, 7, 6, 7, 5, 750, 69, 11, 71),
+(1148, 5, 5, 'MEDIUM', 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 751, 69, 11, 1),
+(1149, 5, 6, 'HIGH', 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 751, 69, 11, 2),
+(1150, 6, 5, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 751, 69, 11, 23),
+(1151, 5, 5, 'MEDIUM', 9, 7, 5, 7, 4, 8, 2, 1, 5, 5, 5, 4, 7, 6, 7, 5, 751, 69, 11, 27),
+(1152, 5, 7, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 751, 69, 11, 37),
+(1153, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 751, 69, 11, 51),
+(1154, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 751, 69, 11, 52),
+(1155, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 751, 69, 11, 53),
+(1156, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 751, 69, 11, 56),
+(1157, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 751, 69, 11, 60),
+(1158, 7, 5, 'HIGH', 9, 7, 5, 7, 8, 7, 5, 8, 5, 5, 5, 5, 7, 6, 7, 5, 751, 69, 11, 65),
+(1159, 7, 5, 'HIGH', 9, 7, 5, 7, 7, 6, 7, 8, 5, 5, 5, 5, 7, 6, 7, 5, 751, 69, 11, 67),
+(1160, 6, 5, 'HIGH', 9, 7, 5, 7, 7, 6, 5, 5, 5, 5, 5, 5, 7, 6, 7, 5, 751, 69, 11, 69),
+(1161, 7, 5, 'HIGH', 9, 7, 5, 7, 9, 8, 7, 8, 5, 5, 5, 5, 7, 6, 7, 5, 751, 69, 11, 71),
+(1162, 7, 4, 'HIGH', 9, 7, 5, 7, 9, 8, 8, 9, 3, 2, 2, 1, 7, 6, 7, 5, 751, 69, 11, 72),
+(1163, 6, 7, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 9, 8, 9, 8, 8, 8, 751, 69, 11, 73),
+(1164, 7, 8, 'CRITICAL', 9, 7, 5, 7, 7, 7, 8, 8, 8, 7, 8, 9, 9, 8, 8, 8, 751, 69, 11, 74),
+(1165, 6, 5, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 7, 6, 7, 5, 751, 69, 11, 80),
+(1166, 5, 5, 'MEDIUM', 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 752, 69, 11, 1),
+(1167, 5, 6, 'HIGH', 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 752, 69, 11, 2),
+(1168, 6, 5, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 752, 69, 11, 23),
+(1169, 6, 6, 'MEDIUM', 9, 7, 5, 7, 6, 4, 4, 6, 5, 5, 5, 7, 9, 8, 8, 8, 752, 69, 11, 29),
+(1170, 5, 7, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 752, 69, 11, 37),
+(1171, 7, 5, 'HIGH', 9, 7, 5, 7, 8, 7, 7, 8, 5, 9, 5, 5, 5, 5, 5, 5, 752, 69, 11, 38),
+(1172, 4, 6, 'HIGH', 9, 7, 5, 7, 2, 2, 3, 2, 5, 5, 5, 5, 9, 8, 8, 8, 752, 69, 11, 40),
+(1173, 6, 7, 'CRITICAL', 9, 7, 5, 7, 7, 5, 5, 7, 7, 7, 8, 7, 9, 8, 8, 8, 752, 69, 11, 50),
+(1174, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 752, 69, 11, 56),
+(1175, 6, 2, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 752, 69, 11, 57),
+(1176, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 752, 69, 11, 60),
+(1177, 7, 8, 'CRITICAL', 9, 7, 5, 7, 7, 7, 8, 8, 8, 7, 8, 9, 9, 8, 8, 8, 752, 69, 11, 74),
+(1178, 5, 5, 'MEDIUM', 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 753, 69, 11, 1),
+(1179, 5, 6, 'HIGH', 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 753, 69, 11, 2),
+(1180, 6, 5, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 753, 69, 11, 23),
+(1181, 5, 5, 'MEDIUM', 9, 7, 5, 7, 4, 8, 2, 1, 5, 5, 5, 4, 7, 6, 7, 5, 753, 69, 11, 27),
+(1182, 5, 7, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 753, 69, 11, 37),
+(1183, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 753, 69, 11, 51),
+(1184, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 753, 69, 11, 52),
+(1185, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 753, 69, 11, 53),
+(1186, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 753, 69, 11, 56),
+(1187, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 753, 69, 11, 60),
+(1188, 7, 5, 'HIGH', 9, 7, 5, 7, 8, 7, 5, 8, 5, 5, 5, 5, 7, 6, 7, 5, 753, 69, 11, 65),
+(1189, 7, 5, 'HIGH', 9, 7, 5, 7, 9, 8, 7, 8, 5, 5, 5, 5, 7, 6, 7, 5, 753, 69, 11, 71),
+(1190, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 754, 69, 11, 32),
+(1191, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 754, 69, 11, 34),
+(1192, 5, 7, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 754, 69, 11, 37),
+(1193, 6, 7, 'CRITICAL', 9, 7, 5, 7, 7, 5, 5, 7, 7, 7, 8, 7, 9, 8, 8, 8, 754, 69, 11, 50),
+(1194, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 754, 69, 11, 53),
+(1195, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 754, 69, 11, 56),
+(1196, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 754, 69, 11, 60),
+(1197, 6, 7, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 9, 8, 9, 8, 8, 8, 754, 69, 11, 73),
+(1198, 5, 5, 'MEDIUM', 9, 7, 5, 7, 1, 3, 3, 5, 8, 8, 1, 5, 7, 6, 7, 5, 755, 69, 11, 1),
+(1199, 5, 6, 'HIGH', 9, 7, 5, 7, 1, 3, 3, 5, 5, 5, 1, 5, 9, 8, 8, 8, 755, 69, 11, 2),
+(1200, 6, 5, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 755, 69, 11, 23),
+(1201, 5, 5, 'MEDIUM', 9, 7, 5, 7, 4, 8, 2, 1, 5, 5, 5, 4, 7, 6, 7, 5, 755, 69, 11, 27),
+(1202, 5, 7, 'HIGH', 9, 7, 5, 7, 5, 5, 5, 3, 5, 5, 9, 5, 9, 8, 8, 8, 755, 69, 11, 37),
+(1203, 6, 7, 'CRITICAL', 9, 7, 5, 7, 7, 5, 5, 7, 7, 7, 8, 7, 9, 8, 8, 8, 755, 69, 11, 50),
+(1204, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 755, 69, 11, 51),
+(1205, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 755, 69, 11, 52),
+(1206, 6, 6, 'MEDIUM', 9, 7, 5, 7, 5, 5, 5, 5, 5, 5, 5, 5, 9, 8, 8, 8, 755, 69, 11, 53),
+(1207, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 755, 69, 11, 56),
+(1208, 7, 6, 'CRITICAL', 9, 7, 5, 7, 8, 7, 7, 8, 5, 5, 5, 5, 9, 8, 8, 8, 755, 69, 11, 60),
+(1209, 7, 5, 'HIGH', 9, 7, 5, 7, 8, 7, 5, 8, 5, 5, 5, 5, 7, 6, 7, 5, 755, 69, 11, 65),
+(1210, 7, 5, 'HIGH', 9, 7, 5, 7, 9, 8, 7, 8, 5, 5, 5, 5, 7, 6, 7, 5, 755, 69, 11, 71);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_stride`
+-- Table structure for table `parsingbpmn_stride`
 --
 
 CREATE TABLE `parsingbpmn_stride` (
   `id` int(11) NOT NULL,
   `category` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_stride`
+-- Dumping data for table `parsingbpmn_stride`
 --
 
 INSERT INTO `parsingbpmn_stride` (`id`, `category`) VALUES
@@ -793,7 +1076,7 @@ INSERT INTO `parsingbpmn_stride` (`id`, `category`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_strideimpactrecord`
+-- Table structure for table `parsingbpmn_strideimpactrecord`
 --
 
 CREATE TABLE `parsingbpmn_strideimpactrecord` (
@@ -804,35 +1087,23 @@ CREATE TABLE `parsingbpmn_strideimpactrecord` (
   `privacyviolation` int(11) DEFAULT NULL,
   `created_at` datetime(6) DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
-  `stride_id` int(11) DEFAULT NULL,
-  `system_id` int(11) DEFAULT NULL,
-  `process_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `parsingbpmn_strideimpactrecord`
---
-
-INSERT INTO `parsingbpmn_strideimpactrecord` (`id`, `financialdamage`, `reputationdamage`, `noncompliance`, `privacyviolation`, `created_at`, `updated_at`, `stride_id`, `system_id`, `process_id`) VALUES
-(1012, 7, 6, 7, 5, '2022-03-04 08:52:11.000925', '2022-03-04 08:52:11.000925', 1, NULL, 69),
-(1013, 5, 5, 5, 5, '2022-03-04 08:52:11.025195', '2022-03-04 08:52:11.026198', 2, NULL, 69),
-(1014, 5, 5, 5, 5, '2022-03-04 08:52:11.040227', '2022-03-04 08:52:11.040227', 4, NULL, 69),
-(1015, 9, 8, 8, 8, '2022-03-04 08:52:11.046195', '2022-03-04 08:52:11.046195', 5, NULL, 69),
-(1016, 6, 6, 5, 5, '2022-03-04 08:52:11.055190', '2022-03-04 08:52:11.055190', 6, NULL, 69);
+  `process_id` int(11) DEFAULT NULL,
+  `stride_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_system`
+-- Table structure for table `parsingbpmn_system`
 --
 
 CREATE TABLE `parsingbpmn_system` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_system`
+-- Dumping data for table `parsingbpmn_system`
 --
 
 INSERT INTO `parsingbpmn_system` (`id`, `name`) VALUES
@@ -843,17 +1114,17 @@ INSERT INTO `parsingbpmn_system` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_system_threatagent`
+-- Table structure for table `parsingbpmn_system_threatagent`
 --
 
 CREATE TABLE `parsingbpmn_system_threatagent` (
   `id` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
   `system_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_system_threatagent`
+-- Dumping data for table `parsingbpmn_system_threatagent`
 --
 
 INSERT INTO `parsingbpmn_system_threatagent` (`id`, `category_id`, `system_id`) VALUES
@@ -885,17 +1156,17 @@ INSERT INTO `parsingbpmn_system_threatagent` (`id`, `category_id`, `system_id`) 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_tacategoryattribute`
+-- Table structure for table `parsingbpmn_tacategoryattribute`
 --
 
 CREATE TABLE `parsingbpmn_tacategoryattribute` (
   `id` int(11) NOT NULL,
   `attribute_id` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_tacategoryattribute`
+-- Dumping data for table `parsingbpmn_tacategoryattribute`
 --
 
 INSERT INTO `parsingbpmn_tacategoryattribute` (`id`, `attribute_id`, `category_id`) VALUES
@@ -1091,17 +1362,17 @@ INSERT INTO `parsingbpmn_tacategoryattribute` (`id`, `attribute_id`, `category_i
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_tareplies_question`
+-- Table structure for table `parsingbpmn_tareplies_question`
 --
 
 CREATE TABLE `parsingbpmn_tareplies_question` (
   `id` int(11) NOT NULL,
   `question_id` int(11) DEFAULT NULL,
   `reply_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_tareplies_question`
+-- Dumping data for table `parsingbpmn_tareplies_question`
 --
 
 INSERT INTO `parsingbpmn_tareplies_question` (`id`, `question_id`, `reply_id`) VALUES
@@ -1124,17 +1395,17 @@ INSERT INTO `parsingbpmn_tareplies_question` (`id`, `question_id`, `reply_id`) V
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_tareplycategory`
+-- Table structure for table `parsingbpmn_tareplycategory`
 --
 
 CREATE TABLE `parsingbpmn_tareplycategory` (
   `id` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
   `reply_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_tareplycategory`
+-- Dumping data for table `parsingbpmn_tareplycategory`
 --
 
 INSERT INTO `parsingbpmn_tareplycategory` (`id`, `category_id`, `reply_id`) VALUES
@@ -1291,48 +1562,83 @@ INSERT INTO `parsingbpmn_tareplycategory` (`id`, `category_id`, `reply_id`) VALU
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_threat`
+-- Table structure for table `parsingbpmn_task_manages_data`
+--
+
+CREATE TABLE `parsingbpmn_task_manages_data` (
+  `id` int(11) NOT NULL,
+  `data_id` int(11) NOT NULL,
+  `task_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `parsingbpmn_task_manages_data`
+--
+
+INSERT INTO `parsingbpmn_task_manages_data` (`id`, `data_id`, `task_id`) VALUES
+(1, 770, 743),
+(2, 770, 745),
+(3, 770, 743),
+(4, 770, 745),
+(5, 778, 743),
+(6, 778, 743),
+(7, 778, 743),
+(8, 778, 743),
+(9, 787, 743),
+(10, 787, 746),
+(11, 787, 743),
+(12, 787, 746),
+(13, 787, 743),
+(14, 787, 746),
+(15, 795, 742),
+(16, 795, 742),
+(17, 795, 742);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parsingbpmn_threat`
 --
 
 CREATE TABLE `parsingbpmn_threat` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `owasp_awareness` int(11) DEFAULT NULL,
   `owasp_ease_of_discovery` int(11) DEFAULT NULL,
   `owasp_ease_of_exploit` int(11) DEFAULT NULL,
   `owasp_intrusion_detection` int(11) DEFAULT NULL,
-  `loss_of_accountability` int(11) DEFAULT NULL,
-  `loss_of_availability` int(11) DEFAULT NULL,
+  `owasp_awareness` int(11) DEFAULT NULL,
   `loss_of_confidentiality` int(11) DEFAULT NULL,
-  `loss_of_integrity` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `loss_of_integrity` int(11) DEFAULT NULL,
+  `loss_of_availability` int(11) DEFAULT NULL,
+  `loss_of_accountability` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_threat`
+-- Dumping data for table `parsingbpmn_threat`
 --
 
-INSERT INTO `parsingbpmn_threat` (`id`, `name`, `description`, `owasp_awareness`, `owasp_ease_of_discovery`, `owasp_ease_of_exploit`, `owasp_intrusion_detection`, `loss_of_accountability`, `loss_of_availability`, `loss_of_confidentiality`, `loss_of_integrity`) VALUES
-(1, 'Fraud', 'Fraud made by human', 5, 1, 3, 3, 5, 1, 8, 8),
-(2, 'Sabotage', 'Intentional actions (non-fulfillment or defective fulfillment of personal duties) aimed to cause disruption or damage of IT Assets', 5, 1, 3, 3, 5, 1, 5, 5),
-(3, 'Vandalism', 'Act of physically damage of IT Assets', 3, 6, 8, 1, 3, 8, 7, 9),
-(4, 'Theft (devices, storage media and documents)\r\n', 'Stealing of information or IT Assets. [Theft of mobile devices (smartphones/ tablets) - Theft of fi9ed hardware - Theft of documents - Theft of backups]', 6, 5, 3, 4, 2, 9, 8, 7),
-(5, 'Information leakage/sharing\r\n', 'Sharing information with unauthorised entities. Loss of information confidentiality due to intentional human actions.', 3, 2, 7, 2, 6, 4, 9, 7),
-(6, 'Unauthorized physical access / Unauthorised entry to premises\r\n', 'Unapproved access to facility.\r\n', 2, 3, 8, 7, 6, 2, 8, 9),
+INSERT INTO `parsingbpmn_threat` (`id`, `name`, `description`, `owasp_ease_of_discovery`, `owasp_ease_of_exploit`, `owasp_intrusion_detection`, `owasp_awareness`, `loss_of_confidentiality`, `loss_of_integrity`, `loss_of_availability`, `loss_of_accountability`) VALUES
+(1, 'Fraud', 'Fraud made by human', 1, 3, 3, 5, 8, 8, 1, 5),
+(2, 'Sabotage', 'Intentional actions (non-fulfillment or defective fulfillment of personal duties) aimed to cause disruption or damage of IT Assets', 1, 3, 3, 5, 5, 5, 1, 5),
+(3, 'Vandalism', 'Act of physically damage of IT Assets', 6, 8, 1, 3, 7, 9, 8, 3),
+(4, 'Theft (devices, storage media and documents)\r\n', 'Stealing of information or IT Assets. [Theft of mobile devices (smartphones/ tablets) - Theft of fi9ed hardware - Theft of documents - Theft of backups]', 5, 3, 4, 6, 8, 7, 9, 2),
+(5, 'Information leakage/sharing\r\n', 'Sharing information with unauthorised entities. Loss of information confidentiality due to intentional human actions.', 2, 7, 2, 3, 9, 7, 4, 6),
+(6, 'Unauthorized physical access / Unauthorised entry to premises\r\n', 'Unapproved access to facility.\r\n', 3, 8, 7, 2, 8, 9, 2, 6),
 (7, 'Coercion, extortion or corruption\r\n', 'Actions caused by coercion, extortion or corruption\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
-(8, 'Damage from the warfare\r\n', 'Threats of direct impact of warfare activities\r\n', 5, 5, 5, 5, 8, 8, 7, 8),
-(9, 'Terrorists attack\r\n', 'Threats of bombing or other actions that counts as \"terrorists attacks\"\r\n', 5, 5, 5, 5, 8, 8, 7, 8),
-(10, 'Information leakage/sharing due to human error\r\n', 'Unintentional distribution of private or sensitive data to an unauthorized entity by staff member.\r\n', 1, 4, 8, 2, 4, 5, 5, 5),
-(11, 'Erroneous use or administration of devices and systems\r\n', 'Information leakage / sharing / damage caused by users IT Assets misuse (lack of awareness of application features) or wrong / improperly IT Assets configuration or management\r\n', 6, 6, 4, 4, 7, 5, 5, 5),
-(12, 'Using information from an unreliable source\r\n', 'Bad decision based on unreliable sources of information or unchecked information.\r\n', 8, 7, 7, 8, 5, 5, 5, 5),
-(13, 'Unintentional change of data in an information system\r\n', 'Loss of information integrity due to human error (information system user mistake)\r\n', 5, 5, 5, 5, 5, 2, 8, 9),
+(8, 'Damage from the warfare\r\n', 'Threats of direct impact of warfare activities\r\n', 5, 5, 5, 5, 7, 8, 8, 8),
+(9, 'Terrorists attack\r\n', 'Threats of bombing or other actions that counts as \"terrorists attacks\"\r\n', 5, 5, 5, 5, 7, 8, 8, 8),
+(10, 'Information leakage/sharing due to human error\r\n', 'Unintentional distribution of private or sensitive data to an unauthorized entity by staff member.\r\n', 4, 8, 2, 1, 5, 5, 5, 4),
+(11, 'Erroneous use or administration of devices and systems\r\n', 'Information leakage / sharing / damage caused by users IT Assets misuse (lack of awareness of application features) or wrong / improperly IT Assets configuration or management\r\n', 6, 4, 4, 6, 5, 5, 5, 7),
+(12, 'Using information from an unreliable source\r\n', 'Bad decision based on unreliable sources of information or unchecked information.\r\n', 7, 7, 8, 8, 5, 5, 5, 5),
+(13, 'Unintentional change of data in an information system\r\n', 'Loss of information integrity due to human error (information system user mistake)\r\n', 5, 5, 5, 5, 8, 9, 2, 5),
 (14, 'Inadequate design and planning or improperly adaptation\r\n', 'Threats caused by improperly IT Assets or business processes design (inadequate specifications of IT products, inadequate usability, insecure interfaces, policy/procedure flows, design errors)\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (15, 'Damage caused by a third party \r\n', 'Threats of damage of IT Assets caused by third party \r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (16, 'Damages resulting from penetration testing\r\n', 'Threats to information systems caused by improperly / inprepare conducting of IT penetration testing\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
-(17, 'Loss of information in the cloud\r\n', 'Threats of loosing information or data stored in the cloud\r\n', 3, 5, 5, 5, 5, 9, 5, 5),
-(18, 'Loss of (integrity of) sensitive information\r\n', 'Threats of loosing information or data (or changing) information classified as sensitive\r\n', 8, 8, 7, 7, 5, 5, 5, 9),
+(17, 'Loss of information in the cloud\r\n', 'Threats of loosing information or data stored in the cloud\r\n', 5, 5, 5, 3, 5, 5, 9, 5),
+(18, 'Loss of (integrity of) sensitive information\r\n', 'Threats of loosing information or data (or changing) information classified as sensitive\r\n', 8, 7, 7, 8, 5, 9, 5, 5),
 (19, 'Loss of devices, storage media and documents\r\n', 'Threats of the lack of availability (loosing) of IT Assets and documents\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
-(20, 'Destruction of records\r\n', 'Threats of the lack of availability (destruction) of data and records (information) stored in devices and storage media\r\n', 2, 2, 2, 3, 5, 5, 5, 5),
+(20, 'Destruction of records\r\n', 'Threats of the lack of availability (destruction) of data and records (information) stored in devices and storage media\r\n', 2, 2, 3, 2, 5, 5, 5, 5),
 (21, 'Disaster (natural earthquakes,floods,landslides, tsunamis,heavy rains,heavy snowfalls,heavy winds)', 'Large scale and large effects natural disasters', 1, 1, 1, 1, 5, 5, 5, 5),
 (22, 'Fire', 'Threat of fire ', 1, 1, 1, 1, 5, 5, 5, 5),
 (23, 'Pollution, dust, corrosion\r\n', 'Threat of disruption of work of IT systems (hardware) dur to pollution, dust or corrosion (arising from the air)\r\n', 1, 1, 1, 1, 5, 5, 5, 5),
@@ -1340,32 +1646,32 @@ INSERT INTO `parsingbpmn_threat` (`id`, `name`, `description`, `owasp_awareness`
 (25, 'Water\r\n', 'Threat of damage of IT hardware caused by the water\r\n', 1, 1, 1, 1, 5, 5, 5, 5),
 (26, 'Explosion\r\n', 'empty\r\n', 1, 1, 1, 1, 5, 5, 5, 5),
 (27, 'Dangerous radiation leak\r\n', 'empty\r\n', 1, 1, 1, 1, 5, 5, 5, 5),
-(28, 'Unfavorable climatic conditions\r\n', 'Threat of disruption of work of IT systems due to climatic conditions that have the negative effect on hardware\r\n', 1, 2, 2, 2, 5, 5, 5, 5),
+(28, 'Unfavorable climatic conditions\r\n', 'Threat of disruption of work of IT systems due to climatic conditions that have the negative effect on hardware\r\n', 2, 2, 2, 1, 5, 5, 5, 5),
 (29, 'Major events in the environment\r\n', 'empty\r\n', 2, 2, 2, 2, 5, 5, 5, 5),
-(30, 'Threats from space / Electromagnetic storm\r\n', 'Threats of the negative impact of solar radiation (harmful rays) to a satellites and radio wave communication systems - Electromagnetic storm\r\n', 1, 1, 1, 2, 5, 5, 5, 5),
+(30, 'Threats from space / Electromagnetic storm\r\n', 'Threats of the negative impact of solar radiation (harmful rays) to a satellites and radio wave communication systems - Electromagnetic storm\r\n', 1, 1, 2, 1, 5, 5, 5, 5),
 (31, 'Wildlife\r\n', 'empty\r\n', 2, 2, 2, 2, 5, 5, 5, 5),
-(32, 'Failure of devices or systems\r\n', 'Threat of failure of IT hardware and/or software assets or its parts\r\n', 7, 7, 5, 5, 7, 8, 7, 7),
+(32, 'Failure of devices or systems\r\n', 'Threat of failure of IT hardware and/or software assets or its parts\r\n', 7, 5, 5, 7, 7, 7, 8, 7),
 (33, 'Failure or disruption of communication links (communication networks)\r\n', 'Threat of failure or malfunction of communications links \r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (34, 'Failure or disruption of main supply\r\n', 'Threat of failure or disruption of supply required for information systems\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (35, 'Failure or disruption of service providers (supply chain)\r\n', 'Threat of failure or disruption of thire party services required for proper operation of information systems\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (36, 'Malfunction of equipment (devices or systems)\r\n', 'Threat of malfunction of IT hardware and/or software assets or its parts\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
-(37, 'Loss of resources\r\n', 'Unavailability of resources (supply) required for proper operation of information system\r\n', 8, 8, 7, 7, 5, 5, 5, 5),
+(37, 'Loss of resources\r\n', 'Unavailability of resources (supply) required for proper operation of information system\r\n', 8, 7, 7, 8, 5, 5, 5, 5),
 (38, 'Absence of personnel\r\n', 'Unavailability of key personnel and their competences\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
-(39, 'Strike\r\n', 'Unavailability of staff due strike (large scale absence of personnel)\r\n', 1, 2, 2, 2, 5, 5, 5, 5),
+(39, 'Strike\r\n', 'Unavailability of staff due strike (large scale absence of personnel)\r\n', 2, 2, 2, 1, 5, 5, 5, 5),
 (40, 'Loss of support services\r\n', 'Unavailability of support services required for proper operation of information system\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
-(41, 'Internet outage\r\n', 'Unavailability of the Internet connection\r\n', 8, 8, 7, 7, 5, 5, 5, 5),
+(41, 'Internet outage\r\n', 'Unavailability of the Internet connection\r\n', 8, 7, 7, 8, 5, 5, 5, 5),
 (42, 'Network outage\r\n', 'Unavailability of communication links\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
-(43, 'War driving\r\n', 'Threat of locating and possible exploite connection to the wireless network\r\n', 5, 6, 7, 7, 5, 5, 5, 5),
-(44, 'Intercepting compromising emissions\r\n', 'Threat of disclosure transmitted information using interception and analysis of compromising emission\r\n', 5, 6, 7, 7, 5, 5, 5, 5),
-(45, 'Interception of information\r\n', 'Threat of interception of information improperly secured in transmission or improperly actions of staff\r\n', 8, 8, 7, 5, 5, 5, 5, 5),
+(43, 'War driving\r\n', 'Threat of locating and possible exploite connection to the wireless network\r\n', 6, 7, 7, 5, 5, 5, 5, 5),
+(44, 'Intercepting compromising emissions\r\n', 'Threat of disclosure transmitted information using interception and analysis of compromising emission\r\n', 6, 7, 7, 5, 5, 5, 5, 5),
+(45, 'Interception of information\r\n', 'Threat of interception of information improperly secured in transmission or improperly actions of staff\r\n', 8, 7, 5, 8, 5, 5, 5, 5),
 (46, 'Interfering radiation\r\n', 'Threat of failure of IT hardware or transmission connection due to electromagnetic induction or electromagnetic radiation emitted from an another source\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
-(47, 'Replay of messages\r\n', 'Threat in which valid data transmission is maliciously or fraudulently repeated or delayed\r\n', 8, 7, 6, 7, 5, 5, 5, 5),
-(48, 'Network Reconnaissance, Network traffic manipulation and Information gathering\r\n', 'Threat of identifying information about network to find security weaknesses\r\n', 6, 6, 7, 5, 5, 5, 5, 5),
-(49, 'Man in the middle/ Session hijacking \r\n', 'Threats that relay on alters of communication between two parties\r\n', 5, 7, 6, 5, 5, 5, 5, 5),
-(50, 'Identity theft (Identity Fraud/ Account) \r\n', 'Threat of identity theft action\r\n', 8, 9, 8, 7, 5, 5, 5, 5),
-(51, 'Receive of unsolicited E-mail \r\n', 'Threat of receive of unsolicited E-mail that affect for information security and efficienty of work (SPAM)\r\n', 9, 9, 8, 8, 1, 2, 3, 2),
-(52, 'Denial of service\r\n', 'Threat of Deny of service type attacks at information systems/services\r\n', 5, 5, 5, 5, 8, 9, 5, 5),
-(53, 'Malicious code/ software/ activity\r\n', 'Threat of malicious code or software execution\r\n', 8, 7, 7, 8, 9, 8, 8, 7),
+(47, 'Replay of messages\r\n', 'Threat in which valid data transmission is maliciously or fraudulently repeated or delayed\r\n', 7, 6, 7, 8, 5, 5, 5, 5),
+(48, 'Network Reconnaissance, Network traffic manipulation and Information gathering\r\n', 'Threat of identifying information about network to find security weaknesses\r\n', 6, 7, 5, 6, 5, 5, 5, 5),
+(49, 'Man in the middle/ Session hijacking \r\n', 'Threats that relay on alters of communication between two parties\r\n', 7, 6, 5, 5, 5, 5, 5, 5),
+(50, 'Identity theft (Identity Fraud/ Account) \r\n', 'Threat of identity theft action\r\n', 9, 8, 7, 8, 5, 5, 5, 5),
+(51, 'Receive of unsolicited E-mail \r\n', 'Threat of receive of unsolicited E-mail that affect for information security and efficienty of work (SPAM)\r\n', 9, 8, 8, 9, 3, 2, 2, 1),
+(52, 'Denial of service\r\n', 'Threat of Deny of service type attacks at information systems/services\r\n', 5, 5, 5, 5, 5, 5, 9, 8),
+(53, 'Malicious code/ software/ activity\r\n', 'Threat of malicious code or software execution\r\n', 7, 7, 8, 8, 8, 7, 8, 9),
 (54, 'Social Engineering\r\n', 'Phishing attacks, Spear phishing attacks\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (55, 'Abuse of Information Leakage\r\n', '? What is difference between others Physical attack (deliberate/ intentional)?\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (56, 'Generation and use of rogue certificates\r\n', 'Threat of use of rogue certificates\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
@@ -1374,14 +1680,14 @@ INSERT INTO `parsingbpmn_threat` (`id`, `name`, `description`, `owasp_awareness`
 (59, 'Misuse of audit tools\r\n', 'Threat of nefarious actions with use of audit tools (discovery security weaknesses in information systems)\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (60, 'Misuse of information/ information systems (including mobile apps)\r\n', 'Threat of nefarious action due to misuse of information / information systems\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (61, 'Unauthorized activities\r\n', 'empty\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
-(62, 'Unauthorized installation of software\r\n', 'Threat of unauthorized installation of software\r\n', 5, 6, 5, 5, 7, 5, 5, 5),
+(62, 'Unauthorized installation of software\r\n', 'Threat of unauthorized installation of software\r\n', 6, 5, 5, 5, 5, 5, 5, 7),
 (63, 'Compromising confidential information (data breaches)\r\n', 'Threat of data breach \r\n', 5, 5, 5, 5, 5, 5, 5, 5),
-(64, 'Hoax\r\n', 'Threat of disruption of work due to False rumor and/or a fake warning\r\n', 4, 2, 3, 3, 5, 5, 5, 5),
-(65, 'Remote activity (execution)\r\n', 'Threat of remote activity over controled IT Assets\r\n', 8, 7, 7, 8, 5, 5, 5, 5),
+(64, 'Hoax\r\n', 'Threat of disruption of work due to False rumor and/or a fake warning\r\n', 2, 3, 3, 4, 5, 5, 5, 5),
+(65, 'Remote activity (execution)\r\n', 'Threat of remote activity over controled IT Assets\r\n', 7, 7, 8, 8, 5, 5, 5, 5),
 (66, 'Targeted attacks (APTs etc.)\r\n', 'Threat of sophisticated targetes attack with combination of many attack techniques\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (67, 'Failed of bussines process\r\n', 'empty\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
-(68, 'Brute force\r\n', 'empty\r\n', 8, 7, 9, 8, 5, 5, 5, 5),
-(69, 'Abuse of authorizations\r\n', 'empty\r\n', 8, 8, 7, 6, 5, 5, 5, 5),
+(68, 'Brute force\r\n', 'empty\r\n', 7, 9, 8, 8, 5, 5, 5, 5),
+(69, 'Abuse of authorizations\r\n', 'empty\r\n', 8, 7, 6, 8, 5, 5, 5, 5),
 (70, 'Violation of laws or regulations / Breach of legislation\r\n', 'Threat of finacial or legal penatly or lost of trust of customers and collaborators due to violation of law or regulations\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (71, 'Failure to meet contractual requirements\r\n', 'Threat of finacial penatly or lost of trust of customers and collaborators due to failure to meet contractual requirements\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
 (72, 'Unauthorized use of IPR protected resources\r\n', 'Threat of finacial or legal penatly or lost of trust of customers and collaborators due to improper/illegal use of copyrights material\r\n', 5, 5, 5, 5, 5, 5, 5, 5),
@@ -1392,7 +1698,7 @@ INSERT INTO `parsingbpmn_threat` (`id`, `name`, `description`, `owasp_awareness`
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_threatagentattribute`
+-- Table structure for table `parsingbpmn_threatagentattribute`
 --
 
 CREATE TABLE `parsingbpmn_threatagentattribute` (
@@ -1401,10 +1707,10 @@ CREATE TABLE `parsingbpmn_threatagentattribute` (
   `attribute_value` varchar(100) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
   `score` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_threatagentattribute`
+-- Dumping data for table `parsingbpmn_threatagentattribute`
 --
 
 INSERT INTO `parsingbpmn_threatagentattribute` (`id`, `attribute`, `attribute_value`, `description`, `score`) VALUES
@@ -1445,7 +1751,7 @@ INSERT INTO `parsingbpmn_threatagentattribute` (`id`, `attribute`, `attribute_va
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_threatagentcategory`
+-- Table structure for table `parsingbpmn_threatagentcategory`
 --
 
 CREATE TABLE `parsingbpmn_threatagentcategory` (
@@ -1453,10 +1759,10 @@ CREATE TABLE `parsingbpmn_threatagentcategory` (
   `category` varchar(100) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
   `common_actions` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_threatagentcategory`
+-- Dumping data for table `parsingbpmn_threatagentcategory`
 --
 
 INSERT INTO `parsingbpmn_threatagentcategory` (`id`, `category`, `description`, `common_actions`) VALUES
@@ -1485,17 +1791,17 @@ INSERT INTO `parsingbpmn_threatagentcategory` (`id`, `category`, `description`, 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_threatagentquestion`
+-- Table structure for table `parsingbpmn_threatagentquestion`
 --
 
 CREATE TABLE `parsingbpmn_threatagentquestion` (
   `id` int(11) NOT NULL,
   `Qid` varchar(500) DEFAULT NULL,
   `question` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_threatagentquestion`
+-- Dumping data for table `parsingbpmn_threatagentquestion`
 --
 
 INSERT INTO `parsingbpmn_threatagentquestion` (`id`, `Qid`, `question`) VALUES
@@ -1507,7 +1813,7 @@ INSERT INTO `parsingbpmn_threatagentquestion` (`id`, `Qid`, `question`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_threatagentriskscores`
+-- Table structure for table `parsingbpmn_threatagentriskscores`
 --
 
 CREATE TABLE `parsingbpmn_threatagentriskscores` (
@@ -1519,10 +1825,10 @@ CREATE TABLE `parsingbpmn_threatagentriskscores` (
   `created_at` datetime(6) DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
   `system_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_threatagentriskscores`
+-- Dumping data for table `parsingbpmn_threatagentriskscores`
 --
 
 INSERT INTO `parsingbpmn_threatagentriskscores` (`id`, `skill`, `size`, `motive`, `opportunity`, `created_at`, `updated_at`, `system_id`) VALUES
@@ -1531,17 +1837,17 @@ INSERT INTO `parsingbpmn_threatagentriskscores` (`id`, `skill`, `size`, `motive`
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_threat_has_attribute`
+-- Table structure for table `parsingbpmn_threat_has_attribute`
 --
 
 CREATE TABLE `parsingbpmn_threat_has_attribute` (
   `id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL,
   `threat_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_threat_has_attribute`
+-- Dumping data for table `parsingbpmn_threat_has_attribute`
 --
 
 INSERT INTO `parsingbpmn_threat_has_attribute` (`id`, `attribute_id`, `threat_id`) VALUES
@@ -1694,17 +2000,17 @@ INSERT INTO `parsingbpmn_threat_has_attribute` (`id`, `attribute_id`, `threat_id
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_threat_has_control`
+-- Table structure for table `parsingbpmn_threat_has_control`
 --
 
 CREATE TABLE `parsingbpmn_threat_has_control` (
   `id` int(11) NOT NULL,
   `control_id` int(11) NOT NULL,
   `threat_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_threat_has_control`
+-- Dumping data for table `parsingbpmn_threat_has_control`
 --
 
 INSERT INTO `parsingbpmn_threat_has_control` (`id`, `control_id`, `threat_id`) VALUES
@@ -2132,17 +2438,17 @@ INSERT INTO `parsingbpmn_threat_has_control` (`id`, `control_id`, `threat_id`) V
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `parsingbpmn_threat_stride`
+-- Table structure for table `parsingbpmn_threat_stride`
 --
 
 CREATE TABLE `parsingbpmn_threat_stride` (
   `id` int(11) NOT NULL,
   `stride_id` int(11) NOT NULL,
   `threat_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `parsingbpmn_threat_stride`
+-- Dumping data for table `parsingbpmn_threat_stride`
 --
 
 INSERT INTO `parsingbpmn_threat_stride` (`id`, `stride_id`, `threat_id`) VALUES
@@ -2244,18 +2550,18 @@ INSERT INTO `parsingbpmn_threat_stride` (`id`, `stride_id`, `threat_id`) VALUES
 (106, 6, 72);
 
 --
--- Indici per le tabelle scaricate
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `auth_group`
+-- Indexes for table `auth_group`
 --
 ALTER TABLE `auth_group`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indici per le tabelle `auth_group_permissions`
+-- Indexes for table `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
   ADD PRIMARY KEY (`id`),
@@ -2263,65 +2569,29 @@ ALTER TABLE `auth_group_permissions`
   ADD KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`);
 
 --
--- Indici per le tabelle `auth_permission`
---
-ALTER TABLE `auth_permission`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`);
-
---
--- Indici per le tabelle `auth_user`
---
-ALTER TABLE `auth_user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- Indici per le tabelle `auth_user_groups`
---
-ALTER TABLE `auth_user_groups`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
-  ADD KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`);
-
---
--- Indici per le tabelle `auth_user_user_permissions`
---
-ALTER TABLE `auth_user_user_permissions`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
-  ADD KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`);
-
---
--- Indici per le tabelle `django_admin_log`
---
-ALTER TABLE `django_admin_log`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`),
-  ADD KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`);
-
---
--- Indici per le tabelle `django_content_type`
---
-ALTER TABLE `django_content_type`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`);
-
---
--- Indici per le tabelle `django_migrations`
+-- Indexes for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `django_session`
+-- Indexes for table `parsingbpmn_actor`
 --
-ALTER TABLE `django_session`
-  ADD PRIMARY KEY (`session_key`),
-  ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
+ALTER TABLE `parsingbpmn_actor`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parsingbpmn_actor_process_id_d24aa330_fk_parsingbpmn_process_id` (`process_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_asset`
+-- Indexes for table `parsingbpmn_actor_manage_data`
+--
+ALTER TABLE `parsingbpmn_actor_manage_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parsingbpmn_actor_ma_actor_id_4d0fc597_fk_parsingbp` (`actor_id`),
+  ADD KEY `parsingbpmn_actor_ma_data_id_a33149ef_fk_parsingbp` (`data_id`),
+  ADD KEY `parsingbpmn_actor_ma_process_id_082c6378_fk_parsingbp` (`process_id`);
+
+--
+-- Indexes for table `parsingbpmn_asset`
 --
 ALTER TABLE `parsingbpmn_asset`
   ADD PRIMARY KEY (`id`),
@@ -2329,7 +2599,7 @@ ALTER TABLE `parsingbpmn_asset`
   ADD KEY `parsingbpmn_asset_process_id_f1708c54_fk_parsingbpmn_process_id` (`process_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_asset_has_attribute`
+-- Indexes for table `parsingbpmn_asset_has_attribute`
 --
 ALTER TABLE `parsingbpmn_asset_has_attribute`
   ADD PRIMARY KEY (`id`),
@@ -2337,13 +2607,22 @@ ALTER TABLE `parsingbpmn_asset_has_attribute`
   ADD KEY `parsingbpmn_asset_ha_attribute_id_1481f8c4_fk_parsingbp` (`attribute_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_asset_type`
+-- Indexes for table `parsingbpmn_asset_has_dataobject_attribute`
+--
+ALTER TABLE `parsingbpmn_asset_has_dataobject_attribute`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parsingbpmn_asset_ha_asset_id_0f778ccd_fk_parsingbp` (`asset_id`),
+  ADD KEY `parsingbpmn_asset_ha_asset_type_id_cf303288_fk_parsingbp` (`asset_type_id`),
+  ADD KEY `parsingbpmn_asset_ha_data_object_attribut_d65716c0_fk_parsingbp` (`data_object_attribute_id`);
+
+--
+-- Indexes for table `parsingbpmn_asset_type`
 --
 ALTER TABLE `parsingbpmn_asset_type`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `parsingbpmn_attribute`
+-- Indexes for table `parsingbpmn_attribute`
 --
 ALTER TABLE `parsingbpmn_attribute`
   ADD PRIMARY KEY (`id`),
@@ -2351,19 +2630,25 @@ ALTER TABLE `parsingbpmn_attribute`
   ADD KEY `parsingbpmn_attribut_asset_type_id_fe69074c_fk_parsingbp` (`asset_type_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_attribute_value`
+-- Indexes for table `parsingbpmn_attribute_value`
 --
 ALTER TABLE `parsingbpmn_attribute_value`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `parsingbpmn_control`
+-- Indexes for table `parsingbpmn_control`
 --
 ALTER TABLE `parsingbpmn_control`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `parsingbpmn_overallrisk`
+-- Indexes for table `parsingbpmn_dataobjectattribute`
+--
+ALTER TABLE `parsingbpmn_dataobjectattribute`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `parsingbpmn_overallrisk`
 --
 ALTER TABLE `parsingbpmn_overallrisk`
   ADD PRIMARY KEY (`id`),
@@ -2372,20 +2657,20 @@ ALTER TABLE `parsingbpmn_overallrisk`
   ADD KEY `parsingbpmn_overallr_system_id_77a4c856_fk_parsingbp` (`system_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_process`
+-- Indexes for table `parsingbpmn_process`
 --
 ALTER TABLE `parsingbpmn_process`
   ADD PRIMARY KEY (`id`),
   ADD KEY `parsingbpmn_process_system_id_de20096e_fk_parsingbpmn_system_id` (`system_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_reply`
+-- Indexes for table `parsingbpmn_reply`
 --
 ALTER TABLE `parsingbpmn_reply`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `parsingbpmn_risk`
+-- Indexes for table `parsingbpmn_risk`
 --
 ALTER TABLE `parsingbpmn_risk`
   ADD PRIMARY KEY (`id`),
@@ -2395,28 +2680,27 @@ ALTER TABLE `parsingbpmn_risk`
   ADD KEY `parsingbpmn_risk_threat_stride_id_b393f1a9_fk_parsingbp` (`threat_stride_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_stride`
+-- Indexes for table `parsingbpmn_stride`
 --
 ALTER TABLE `parsingbpmn_stride`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `parsingbpmn_strideimpactrecord`
+-- Indexes for table `parsingbpmn_strideimpactrecord`
 --
 ALTER TABLE `parsingbpmn_strideimpactrecord`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `parsingbpmn_strideim_stride_id_ffcd0aa5_fk_parsingbp` (`stride_id`),
-  ADD KEY `parsingbpmn_strideim_system_id_ff099720_fk_parsingbp` (`system_id`),
-  ADD KEY `parsingbpmn_strideim_process_id_a5e6c918_fk_parsingbp` (`process_id`);
+  ADD KEY `parsingbpmn_strideim_process_id_a5e6c918_fk_parsingbp` (`process_id`),
+  ADD KEY `parsingbpmn_strideim_stride_id_ffcd0aa5_fk_parsingbp` (`stride_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_system`
+-- Indexes for table `parsingbpmn_system`
 --
 ALTER TABLE `parsingbpmn_system`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `parsingbpmn_system_threatagent`
+-- Indexes for table `parsingbpmn_system_threatagent`
 --
 ALTER TABLE `parsingbpmn_system_threatagent`
   ADD PRIMARY KEY (`id`),
@@ -2424,7 +2708,7 @@ ALTER TABLE `parsingbpmn_system_threatagent`
   ADD KEY `parsingbpmn_system_t_system_id_6fa9aab0_fk_parsingbp` (`system_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_tacategoryattribute`
+-- Indexes for table `parsingbpmn_tacategoryattribute`
 --
 ALTER TABLE `parsingbpmn_tacategoryattribute`
   ADD PRIMARY KEY (`id`),
@@ -2432,7 +2716,7 @@ ALTER TABLE `parsingbpmn_tacategoryattribute`
   ADD KEY `parsingbpmn_tacatego_category_id_54a051c7_fk_parsingbp` (`category_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_tareplies_question`
+-- Indexes for table `parsingbpmn_tareplies_question`
 --
 ALTER TABLE `parsingbpmn_tareplies_question`
   ADD PRIMARY KEY (`id`),
@@ -2440,7 +2724,7 @@ ALTER TABLE `parsingbpmn_tareplies_question`
   ADD KEY `parsingbpmn_tareplie_reply_id_0e154aae_fk_parsingbp` (`reply_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_tareplycategory`
+-- Indexes for table `parsingbpmn_tareplycategory`
 --
 ALTER TABLE `parsingbpmn_tareplycategory`
   ADD PRIMARY KEY (`id`),
@@ -2448,38 +2732,46 @@ ALTER TABLE `parsingbpmn_tareplycategory`
   ADD KEY `parsingbpmn_tareplyc_reply_id_5a0188c3_fk_parsingbp` (`reply_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_threat`
+-- Indexes for table `parsingbpmn_task_manages_data`
+--
+ALTER TABLE `parsingbpmn_task_manages_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parsingbpmn_task_man_data_id_6308dff3_fk_parsingbp` (`data_id`),
+  ADD KEY `parsingbpmn_task_man_task_id_c272d0e9_fk_parsingbp` (`task_id`);
+
+--
+-- Indexes for table `parsingbpmn_threat`
 --
 ALTER TABLE `parsingbpmn_threat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `parsingbpmn_threatagentattribute`
+-- Indexes for table `parsingbpmn_threatagentattribute`
 --
 ALTER TABLE `parsingbpmn_threatagentattribute`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `parsingbpmn_threatagentcategory`
+-- Indexes for table `parsingbpmn_threatagentcategory`
 --
 ALTER TABLE `parsingbpmn_threatagentcategory`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `parsingbpmn_threatagentquestion`
+-- Indexes for table `parsingbpmn_threatagentquestion`
 --
 ALTER TABLE `parsingbpmn_threatagentquestion`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `parsingbpmn_threatagentriskscores`
+-- Indexes for table `parsingbpmn_threatagentriskscores`
 --
 ALTER TABLE `parsingbpmn_threatagentriskscores`
   ADD PRIMARY KEY (`id`),
   ADD KEY `parsingbpmn_threatag_system_id_6ca17507_fk_parsingbp` (`system_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_threat_has_attribute`
+-- Indexes for table `parsingbpmn_threat_has_attribute`
 --
 ALTER TABLE `parsingbpmn_threat_has_attribute`
   ADD PRIMARY KEY (`id`),
@@ -2487,7 +2779,7 @@ ALTER TABLE `parsingbpmn_threat_has_attribute`
   ADD KEY `parsingbpmn_threat_h_threat_id_e9510391_fk_parsingbp` (`threat_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_threat_has_control`
+-- Indexes for table `parsingbpmn_threat_has_control`
 --
 ALTER TABLE `parsingbpmn_threat_has_control`
   ADD PRIMARY KEY (`id`),
@@ -2495,7 +2787,7 @@ ALTER TABLE `parsingbpmn_threat_has_control`
   ADD KEY `parsingbpmn_threat_h_threat_id_e0101e51_fk_parsingbp` (`threat_id`);
 
 --
--- Indici per le tabelle `parsingbpmn_threat_stride`
+-- Indexes for table `parsingbpmn_threat_stride`
 --
 ALTER TABLE `parsingbpmn_threat_stride`
   ADD PRIMARY KEY (`id`),
@@ -2503,274 +2795,244 @@ ALTER TABLE `parsingbpmn_threat_stride`
   ADD KEY `parsingbpmn_threat_s_threat_id_d0c8cc23_fk_parsingbp` (`threat_id`);
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT per la tabella `auth_group`
---
-ALTER TABLE `auth_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `auth_group_permissions`
---
-ALTER TABLE `auth_group_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `auth_permission`
---
-ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
-
---
--- AUTO_INCREMENT per la tabella `auth_user`
---
-ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `auth_user_groups`
---
-ALTER TABLE `auth_user_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `auth_user_user_permissions`
---
-ALTER TABLE `auth_user_user_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `django_admin_log`
---
-ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `django_content_type`
---
-ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT per la tabella `django_migrations`
+-- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_asset`
+-- AUTO_INCREMENT for table `parsingbpmn_actor`
+--
+ALTER TABLE `parsingbpmn_actor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `parsingbpmn_actor_manage_data`
+--
+ALTER TABLE `parsingbpmn_actor_manage_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `parsingbpmn_asset`
 --
 ALTER TABLE `parsingbpmn_asset`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=756;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=796;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_asset_has_attribute`
+-- AUTO_INCREMENT for table `parsingbpmn_asset_has_attribute`
 --
 ALTER TABLE `parsingbpmn_asset_has_attribute`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=432;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=439;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_asset_type`
+-- AUTO_INCREMENT for table `parsingbpmn_asset_has_dataobject_attribute`
+--
+ALTER TABLE `parsingbpmn_asset_has_dataobject_attribute`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `parsingbpmn_asset_type`
 --
 ALTER TABLE `parsingbpmn_asset_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_attribute`
+-- AUTO_INCREMENT for table `parsingbpmn_attribute`
 --
 ALTER TABLE `parsingbpmn_attribute`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_attribute_value`
+-- AUTO_INCREMENT for table `parsingbpmn_attribute_value`
 --
 ALTER TABLE `parsingbpmn_attribute_value`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_control`
+-- AUTO_INCREMENT for table `parsingbpmn_control`
 --
 ALTER TABLE `parsingbpmn_control`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_overallrisk`
+-- AUTO_INCREMENT for table `parsingbpmn_dataobjectattribute`
+--
+ALTER TABLE `parsingbpmn_dataobjectattribute`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `parsingbpmn_overallrisk`
 --
 ALTER TABLE `parsingbpmn_overallrisk`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_process`
+-- AUTO_INCREMENT for table `parsingbpmn_process`
 --
 ALTER TABLE `parsingbpmn_process`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_reply`
+-- AUTO_INCREMENT for table `parsingbpmn_reply`
 --
 ALTER TABLE `parsingbpmn_reply`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_risk`
+-- AUTO_INCREMENT for table `parsingbpmn_risk`
 --
 ALTER TABLE `parsingbpmn_risk`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1211;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_stride`
+-- AUTO_INCREMENT for table `parsingbpmn_stride`
 --
 ALTER TABLE `parsingbpmn_stride`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_strideimpactrecord`
+-- AUTO_INCREMENT for table `parsingbpmn_strideimpactrecord`
 --
 ALTER TABLE `parsingbpmn_strideimpactrecord`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1017;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_system`
+-- AUTO_INCREMENT for table `parsingbpmn_system`
 --
 ALTER TABLE `parsingbpmn_system`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_system_threatagent`
+-- AUTO_INCREMENT for table `parsingbpmn_system_threatagent`
 --
 ALTER TABLE `parsingbpmn_system_threatagent`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_tacategoryattribute`
+-- AUTO_INCREMENT for table `parsingbpmn_tacategoryattribute`
 --
 ALTER TABLE `parsingbpmn_tacategoryattribute`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_tareplies_question`
+-- AUTO_INCREMENT for table `parsingbpmn_tareplies_question`
 --
 ALTER TABLE `parsingbpmn_tareplies_question`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_tareplycategory`
+-- AUTO_INCREMENT for table `parsingbpmn_tareplycategory`
 --
 ALTER TABLE `parsingbpmn_tareplycategory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_threat`
+-- AUTO_INCREMENT for table `parsingbpmn_task_manages_data`
+--
+ALTER TABLE `parsingbpmn_task_manages_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `parsingbpmn_threat`
 --
 ALTER TABLE `parsingbpmn_threat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_threatagentattribute`
+-- AUTO_INCREMENT for table `parsingbpmn_threatagentattribute`
 --
 ALTER TABLE `parsingbpmn_threatagentattribute`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_threatagentcategory`
+-- AUTO_INCREMENT for table `parsingbpmn_threatagentcategory`
 --
 ALTER TABLE `parsingbpmn_threatagentcategory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_threatagentquestion`
+-- AUTO_INCREMENT for table `parsingbpmn_threatagentquestion`
 --
 ALTER TABLE `parsingbpmn_threatagentquestion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_threatagentriskscores`
+-- AUTO_INCREMENT for table `parsingbpmn_threatagentriskscores`
 --
 ALTER TABLE `parsingbpmn_threatagentriskscores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_threat_has_attribute`
+-- AUTO_INCREMENT for table `parsingbpmn_threat_has_attribute`
 --
 ALTER TABLE `parsingbpmn_threat_has_attribute`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_threat_has_control`
+-- AUTO_INCREMENT for table `parsingbpmn_threat_has_control`
 --
 ALTER TABLE `parsingbpmn_threat_has_control`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=421;
 
 --
--- AUTO_INCREMENT per la tabella `parsingbpmn_threat_stride`
+-- AUTO_INCREMENT for table `parsingbpmn_threat_stride`
 --
 ALTER TABLE `parsingbpmn_threat_stride`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
--- Limiti per le tabelle scaricate
+-- Constraints for dumped tables
 --
 
 --
--- Limiti per la tabella `auth_group_permissions`
+-- Constraints for table `parsingbpmn_actor`
 --
-ALTER TABLE `auth_group_permissions`
-  ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
-  ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`);
+ALTER TABLE `parsingbpmn_actor`
+  ADD CONSTRAINT `parsingbpmn_actor_process_id_d24aa330_fk_parsingbpmn_process_id` FOREIGN KEY (`process_id`) REFERENCES `parsingbpmn_process` (`id`);
 
 --
--- Limiti per la tabella `auth_permission`
+-- Constraints for table `parsingbpmn_actor_manage_data`
 --
-ALTER TABLE `auth_permission`
-  ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);
+ALTER TABLE `parsingbpmn_actor_manage_data`
+  ADD CONSTRAINT `parsingbpmn_actor_ma_actor_id_4d0fc597_fk_parsingbp` FOREIGN KEY (`actor_id`) REFERENCES `parsingbpmn_actor` (`id`),
+  ADD CONSTRAINT `parsingbpmn_actor_ma_data_id_a33149ef_fk_parsingbp` FOREIGN KEY (`data_id`) REFERENCES `parsingbpmn_asset` (`id`),
+  ADD CONSTRAINT `parsingbpmn_actor_ma_process_id_082c6378_fk_parsingbp` FOREIGN KEY (`process_id`) REFERENCES `parsingbpmn_process` (`id`);
 
 --
--- Limiti per la tabella `auth_user_groups`
---
-ALTER TABLE `auth_user_groups`
-  ADD CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
-  ADD CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
-
---
--- Limiti per la tabella `auth_user_user_permissions`
---
-ALTER TABLE `auth_user_user_permissions`
-  ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
-  ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
-
---
--- Limiti per la tabella `django_admin_log`
---
-ALTER TABLE `django_admin_log`
-  ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
-  ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
-
---
--- Limiti per la tabella `parsingbpmn_asset`
+-- Constraints for table `parsingbpmn_asset`
 --
 ALTER TABLE `parsingbpmn_asset`
   ADD CONSTRAINT `parsingbpmn_asset_asset_type_id_2a32922f_fk_parsingbp` FOREIGN KEY (`asset_type_id`) REFERENCES `parsingbpmn_asset_type` (`id`),
   ADD CONSTRAINT `parsingbpmn_asset_process_id_f1708c54_fk_parsingbpmn_process_id` FOREIGN KEY (`process_id`) REFERENCES `parsingbpmn_process` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_asset_has_attribute`
+-- Constraints for table `parsingbpmn_asset_has_attribute`
 --
 ALTER TABLE `parsingbpmn_asset_has_attribute`
   ADD CONSTRAINT `parsingbpmn_asset_ha_asset_id_aa73cc70_fk_parsingbp` FOREIGN KEY (`asset_id`) REFERENCES `parsingbpmn_asset` (`id`),
   ADD CONSTRAINT `parsingbpmn_asset_ha_attribute_id_1481f8c4_fk_parsingbp` FOREIGN KEY (`attribute_id`) REFERENCES `parsingbpmn_attribute` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_attribute`
+-- Constraints for table `parsingbpmn_asset_has_dataobject_attribute`
+--
+ALTER TABLE `parsingbpmn_asset_has_dataobject_attribute`
+  ADD CONSTRAINT `parsingbpmn_asset_ha_asset_id_0f778ccd_fk_parsingbp` FOREIGN KEY (`asset_id`) REFERENCES `parsingbpmn_asset` (`id`),
+  ADD CONSTRAINT `parsingbpmn_asset_ha_asset_type_id_cf303288_fk_parsingbp` FOREIGN KEY (`asset_type_id`) REFERENCES `parsingbpmn_asset_type` (`id`),
+  ADD CONSTRAINT `parsingbpmn_asset_ha_data_object_attribut_d65716c0_fk_parsingbp` FOREIGN KEY (`data_object_attribute_id`) REFERENCES `parsingbpmn_dataobjectattribute` (`id`);
+
+--
+-- Constraints for table `parsingbpmn_attribute`
 --
 ALTER TABLE `parsingbpmn_attribute`
   ADD CONSTRAINT `parsingbpmn_attribut_asset_type_id_fe69074c_fk_parsingbp` FOREIGN KEY (`asset_type_id`) REFERENCES `parsingbpmn_asset_type` (`id`),
   ADD CONSTRAINT `parsingbpmn_attribut_attribute_value_id_bfcbe512_fk_parsingbp` FOREIGN KEY (`attribute_value_id`) REFERENCES `parsingbpmn_attribute_value` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_overallrisk`
+-- Constraints for table `parsingbpmn_overallrisk`
 --
 ALTER TABLE `parsingbpmn_overallrisk`
   ADD CONSTRAINT `parsingbpmn_overallr_asset_id_a90dd13a_fk_parsingbp` FOREIGN KEY (`asset_id`) REFERENCES `parsingbpmn_asset` (`id`),
@@ -2778,13 +3040,13 @@ ALTER TABLE `parsingbpmn_overallrisk`
   ADD CONSTRAINT `parsingbpmn_overallr_system_id_77a4c856_fk_parsingbp` FOREIGN KEY (`system_id`) REFERENCES `parsingbpmn_system` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_process`
+-- Constraints for table `parsingbpmn_process`
 --
 ALTER TABLE `parsingbpmn_process`
   ADD CONSTRAINT `parsingbpmn_process_system_id_de20096e_fk_parsingbpmn_system_id` FOREIGN KEY (`system_id`) REFERENCES `parsingbpmn_system` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_risk`
+-- Constraints for table `parsingbpmn_risk`
 --
 ALTER TABLE `parsingbpmn_risk`
   ADD CONSTRAINT `parsingbpmn_risk_asset_id_e1d75156_fk_parsingbpmn_asset_id` FOREIGN KEY (`asset_id`) REFERENCES `parsingbpmn_asset` (`id`),
@@ -2793,63 +3055,69 @@ ALTER TABLE `parsingbpmn_risk`
   ADD CONSTRAINT `parsingbpmn_risk_threat_stride_id_b393f1a9_fk_parsingbp` FOREIGN KEY (`threat_stride_id`) REFERENCES `parsingbpmn_threat_stride` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_strideimpactrecord`
+-- Constraints for table `parsingbpmn_strideimpactrecord`
 --
 ALTER TABLE `parsingbpmn_strideimpactrecord`
   ADD CONSTRAINT `parsingbpmn_strideim_process_id_a5e6c918_fk_parsingbp` FOREIGN KEY (`process_id`) REFERENCES `parsingbpmn_process` (`id`),
-  ADD CONSTRAINT `parsingbpmn_strideim_stride_id_ffcd0aa5_fk_parsingbp` FOREIGN KEY (`stride_id`) REFERENCES `parsingbpmn_stride` (`id`),
-  ADD CONSTRAINT `parsingbpmn_strideim_system_id_ff099720_fk_parsingbp` FOREIGN KEY (`system_id`) REFERENCES `parsingbpmn_system` (`id`);
+  ADD CONSTRAINT `parsingbpmn_strideim_stride_id_ffcd0aa5_fk_parsingbp` FOREIGN KEY (`stride_id`) REFERENCES `parsingbpmn_stride` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_system_threatagent`
+-- Constraints for table `parsingbpmn_system_threatagent`
 --
 ALTER TABLE `parsingbpmn_system_threatagent`
   ADD CONSTRAINT `parsingbpmn_system_t_category_id_c8fc893a_fk_parsingbp` FOREIGN KEY (`category_id`) REFERENCES `parsingbpmn_threatagentcategory` (`id`),
   ADD CONSTRAINT `parsingbpmn_system_t_system_id_6fa9aab0_fk_parsingbp` FOREIGN KEY (`system_id`) REFERENCES `parsingbpmn_system` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_tacategoryattribute`
+-- Constraints for table `parsingbpmn_tacategoryattribute`
 --
 ALTER TABLE `parsingbpmn_tacategoryattribute`
   ADD CONSTRAINT `parsingbpmn_tacatego_attribute_id_3dcbdfb1_fk_parsingbp` FOREIGN KEY (`attribute_id`) REFERENCES `parsingbpmn_threatagentattribute` (`id`),
   ADD CONSTRAINT `parsingbpmn_tacatego_category_id_54a051c7_fk_parsingbp` FOREIGN KEY (`category_id`) REFERENCES `parsingbpmn_threatagentcategory` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_tareplies_question`
+-- Constraints for table `parsingbpmn_tareplies_question`
 --
 ALTER TABLE `parsingbpmn_tareplies_question`
   ADD CONSTRAINT `parsingbpmn_tareplie_question_id_1a607f61_fk_parsingbp` FOREIGN KEY (`question_id`) REFERENCES `parsingbpmn_threatagentquestion` (`id`),
   ADD CONSTRAINT `parsingbpmn_tareplie_reply_id_0e154aae_fk_parsingbp` FOREIGN KEY (`reply_id`) REFERENCES `parsingbpmn_reply` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_tareplycategory`
+-- Constraints for table `parsingbpmn_tareplycategory`
 --
 ALTER TABLE `parsingbpmn_tareplycategory`
   ADD CONSTRAINT `parsingbpmn_tareplyc_category_id_398b7fa7_fk_parsingbp` FOREIGN KEY (`category_id`) REFERENCES `parsingbpmn_threatagentcategory` (`id`),
   ADD CONSTRAINT `parsingbpmn_tareplyc_reply_id_5a0188c3_fk_parsingbp` FOREIGN KEY (`reply_id`) REFERENCES `parsingbpmn_reply` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_threatagentriskscores`
+-- Constraints for table `parsingbpmn_task_manages_data`
+--
+ALTER TABLE `parsingbpmn_task_manages_data`
+  ADD CONSTRAINT `parsingbpmn_task_man_data_id_6308dff3_fk_parsingbp` FOREIGN KEY (`data_id`) REFERENCES `parsingbpmn_asset` (`id`),
+  ADD CONSTRAINT `parsingbpmn_task_man_task_id_c272d0e9_fk_parsingbp` FOREIGN KEY (`task_id`) REFERENCES `parsingbpmn_asset` (`id`);
+
+--
+-- Constraints for table `parsingbpmn_threatagentriskscores`
 --
 ALTER TABLE `parsingbpmn_threatagentriskscores`
   ADD CONSTRAINT `parsingbpmn_threatag_system_id_6ca17507_fk_parsingbp` FOREIGN KEY (`system_id`) REFERENCES `parsingbpmn_system` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_threat_has_attribute`
+-- Constraints for table `parsingbpmn_threat_has_attribute`
 --
 ALTER TABLE `parsingbpmn_threat_has_attribute`
   ADD CONSTRAINT `parsingbpmn_threat_h_attribute_id_135fbf09_fk_parsingbp` FOREIGN KEY (`attribute_id`) REFERENCES `parsingbpmn_attribute` (`id`),
   ADD CONSTRAINT `parsingbpmn_threat_h_threat_id_e9510391_fk_parsingbp` FOREIGN KEY (`threat_id`) REFERENCES `parsingbpmn_threat` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_threat_has_control`
+-- Constraints for table `parsingbpmn_threat_has_control`
 --
 ALTER TABLE `parsingbpmn_threat_has_control`
   ADD CONSTRAINT `parsingbpmn_threat_h_control_id_7388a9d5_fk_parsingbp` FOREIGN KEY (`control_id`) REFERENCES `parsingbpmn_control` (`id`),
   ADD CONSTRAINT `parsingbpmn_threat_h_threat_id_e0101e51_fk_parsingbp` FOREIGN KEY (`threat_id`) REFERENCES `parsingbpmn_threat` (`id`);
 
 --
--- Limiti per la tabella `parsingbpmn_threat_stride`
+-- Constraints for table `parsingbpmn_threat_stride`
 --
 ALTER TABLE `parsingbpmn_threat_stride`
   ADD CONSTRAINT `parsingbpmn_threat_s_stride_id_7c72a7c7_fk_parsingbp` FOREIGN KEY (`stride_id`) REFERENCES `parsingbpmn_stride` (`id`),
