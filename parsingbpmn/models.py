@@ -40,7 +40,7 @@ class Process(models.Model):
 
 class Actor(models.Model):
     name = models.CharField(max_length=100,null=True)
-    process = models.ForeignKey(Process, on_delete=models.CASCADE)
+    process = models.ForeignKey(Process, on_delete=models.CASCADE,null=True)
     process_bpmn_id = models.CharField(max_length=100,null=True)
 
 
@@ -160,8 +160,8 @@ class Task_manages_Data(models.Model):
     data = models.ForeignKey(Asset,on_delete=models.CASCADE,related_name="data")
 
 class Actor_manage_Data(models.Model):
-    actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
-    data = models.ForeignKey(Asset, on_delete=models.CASCADE)
+    actor = models.ForeignKey(Actor, on_delete=models.CASCADE,null=True)
+    data = models.ForeignKey(Asset, on_delete=models.CASCADE,null=True)
     process = models.ForeignKey(Process, on_delete=models.CASCADE,null=True)
 
 class ThreatAgentCategory(models.Model):

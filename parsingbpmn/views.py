@@ -1648,12 +1648,7 @@ def task_manage_data(request,systemId,processId):
     count=0
     for data,tasks in post_data.items():
         count+=1
-
-
-
-
         if (data != "csrfmiddlewaretoken" and data != "multiple"):
-            print(data,tasks, "controllo")
             for task in tasks:
                 if data[0]=="Data Object":
                     task_db= Asset.objects.filter(name=task).first().id
@@ -1676,23 +1671,11 @@ def task_manage_data(request,systemId,processId):
             type2=type[0]
             type1 = []
             for element in type2:
-
                 if element == '1' or element == '0':
-
                     type1.append(element)
-
-
-
-
-
-
-
-
-
 
     manually_added_data = Asset.objects.filter(process=Process.objects.filter(pk=processId).first())
     print(manually_added_data)
-
     pathfile = Process.objects.filter(id=processId)[0].xml
     pathBPMN, filename = os.path.split(str(pathfile))
     pathBPMN = pathBPMN
@@ -1714,91 +1697,96 @@ def task_manage_data(request,systemId,processId):
             index=0
         if manually_added_single_data.process_bpmn_id is None:
             actor_manage_data = Actor_manage_Data.objects.filter(data_id=manually_added_single_data.id).first()
-            print(actor_manage_data.actor.process_bpmn_id)
+            print(actor_manage_data)
             tasks_manage_data = Task_manages_Data.objects.filter(data_id=manually_added_single_data.id)
             task_manage_data_result = tasks_manage_data.first()
-            for task_manage_data in tasks_manage_data:
-                if task_manage_data.task.process_bpmn_id == actor_manage_data.actor.process_bpmn_id:
-                    task_manage_data_result = task_manage_data
+            if(actor_manage_data is not None):
+                for task_manage_data in tasks_manage_data:
+                    if task_manage_data.task.process_bpmn_id == actor_manage_data.actor.process_bpmn_id:
+                        task_manage_data_result = task_manage_data
 
-            manually_added_single_data.process_bpmn_id = actor_manage_data.actor.process_bpmn_id
-            position = task_manage_data_result.task.position.split(":")
-            x = str(int(position[0]) + x_padding_do)#modifiche
-            if(index==1):
-                y = str(int(position[1]) - y_padding_do)
-            else:
-                y = str(int(position[1]) - y_padding_do - (index*90))
-
-            width = width_do
-            height = heigth_do
-            manually_added_single_data.position = str(x)+":"+str(y)+":"+str(width)+":"+str(height)
-            #print(manually_added_single_data.bpmn_id,manually_added_single_data.process_bpmn_id,manually_added_single_data.asset_type, 'vedi qui ora')
-            id_data_obj = manually_added_single_data.bpmn_id.split(":")
-            data_obj_ref_bpmnid = id_data_obj[0]
+                manually_added_single_data.process_bpmn_id = actor_manage_data.actor.process_bpmn_id
+                position = task_manage_data_result.task.position.split(":")
+                x = str(int(position[0]) + x_padding_do)#modifiche
+                if(index==1):
+                    y = str(int(position[1]) - y_padding_do)
+                else:
+                    y = str(int(position[1]) - y_padding_do - (index*90))
 
 
-            if len(id_data_obj)==2:
-                data_obj_bpmnid = id_data_obj[1]
-
-            #bpmn_graph.add_dataObject_to_diagram(manually_added_single_data.process_bpmn_id, data_obj_bpmnid)
-            #bpmn_graph.add_dataObjectReference_to_diagram(manually_added_single_data.process_bpmn_id,
-                                                                                      #x, y,manually_added_single_data.name,
-
-            if "Object" in data_obj_ref_bpmnid:
-                x1, y1, id_dataobjectref1 = bpmn_graph.add_dataObject_with_Association_to_diagram(manually_added_single_data.process_bpmn_id,
-                                                                                              manually_added_single_data.name, x,
-                                                                                              y)
-
-                print(id_dataobjectref1)
-                print("dataObject")
-            else:
-                x1, y1, id_dataobjectref=bpmn_graph.add_dataStoreReference_to_diagram(manually_added_single_data.process_bpmn_id, x, y,  manually_added_single_data.name, None )
-                print(id_dataobjectref)
-                id_dataobjectref1=id_dataobjectref['id']
-                print(id_dataobjectref1)
-                print("dataStore")
-
-            for task_manage_data_createassoc in tasks_manage_data:
-                if type1[0]== '0' and len(type1)>0:
-                        bpmn_graph.add_dataOutput_to_diagram(task_manage_data_createassoc.task.bpmn_id,x,y,id_dataobjectref1, None)
-                        type1 = type1[1:]
-                        print("dataOut")
-                elif type1[0]=='1'and len(type1)>0:
-                        x2, y2=bpmn_graph.get_node_position_by_id(task_manage_data_createassoc.task.bpmn_id)
-                        bpmn_graph.add_dataInput_to_diagram(id_dataobjectref1, x, y, x2, y2, task_manage_data_createassoc.task.bpmn_id, None)
-                        type1 = type1[1:]
-                        print("dataIn")
-                
-            asset_has_dataobj = Asset_has_DataObject_attribute.objects.filter(asset_id=manually_added_single_data.id).first()
-            attributes = DataObjectAttribute.objects.filter(id=asset_has_dataobj.id).first()
-
-            personal_value = ""
-            if attributes.personal == 1:
-                personal_value = "Personal:Yes"
-            else:
-                personal_value = "Personal:No"
 
 
-            size_value = "Size:"+str(attributes.size)+" "+str(attributes.order_of_size)
-            load_value = "Load dependence:"+str(attributes.load_dependece)
-            #modifiche posizione textAnnotation
-            textAnnotationBpmn1 = bpmn_graph.add_textAnnotation_to_diagram(manually_added_single_data.process_bpmn_id, str(int(x)+100), str(int(y)+20),
-                                                                          personal_value, None)
-            textAnnotationBpmn2 = bpmn_graph.add_textAnnotation_to_diagram(manually_added_single_data.process_bpmn_id, str(int(x)+100),
-                                                                           str(int(y)-10),
-                                                                          size_value, None)
-            textAnnotationBpmn3 = bpmn_graph.add_textAnnotation_to_diagram(manually_added_single_data.process_bpmn_id, str(int(x)+100),
-                                                                           str(int(y)-40),
-                                                                          load_value, None)
-            bpmn_graph.add_Association_to_diagram(manually_added_single_data.process_bpmn_id,id_dataobjectref1, textAnnotationBpmn1[1]['id'],
-                                                  None)
-            bpmn_graph.add_Association_to_diagram(manually_added_single_data.process_bpmn_id,
-                                                  id_dataobjectref1, textAnnotationBpmn2[1]['id'],
-                                                  None)
-            bpmn_graph.add_Association_to_diagram(manually_added_single_data.process_bpmn_id,
-                                                  id_dataobjectref1, textAnnotationBpmn3[1]['id'],
-                                                  None)
-            manually_added_single_data.save()
+                width = width_do
+                height = heigth_do
+                manually_added_single_data.position = str(x)+":"+str(y)+":"+str(width)+":"+str(height)
+                #print(manually_added_single_data.bpmn_id,manually_added_single_data.process_bpmn_id,manually_added_single_data.asset_type, 'vedi qui ora')
+                id_data_obj = manually_added_single_data.bpmn_id.split(":")
+                data_obj_ref_bpmnid = id_data_obj[0]
+
+
+                if len(id_data_obj)==2:
+                    data_obj_bpmnid = id_data_obj[1]
+
+
+                #bpmn_graph.add_dataObject_to_diagram(manually_added_single_data.process_bpmn_id, data_obj_bpmnid)
+                #bpmn_graph.add_dataObjectReference_to_diagram(manually_added_single_data.process_bpmn_id,
+                                                                                          #x, y,manually_added_single_data.name,
+
+                if "Object" in data_obj_ref_bpmnid:
+                    x1, y1, id_dataobjectref1 = bpmn_graph.add_dataObject_with_Association_to_diagram(manually_added_single_data.process_bpmn_id,
+                                                                                                  manually_added_single_data.name, x,
+                                                                                                  y)
+
+                    print(id_dataobjectref1)
+                    print("dataObject")
+                else:
+                    x1, y1, id_dataobjectref=bpmn_graph.add_dataStoreReference_to_diagram(manually_added_single_data.process_bpmn_id, x, y,  manually_added_single_data.name, None )
+                    print(id_dataobjectref)
+                    id_dataobjectref1=id_dataobjectref['id']
+                    print(id_dataobjectref1)
+                    print("dataStore")
+
+                for task_manage_data_createassoc in tasks_manage_data:
+                    if type1[0]== '0' and len(type1)>0:
+                            bpmn_graph.add_dataOutput_to_diagram(task_manage_data_createassoc.task.bpmn_id,x,y,id_dataobjectref1, None)
+                            type1 = type1[1:]
+                            print("dataOut")
+                    elif type1[0]=='1'and len(type1)>0:
+                            x2, y2=bpmn_graph.get_node_position_by_id(task_manage_data_createassoc.task.bpmn_id)
+                            bpmn_graph.add_dataInput_to_diagram(id_dataobjectref1, x, y, x2, y2, task_manage_data_createassoc.task.bpmn_id, None)
+                            type1 = type1[1:]
+                            print("dataIn")
+
+                asset_has_dataobj = Asset_has_DataObject_attribute.objects.filter(asset_id=manually_added_single_data.id).first()
+                attributes = DataObjectAttribute.objects.filter(id=asset_has_dataobj.id).first()
+
+                personal_value = ""
+                if attributes.personal == 1:
+                    personal_value = "Personal:Yes"
+                else:
+                    personal_value = "Personal:No"
+
+
+                size_value = "Size:"+str(attributes.size)+" "+str(attributes.order_of_size)
+                load_value = "Load dependence:"+str(attributes.load_dependece)
+                #modifiche posizione textAnnotation
+                textAnnotationBpmn1 = bpmn_graph.add_textAnnotation_to_diagram(manually_added_single_data.process_bpmn_id, str(int(x)+100), str(int(y)+20),
+                                                                              personal_value, None)
+                textAnnotationBpmn2 = bpmn_graph.add_textAnnotation_to_diagram(manually_added_single_data.process_bpmn_id, str(int(x)+100),
+                                                                               str(int(y)-10),
+                                                                              size_value, None)
+                textAnnotationBpmn3 = bpmn_graph.add_textAnnotation_to_diagram(manually_added_single_data.process_bpmn_id, str(int(x)+100),
+                                                                               str(int(y)-40),
+                                                                              load_value, None)
+                bpmn_graph.add_Association_to_diagram(manually_added_single_data.process_bpmn_id,id_dataobjectref1, textAnnotationBpmn1[1]['id'],
+                                                      None)
+                bpmn_graph.add_Association_to_diagram(manually_added_single_data.process_bpmn_id,
+                                                      id_dataobjectref1, textAnnotationBpmn2[1]['id'],
+                                                      None)
+                bpmn_graph.add_Association_to_diagram(manually_added_single_data.process_bpmn_id,
+                                                      id_dataobjectref1, textAnnotationBpmn3[1]['id'],
+                                                      None)
+                manually_added_single_data.save()
 
         bpmn_graph.export_xml_file(pathBPMN, filename)
         print("export")
