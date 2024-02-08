@@ -60,13 +60,12 @@ def bpmn_process_management(request, systemId):
             pk = last_process.pk
             print(pk,"PK")
             collaboration = bpmn_graph.load_diagram_from_xml_file(Process.objects.get(pk=pk).xml)
-
-            print(collaboration)
-            for id,participant in collaboration['participants'].items():
-                print(participant['name'])
-                actor = Actor(name=participant['name'],process_id=pk,
-                                  process_bpmn_id=participant['processRef'])
-                actor.save()
+            if 'participants' in collaboration:
+                for id, participant in collaboration['participants'].items():
+                    print(participant['name'])
+                    actor = Actor(name=participant['name'],process_id=pk,
+                                      process_bpmn_id=participant['processRef'])
+                    actor.save()
 
             #var = Actor.objects.all().get_or_create("",last_process,"")
 
